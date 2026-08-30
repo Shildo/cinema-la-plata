@@ -23,10 +23,6 @@ export default function About() {
         <p>
           En Cinema La Plata llevamos décadas acompañando a la ciudad y siendo parte indispensable del ritual de ir al cine. Nacimos con la vocación de reunir a las personas frente a la pantalla grande y, a lo largo de los años, nos hemos transformado para ofrecer una experiencia cinematográfica moderna, diversa e inmersiva. Somos más que un espacio de proyección: somos un punto de encuentro donde convergen historias de todo el mundo, la emoción del entretenimiento de vanguardia y el sentido de comunidad que hace única a La Plata.
         </p>
-
-        <a className="button button--terciary" href="#contacto">
-          Conocé nuestra historia
-        </a>
       </div>
     </section>
   );
