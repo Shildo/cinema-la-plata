@@ -28,7 +28,7 @@ const benefits = [
 export default function Benefits() {
   return (
     <section className="benefit-section" id="beneficios">
-      <div className="benefit-ribbon">
+      {/* <div className="benefit-ribbon">
         <p>
           Beneficios que se ven mejor en
           <br />
@@ -39,7 +39,7 @@ export default function Benefits() {
           Conocelos
           <span>→</span>
         </a>
-      </div>
+      </div> */}
 
       <div className="benefit-content">
         <div className="benefit-intro">

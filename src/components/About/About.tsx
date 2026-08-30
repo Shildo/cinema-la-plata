@@ -2,34 +2,30 @@ export default function About() {
   return (
     <section id="nosotros" className="about-section">
       <div className="about-image">
-        <div className="about-image-placeholder">
-          <span>IMAGEN INSTITUCIONAL</span>
-          <small>Foto de Cinema La Plata</small>
-        </div>
+        <img
+          src="/backgrounds/family-ocho.PNG"
+          alt="Familia disfrutando una experiencia en Cinema La Plata"
+          style={{scale: 1.2}}
+        />
       </div>
 
       <div className="about-copy">
         <p className="about-eyebrow">
-          <span />
           NOSOTROS
         </p>
 
         <h2>
-          Historias que se
+          El cine que siempre 
           <br />
-          encuentran en
-          <br />
-          La Plata.
+          te acompaña.
         </h2>
 
         <p>
-          Cinema La Plata es un espacio pensado para disfrutar del cine,
-          compartir experiencias y encontrarnos alrededor de cada película.
+          En Cinema La Plata llevamos décadas acompañando a la ciudad y siendo parte indispensable del ritual de ir al cine. Nacimos con la vocación de reunir a las personas frente a la pantalla grande y, a lo largo de los años, nos hemos transformado para ofrecer una experiencia cinematográfica moderna, diversa e inmersiva. Somos más que un espacio de proyección: somos un punto de encuentro donde convergen historias de todo el mundo, la emoción del entretenimiento de vanguardia y el sentido de comunidad que hace única a La Plata.
         </p>
 
-        <a className="button button--secondary" href="#contacto">
+        <a className="button button--terciary" href="#contacto">
           Conocé nuestra historia
-          <span>→</span>
         </a>
       </div>
     </section>

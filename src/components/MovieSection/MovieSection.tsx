@@ -1,57 +1,73 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const movies = [
   {
     key: 0,
     title: "Estreno",
     meta: "ACCIÓN / AVENTURA",
-    img: "aficheSpiderman.jpeg",
+    img: "/peliculas/aficheSpiderman.jpeg",
+    url: "/pelicula/spiderman",
   },
   {
     key: 1,
     title: "En cartelera",
     meta: "COMEDIA / INFANTIL",
-    img: "aficheMinions.jpeg",
+    img: "/peliculas/aficheMinions.jpeg",
+    url: "/pelicula/minions",
   },
   {
     key: 2,
     title: "Próximamente",
     meta: "COMEDIA / ROMANCE",
-    img: "aficheSoloPorUnaNoche.jpeg",
+    img: "/peliculas/aficheSoloPorUnaNoche.jpeg",
+    url: "/pelicula/solo-por-una-noche",
   },
   {
     key: 3,
     title: "Próximamente",
     meta: "COMEDIA / ROMANCE",
-    img: "aficheNarciso.jpeg",
+    img: "/peliculas/aficheNarciso.jpeg",
+    url: "/pelicula/narciso",
   },
   {
     key: 4,
     title: "En cartelera",
     meta: "ACCIÓN / FANTASÍA",
-    img: "aficheOdisea.jpeg",
+    img: "/peliculas/aficheOdisea.jpeg",
+    url: "/pelicula/odisea",
+  },
+  {
+    key: 5,
+    title: "En cartelera",
+    meta: "INFANTIL / AVENTURA",
+    img: "/peliculas/aficheToystory5.jpeg",
+    url: "/pelicula/toystory5"
   },
 ];
 
 export default function MovieSection() {
-  const posterRailRef = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    slidesToScroll: 1,
+  });
 
-  const scrollCarousel = (direction: "left" | "right") => {
-    if (!posterRailRef.current) return;
+  const scrollPrev = () => {
+    emblaApi?.scrollPrev();
+  };
 
-    const amount = posterRailRef.current.clientWidth * 0.7;
-
-    posterRailRef.current.scrollBy({
-      left: direction === "right" ? amount : -amount,
-      behavior: "smooth",
-    });
+  const scrollNext = () => {
+    emblaApi?.scrollNext();
   };
 
   return (
-    <section className="movie-section visual-cut-section" id="peliculas">
+    <section
+      className="movie-section visual-cut-section"
+      id="peliculas"
+    >
       <div className="section-row">
         <div className="section-heading">
           <p className="eyebrow">
@@ -60,7 +76,7 @@ export default function MovieSection() {
           </p>
 
           <h2>
-            Descubrí tu proxima historia
+            Descubrí tu próxima historia.
             <br />
           </h2>
 
@@ -71,41 +87,59 @@ export default function MovieSection() {
       </div>
 
       <div className="poster-carousel">
+
         <button
           type="button"
           className="poster-carousel__arrow poster-carousel__arrow--left"
-          onClick={() => scrollCarousel("left")}
+          onClick={scrollPrev}
           aria-label="Películas anteriores"
         >
           <ChevronLeft size={24} />
         </button>
 
-        <div className="poster-rail" ref={posterRailRef}>
-          {movies.map((movie) => (
-            <article className="poster-card" key={movie.key}>
-              <div className="image-slot poster-slot">
-                <img src={movie.img} alt={movie.title} />
+        <div
+          className="poster-viewport"
+          ref={emblaRef}
+        >
+          <div className="poster-rail">
+            {movies.map((movie) => (
+              <a
+                href={movie.url}
+                className="poster-card-link"
+                key={movie.key}
+              >
+                <article className="poster-card">
 
-                <div className="slot-center">
-                  <strong>{movie.title}</strong>
-                </div>
-              </div>
+                  <div className="image-slot poster-slot">
+                    <img
+                      src={movie.img}
+                      alt={movie.title}
+                    />
 
-              <div className="poster-card-footer">
-                <span>{movie.meta}</span>
-              </div>
-            </article>
-          ))}
+                    <div className="slot-center">
+                      <strong>{movie.title}</strong>
+                    </div>
+                  </div>
+
+                  <div className="poster-card-footer">
+                    <span>{movie.meta}</span>
+                  </div>
+
+                </article>
+              </a>
+            ))}
+          </div>
         </div>
 
         <button
           type="button"
           className="poster-carousel__arrow poster-carousel__arrow--right"
-          onClick={() => scrollCarousel("right")}
+          onClick={scrollNext}
           aria-label="Siguientes películas"
         >
           <ChevronRight size={24} />
         </button>
+
       </div>
     </section>
   );

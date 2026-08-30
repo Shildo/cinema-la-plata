@@ -10,7 +10,7 @@ const complexes = [
     number: "01",
     name: "Cinema City",
     location: "Calle 50 entre 9 y 10.",
-    imgURL: "/sedes/rocha.WEBP",
+    imgURL: "/sedes/city.JPEG",
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/JCh4EGS9Bo3hhXwg6"
   },  
@@ -18,7 +18,7 @@ const complexes = [
     number: "02",
     name: "Cinema Paradiso",
     location: "Calle 46 entre 10 y 11.",
-    imgURL: "/sedes/rocha.WEBP",
+    imgURL: "/sedes/paradiso.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/9pcaCXtL7LStEbJu9"
   },
@@ -34,7 +34,7 @@ const complexes = [
     number: "04",
     name: "Cinema Rocha",
     location: "Calle 49 entre 7 y 8.",
-    imgURL: "/sedes/rocha.WEBP",
+    imgURL: "/sedes/rocha.JPEG",
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/AMKFx3ypYin7Cx517"
   },
@@ -42,7 +42,7 @@ const complexes = [
     number: "05",
     name: "Cinema San Martín",
     location: "Avenida 7 entre 50 y 51.",
-    imgURL: "/sedes/rocha.WEBP",
+    imgURL: "/sedes/san-martin.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/LrjGXcBWd9sDJcMn8"
   },
@@ -117,7 +117,7 @@ export default function ComplexSection() {
             </div>
           </div>
 
-          <a href={selectedComplex.locationURL} target="_blank" rel="noopener noreferrer" className="button button--primary see-location-button">
+          <a href={selectedComplex.locationURL} target="_blank" rel="noopener noreferrer" className="button button--secondary see-location-button">
             Ver ubicación
           </a>
         </div>

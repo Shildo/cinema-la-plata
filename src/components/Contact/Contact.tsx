@@ -1,9 +1,14 @@
+import { Phone } from "lucide-react";
+import Instagram from "../../../public/svg/Instagram";
+import TikTok from "../../../public/svg/TikTok";
+import YouTube from "../../../public/svg/Youtube";
+import MyMail from "../../../public/svg/MyMail";
+
 export default function Contact() {
   return (
     <section id="contacto" className="contact-section">
       <div className="contact-intro">
         <p className="contact-eyebrow">
-          <span />
           CONTACTO
         </p>
 
@@ -19,43 +24,77 @@ export default function Contact() {
         </p>
 
         <div className="contact-links">
-          <a href="mailto:info@cinemalaplata.com">
-            <span>✉</span>
-            info@cinemalaplata.com
+          <a href="mailto:boleteriacity@cinemalaplata.com">
+            <span>
+              <MyMail />
+            </span>
+            boleteriacity@cinemalaplata.com
           </a>
 
-          <a href="tel:+542214000000">
-            <span>☎</span>
-            +54 221 400-0000
+          <a href="tel:+542214235456">
+            <span>
+              <Phone />
+            </span>
+            221 423-5456
           </a>
 
-          <a href="#">
-            <span>◎</span>
-            La Plata, Buenos Aires
+          <a href="https://www.instagram.com/cinemalaplata" target="_blank" rel="noopener noreferrer">
+            <span>
+              <Instagram />
+            </span>
+            cinemalaplata
+          </a>
+
+          <a href="https://www.tiktok.com/@cinemalaplata" target="_blank" rel="noopener noreferrer">
+            <span>
+              <TikTok />
+            </span>
+            cinemalaplata
+          </a>
+          
+          <a href="https://www.youtube.com/@CinemaLaPlataOficial" target="_blank" rel="noopener noreferrer">
+            <span>
+              <YouTube />
+            </span>
+            CinemaLaPlataOficial
           </a>
         </div>
       </div>
 
       <form className="contact-form">
         <label>
-          Recibí novedades de cartelera
+          Formá parte de la comunidad
 
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+          />
+          <input
+            type="text"
+            name="surname"
+            placeholder="Tu apellido"
+          />
           <input
             type="email"
             name="email"
             placeholder="Tu email"
+          />
+          <input
+            type="date"
+            name="birthdate"
+            placeholder="Fecha de nacimiento"
           />
 
         </label>
 
         <button type="submit" className="button button--primary">
           Suscribirme
-          <span>→</span>
         </button>
 
         <p>
           <span>✦</span>
-          Te responderemos a la brevedad.
+          Recibiras semanalmente un mail promocional para mantenerte informado sobre los estrenos, eventos especiales, combos, beneficios, descuentos y promociones.
         </p>
       </form>
     </section>

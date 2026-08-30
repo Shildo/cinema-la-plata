@@ -1,33 +1,32 @@
+import { Clapperboard } from "lucide-react";
+import { Popcorn } from "lucide-react";
+import { Tickets } from "lucide-react";
+
 export default function Experience() {
   return (
     <section className="experience-section" id="experiencia">
       <div className="experience-main">
         <p className="experience-eyebrow">
-          LA EXPERIENCIA CINEMA
+          EXPERIENCIA CINEMA
         </p>
 
         <h2>
-          Elegí cómo
+          Elegí cómo queres
           <br />
-          queres sentir la
-          <br />
-          función.
+          sentir la función.
         </h2>
 
         <p>
-          Formatos, propuestas gastronómicas y beneficios que completan la experiencia de ir al cine.
+          Viví la experiencia completa.
         </p>
-
-        <a href="#cartelera" className="button button--primary">
-          Conocé las tecnologias →
-        </a>
+        
       </div>
 
       <div className="experience-grid">
-        <article>
-          <span className="experience-number">01</span>
-
-          <div className="experience-icon">◉</div>
+        <article className="experience-card experience-card--technologies">
+          <div className="experience-icon">
+            <Clapperboard />
+          </div>
 
           <h3>Tecnologías</h3>
 
@@ -36,10 +35,10 @@ export default function Experience() {
           </p>
         </article>
 
-        <article>
-          <span className="experience-number">02</span>
-
-          <div className="experience-icon">◆</div>
+        <article className="experience-card experience-card--candybar">
+          <div className="experience-icon">
+            <Popcorn />
+          </div>
 
           <h3>Candy Bar</h3>
 
@@ -48,10 +47,10 @@ export default function Experience() {
           </p>
         </article>
 
-        <article>
-          <span className="experience-number">03</span>
-
-          <div className="experience-icon">✦</div>
+        <article className="experience-card experience-card--benefits">
+          <div className="experience-icon">
+            <Tickets />
+          </div>
 
           <h3>Beneficios</h3>
 
