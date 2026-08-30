@@ -17,9 +17,9 @@ export default function Home() {
 
       <main>
         <Hero />
-        <Schedule />
         <MovieSection />
         <ComplexSection />
+        <Schedule />
         <Experience />
         <Benefits />
         <News />

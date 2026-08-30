@@ -1,32 +1,55 @@
+"use client";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+
 const movies = [
   {
-    title: "Spider-Man",
-    meta: "2D · ACCIÓN",
-	img: "aficheSpiderman.jpeg"
-  },
-  {
-    title: "Próximo estreno",
-    meta: "2D · AVENTURA",
-	img: "aficheSoloPorUnaNoche.jpeg"
-  },
-  {
-    title: "En cartelera",
-    meta: "2D · DRAMA",
-	img: "aficheMinions.jpeg"
-  },
-  {
-    title: "Próximamente",
-    meta: "2D · COMEDIA",
-	img: "aficheNarciso.jpeg"
-},
-  {
+    key: 0,
     title: "Estreno",
-    meta: "2D · THRILLER",
-	img: "aficheOdisea.jpeg"
+    meta: "ACCIÓN / AVENTURA",
+    img: "aficheSpiderman.jpeg",
+  },
+  {
+    key: 1,
+    title: "En cartelera",
+    meta: "COMEDIA / INFANTIL",
+    img: "aficheMinions.jpeg",
+  },
+  {
+    key: 2,
+    title: "Próximamente",
+    meta: "COMEDIA / ROMANCE",
+    img: "aficheSoloPorUnaNoche.jpeg",
+  },
+  {
+    key: 3,
+    title: "Próximamente",
+    meta: "COMEDIA / ROMANCE",
+    img: "aficheNarciso.jpeg",
+  },
+  {
+    key: 4,
+    title: "En cartelera",
+    meta: "ACCIÓN / FANTASÍA",
+    img: "aficheOdisea.jpeg",
   },
 ];
 
 export default function MovieSection() {
+  const posterRailRef = useRef<HTMLDivElement>(null);
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (!posterRailRef.current) return;
+
+    const amount = posterRailRef.current.clientWidth * 0.7;
+
+    posterRailRef.current.scrollBy({
+      left: direction === "right" ? amount : -amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="movie-section visual-cut-section" id="peliculas">
       <div className="section-row">
@@ -37,43 +60,52 @@ export default function MovieSection() {
           </p>
 
           <h2>
-            Películas que
+            Descubrí tu proxima historia
             <br />
-            merecen pantalla grande.
           </h2>
 
           <p className="section-copy">
-            Descubrí los títulos que están pasando por nuestros complejos y
-            encontrá tu próxima película favorita.
+            Seleccioná un estreno y prepará tu próxima función.
           </p>
         </div>
-
-        <a href="#cartelera" className="arrow-link">
-          Ver cartelera
-          <span>→</span>
-        </a>
       </div>
 
-      <div className="poster-rail">
-        {movies.map((movie, index) => (
-          <article className="poster-card" key={movie.title}>
-            <div className="image-slot poster-slot">
-              <img src={movie.img} alt={movie.title} />
-              <div className="slot-center">
-                <strong>{movie.title}</strong>
-                <small>{movie.meta}</small>
+      <div className="poster-carousel">
+        <button
+          type="button"
+          className="poster-carousel__arrow poster-carousel__arrow--left"
+          onClick={() => scrollCarousel("left")}
+          aria-label="Películas anteriores"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        <div className="poster-rail" ref={posterRailRef}>
+          {movies.map((movie) => (
+            <article className="poster-card" key={movie.key}>
+              <div className="image-slot poster-slot">
+                <img src={movie.img} alt={movie.title} />
+
+                <div className="slot-center">
+                  <strong>{movie.title}</strong>
+                </div>
               </div>
-            </div>
 
-            <div className="poster-card-footer">
-              <span>{movie.meta}</span>
+              <div className="poster-card-footer">
+                <span>{movie.meta}</span>
+              </div>
+            </article>
+          ))}
+        </div>
 
-              <button type="button" aria-label={`Ver ${movie.title}`}>
-                →
-              </button>
-            </div>
-          </article>
-        ))}
+        <button
+          type="button"
+          className="poster-carousel__arrow poster-carousel__arrow--right"
+          onClick={() => scrollCarousel("right")}
+          aria-label="Siguientes películas"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </section>
   );

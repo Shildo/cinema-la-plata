@@ -9,12 +9,10 @@ export default function Hero() {
           LA CARTELERA DE LA PLATA
         </div>
 
-        <h1>
-          La pantalla
+        <h1 className="big-title">
+          La pantalla <span>grande</span>
           <br />
-          <span>grande</span> empieza
-          <br />
-          acá.
+           empieza acá.
         </h1>
 
         <p className="hero__description">
@@ -23,26 +21,16 @@ export default function Hero() {
         </p>
 
         <div className="hero__actions">
-          <a href="#" className="button button--primary">
+          {/* <a href="#" className="button button--primary">
             <span>🎟</span>
             Ver horarios
-          </a>
+          </a> */}
 
-          <a href="#" className="button button--secondary">
+          <a href="https://www.youtube.com/watch?v=d9MyW72ELq0" target="_blank" rel="noopener noreferrer" className="button button--secondary">
             <span>▶</span>
             Ver tráiler
           </a>
         </div>
-
-        <div className="hero__info">
-          <span>HORARIOS ACTUALIZABLES</span>
-          <b>•</b>
-          <span>SELECCIONÁ TU SALA</span>
-        </div>
-      </div>
-
-      <div className="spiderman">
-        <img src="/spiderman.png" alt="Spider-Man" />
       </div>
     </section>
   );

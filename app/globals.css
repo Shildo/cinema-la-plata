@@ -1,11 +1,27 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Satoshi Medium";
+  src: url("/fonts/satoshi/Satoshi-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neufile Medium";
+  src: url("/fonts/neufile/NeufileGrotesk-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* =========================
    VARIABLES / IDENTIDAD
 ========================= */
 
 :root {
-  --blue: #5f72f2;
+  --lightblue: #5f72f2;
   --red: #df2b1a;
   --yellow: #fec615;
   --cream: #efe5ce;
@@ -218,28 +234,30 @@ p {
 
 .hero {
   position: relative;
-
+  
   min-height: min(780px, 92vh);
-
+  
   padding:
     9.8rem
     clamp(1.25rem, 7vw, 8.5rem)
     4.3rem;
-
+  
   display: grid;
   grid-template-columns:
-    minmax(0, 0.95fr)
-    minmax(330px, 0.72fr);
-
+  minmax(0, 0.95fr)
+  minmax(330px, 0.72fr);
+  
   gap: 4rem;
-
+  
   align-items: end;
-
+  
+  background-image: url("/hero.png");
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Fondo */
@@ -250,19 +268,6 @@ p {
   z-index: -2;
 
   inset: 0;
-
-  background:
-    radial-gradient(
-      circle at 14% 92%,
-      rgba(95, 114, 242, 0.46),
-      transparent 38%
-    ),
-    linear-gradient(
-      120deg,
-      #101936 0%,
-      #172550 50%,
-      #111936 100%
-    );
 }
 
 /* Oscurecimiento */
@@ -288,7 +293,7 @@ p {
   position: relative;
   z-index: 5;
 
-  max-width: 670px;
+  max-width: 900px;
 
   padding-bottom: clamp(0rem, 6vh, 4rem);
 }
@@ -302,13 +307,18 @@ p {
   align-items: center;
   gap: 0.6rem;
 
-  color: var(--blue);
+  color: var(--lightblue);
 
   font-size: 0.66rem;
   font-weight: 800;
 
   letter-spacing: 0.15em;
   text-transform: uppercase;
+
+}
+
+.big-title {
+  font-family: "Neufile Medium", sans-serif;
 }
 
 .hero__eyebrow span {
@@ -329,7 +339,7 @@ p {
 
   font-size: clamp(3.7rem, 7vw, 7.5rem);
 
-  line-height: 0.86;
+  line-height: 1.2;
 
   letter-spacing: -0.06em;
 
@@ -429,29 +439,6 @@ p {
   background: rgba(255, 255, 255, 0.11);
 }
 
-/* Información inferior */
-
-.hero__info {
-  display: flex;
-  flex-wrap: wrap;
-
-  align-items: center;
-
-  gap: 0.7rem;
-
-  margin-top: 3rem;
-
-  color: rgba(255, 255, 255, 0.58);
-
-  font-size: 0.6rem;
-  font-weight: 800;
-
-  letter-spacing: 0.13em;
-}
-
-.hero__info b {
-  color: var(--yellow);
-}
 
 /* =========================
    SPIDER-MAN
@@ -462,10 +449,10 @@ p {
 
   z-index: 3;
 
-  right: 4%;
+  right: -2%;
   bottom: -30px;
 
-  width: min(43vw, 650px);
+  width: min(50vw, 830px);
 
   display: flex;
   align-items: flex-end;
@@ -512,7 +499,7 @@ p {
 
   .spiderman {
     opacity: 0.3;
-    right: -10%;
+    right: -5%;
   }
 }
 
@@ -551,9 +538,9 @@ p {
   }
 
   .spiderman {
-    width: 75vw;
+    width: 85vw;
 
-    right: -20%;
+    right: -10%;
     bottom: -5%;
 
     opacity: 0.18;
@@ -817,11 +804,84 @@ p {
    MOVIE SECTION
 ========================= */
 
-.movie-section {
-  padding: clamp(4.5rem, 8vw, 8rem) 0;
+.poster-carousel {
+  position: relative;
+}
 
-  background: var(--black);
+.poster-carousel__arrow {
+  position: absolute;
+  top: 42%;
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(239, 229, 206, 0.35);
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.8);
   color: var(--cream);
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.poster-carousel__arrow:hover {
+  background: var(--lightblue);
+  color: var(--black);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.poster-carousel__arrow--left {
+  left: 24px;
+}
+
+.poster-carousel__arrow--right {
+  right: 24px;
+}
+
+@media (max-width: 660px) {
+  .poster-carousel__arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .poster-carousel__arrow--left {
+    left: 8px;
+  }
+
+  .poster-carousel__arrow--right {
+    right: 8px;
+  }
+}
+
+.movie-section {
+  padding: clamp(4.5rem, 4vw, 8rem) 0;
+
+  /* background: var(--black); */
+  color: var(--cream);
+}
+
+.movie-section__decoration {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: clamp(180px, 25vw, 380px);
+  height: auto;
+
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .section-row {
@@ -835,17 +895,18 @@ p {
 }
 
 .section-heading {
-  max-width: 640px;
+  max-width: 880px;
+  
+  .eyebrow {
+    font-size: 1.5rem;
+  }
 }
 
-.section-heading h2 {
-  margin: 0 0 0.7rem;
 
-  font-family:
-    "Neufile Grotesk",
-    "DM Serif Display",
-    Georgia,
-    serif;
+.section-heading h2 {
+  margin-top: 2rem;
+
+  font-family: "Neufile Medium", sans-serif;
 
   color: inherit;
 
@@ -856,42 +917,6 @@ p {
   letter-spacing: -0.05em;
 
   font-weight: 400;
-}
-
-.section-copy {
-  max-width: 475px;
-
-  margin: 0;
-
-  color: #b9b0a0;
-
-  font-size: 0.85rem;
-
-  line-height: 1.75;
-}
-
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 0.5rem;
-
-  color: var(--blue);
-
-  font-size: 0.72rem;
-
-  font-weight: 800;
-
-  white-space: nowrap;
-
-  transition:
-    color 160ms var(--ease-out),
-    transform 160ms var(--ease-out);
-}
-
-.arrow-link:hover {
-  color: #ff766c;
-  transform: translateX(3px);
 }
 
 /* Posters */
@@ -918,18 +943,20 @@ p {
   min-width: 0;
 }
 
+.poster-slot:hover {
+  transform: translateY(-6px) scale(1.04);
+  z-index: 3;
+  cursor: pointer;
+}
+
 .poster-slot {
+  transition: transform 0.25s ease;
   position: relative;
-
   min-height: auto;
-
   aspect-ratio: 2 / 3;
-
   overflow: hidden;
-
   background: #121d43;
-
-  border: 1px dashed rgba(202, 211, 255, 0.66);
+  border-radius: 5px;
 }
 
 .poster-slot::before {
@@ -990,11 +1017,6 @@ p {
   color: rgba(255, 255, 255, 0.66);
 
   font-size: 0.65rem;
-}
-
-.poster-card:nth-child(2) .poster-slot,
-.poster-card:nth-child(4) .poster-slot {
-  transform: translateY(1.5rem);
 }
 
 .poster-card-footer {
@@ -1087,37 +1109,27 @@ p {
 }
 
 .complex-side {
-  max-width: 520px;
+  max-width: 535px;
+
+  p {
+    font-size: 1.5rem;
+  }
 }
 
 .section-eyebrow {
-  margin: 0 0 20px;
-
   color: var(--red);
-
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 700;
 }
 
 .complex-side h2 {
-  margin: 0;
+  margin-top: 2rem;
 
-  font-family: "Neufile Grotesk", Georgia, serif;
-  font-size: clamp(48px, 5vw, 76px);
+  font-family: "Neufile Medium", sans-serif;
+  font-size: clamp(2.4rem, 4.4vw, 4.7rem);
   line-height: 0.9;
   letter-spacing: -0.05em;
   font-weight: 400;
-}
-
-.section-copy {
-  max-width: 440px;
-  margin: 28px 0 0;
-
-  color: #4f5a7d;
-
-  font-size: 15px;
-  line-height: 1.7;
 }
 
 .complex-list {
@@ -1145,7 +1157,7 @@ p {
 
   text-align: left;
 
-  font-size: 13px;
+  font-size: 1rem;
   font-weight: 800;
 
   transition:
@@ -1173,27 +1185,40 @@ p {
   min-width: 0;
 }
 
-.complex-image-placeholder {
+.complex-image {
+  position: relative;
+
   width: 100%;
-  aspect-ratio: 16 / 8;
+  min-height: 520px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(95, 114, 242, 0.85),
-      rgba(16, 25, 54, 0.95)
-    );
-
-  color: rgba(239, 229, 206, 0.7);
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  background: #121d43;
 }
+
+.complex-image img {
+  width: 100%;
+  height: 520px;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* .complex-image {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  background: #121d43;
+}
+
+.complex-image img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+} */
 
 .complex-card {
   width: min(94%, 510px);
@@ -1209,33 +1234,14 @@ p {
   box-shadow: 18px 20px 0 rgba(95, 114, 242, 0.25);
 }
 
-.complex-card__location {
-  margin: 0 0 20px;
-
-  color: var(--yellow);
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
 .complex-card h3 {
   margin: 0 0 18px;
 
-  font-family: "Neufile Grotesk", Georgia, serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(30px, 3vw, 48px);
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 400;
-}
-
-.complex-card > p:not(.complex-card__location) {
-  margin: 0;
-
-  color: #aaa18f;
-
-  font-size: 13px;
-  line-height: 1.7;
 }
 
 .complex-facts {
@@ -1246,6 +1252,7 @@ p {
   gap: 16px;
 
   border-top: 1px solid rgba(239, 229, 206, 0.18);
+  font-family: "Satoshi Medium", sans-serif;
 }
 
 .complex-facts div {
@@ -1257,26 +1264,27 @@ p {
 .complex-facts span {
   grid-row: span 2;
 
-  color: var(--blue);
+  color: var(--lightblue);
 
   font-size: 10px;
   font-weight: 800;
 }
 
 .complex-facts small {
-  color: #707a99;
+  color: var(--lightblue);
 
-  font-size: 9px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .complex-facts strong {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .complex-card .button {
   width: 100%;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 1000px) {
@@ -1677,9 +1685,6 @@ p {
   letter-spacing: 0.13em;
 }
 
-.news-section .section-copy {
-  color: #b9b0a0;
-}
 
 .news-grid {
   margin-top: 48px;
@@ -1896,7 +1901,7 @@ p {
   align-items: center;
   gap: 0.6rem;
 
-  color: var(--blue);
+  color: var(--lightblue);
 
   font-size: 0.66rem;
   font-weight: 800;
@@ -1985,7 +1990,7 @@ p {
 
   gap: clamp(3rem, 8vw, 10rem);
 
-  background: var(--blue);
+  background: var(--lightblue);
   color: var(--cream);
 }
 
@@ -2037,7 +2042,7 @@ p {
 }
 
 .contact-links {
-  margin-top: 2.2rem;
+  margin-top: 2rem;
 
   display: grid;
   gap: 0.9rem;
@@ -2118,7 +2123,7 @@ p {
 }
 
 .contact-form input:focus {
-  border-color: var(--blue);
+  border-color: var(--lightblue);
 }
 
 .contact-form .button {
