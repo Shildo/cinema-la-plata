@@ -1,7 +1,7 @@
 .movie-page {
   min-height: 100vh;
   background: var(--black);
-  color: var(--cream);
+  color: var(--white);
 }
 
 /* =========================
@@ -99,7 +99,7 @@
 .movie-detail__content h1 {
   margin: 0;
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(4rem, 8vw, 8rem);
   line-height: 0.85;
   letter-spacing: -0.06em;
@@ -113,7 +113,7 @@
   align-items: center;
   gap: 0.7rem;
 
-  color: var(--lightblue);
+  color: var(--white);
 
   font-family: "Satoshi Medium", sans-serif;
   font-size: 0.8rem;
@@ -131,7 +131,7 @@
 
   margin: 2rem 0 2.5rem;
 
-  color: var(--cream);
+  color: var(--white);
 
   font-family: "Satoshi", sans-serif;
   font-size: 1rem;
@@ -178,11 +178,11 @@
 }
 
 .movie-schedule h2 {
-  color: var(--cream);
+  color: var(--white);
   
   margin: 0;
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(3rem, 5vw, 5.5rem);
   line-height: 0.9;
   letter-spacing: -0.055em;
@@ -194,7 +194,7 @@
 
   margin-top: 1.5rem;
 
-  color: var(--lightblue);
+  color: var(--white);
 
   font-family: "Satoshi", sans-serif;
   font-size: 1rem;
@@ -238,7 +238,7 @@
 
 .movie-schedule__steps > div:hover {
   background: var(--red);
-  color: var(--cream);
+  color: var(--white);
 
   transform: translateY(-8px);
 }

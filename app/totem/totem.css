@@ -1,0 +1,68 @@
+.totem {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.totem__background {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+
+  width: min(60vw, 1200px);
+  height: auto;
+
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.totem__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.totem__buttons {
+  position: absolute;
+
+  left: 50%;
+  bottom: 10%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 28px;
+
+  width: min(800px, 50vw);
+}
+
+.totem__button {
+  flex: 1;
+  min-height: 110px;
+  padding: 24px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 14px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.totem__button:active {
+  transform: scale(0.98);
+}

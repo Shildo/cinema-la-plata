@@ -1,68 +1,81 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
-
 const movies = [
   {
     key: 0,
-    title: "Estreno",
+    title: "Spider-Man",
+    status: "Estreno",
     meta: "ACCIÓN / AVENTURA",
     img: "/peliculas/aficheSpiderman.jpeg",
     url: "/pelicula/spiderman",
   },
   {
     key: 1,
-    title: "En cartelera",
+    title: "Minions",
+    status: "En cartelera",
     meta: "COMEDIA / INFANTIL",
     img: "/peliculas/aficheMinions.jpeg",
     url: "/pelicula/minions",
   },
   {
     key: 2,
-    title: "Próximamente",
+    title: "Solo por una noche",
+    status: "Próximamente",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheSoloPorUnaNoche.jpeg",
     url: "/pelicula/solo-por-una-noche",
   },
   {
     key: 3,
-    title: "Próximamente",
+    title: "Narciso",
+    status: "Próximamente",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheNarciso.jpeg",
     url: "/pelicula/narciso",
   },
   {
     key: 4,
-    title: "En cartelera",
+    title: "Odisea",
+    status: "En cartelera",
     meta: "ACCIÓN / FANTASÍA",
     img: "/peliculas/aficheOdisea.jpeg",
     url: "/pelicula/odisea",
   },
   {
     key: 5,
-    title: "En cartelera",
+    title: "Toy Story 5",
+    status: "En cartelera",
     meta: "INFANTIL / AVENTURA",
     img: "/peliculas/aficheToystory5.jpeg",
-    url: "/pelicula/toystory5"
+    url: "/pelicula/toystory5",
   },
+  {
+    key: 6,
+    title: "El diablo viste a la moda 2",
+    status: "En cartelera",
+    meta: "COMEDIA",
+    img: "/peliculas/aficheDiabloVisteModa2.jpg",
+    url: "/pelicula/diablo-viste-a-la-moda-2",
+  },
+  {
+    key: 7,
+    title: "Michael",
+    status: "En cartelera",
+    meta: "COMEDIA / BIOGRAFÍA",
+    img: "/peliculas/aficheMichael.jpg",
+    url: "/pelicula/michael",
+  },
+  {
+    key: 8,
+    title: "Scary Movie: Terrorificamente incorrecta",
+    status: "En cartelera",
+    meta: "COMEDIA / TERROR",
+    img: "/peliculas/aficheScaryMovie.jpg",
+    url: "/pelicula/scary-movie-terrorificamente-incorrecta",
+  }
 ];
 
 export default function MovieSection() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "center",
-    slidesToScroll: 1,
-  });
-
-  const scrollPrev = () => {
-    emblaApi?.scrollPrev();
-  };
-
-  const scrollNext = () => {
-    emblaApi?.scrollNext();
-  };
-
   return (
     <section
       className="movie-section visual-cut-section"
@@ -77,69 +90,46 @@ export default function MovieSection() {
 
           <h2>
             Descubrí tu próxima historia.
-            <br />
           </h2>
 
           <p className="section-copy">
-            Seleccioná un estreno y prepará tu próxima función.
+            Seleccioná una película y prepará tu próxima función.
           </p>
         </div>
       </div>
 
-      <div className="poster-carousel">
+      <div className="movies-grid">
+        {movies.map((movie) => (
+          <a
+            href={movie.url}
+            className="movie-card-link"
+            key={movie.key}
+          >
+            <article className="movie-card">
 
-        <button
-          type="button"
-          className="poster-carousel__arrow poster-carousel__arrow--left"
-          onClick={scrollPrev}
-          aria-label="Películas anteriores"
-        >
-          <ChevronLeft size={24} />
-        </button>
+              <div className="movie-card__image">
+                <img
+                  src={movie.img}
+                  alt={`Afiche de ${movie.title}`}
+                />
+              </div>
 
-        <div
-          className="poster-viewport"
-          ref={emblaRef}
-        >
-          <div className="poster-rail">
-            {movies.map((movie) => (
-              <a
-                href={movie.url}
-                className="poster-card-link"
-                key={movie.key}
-              >
-                <article className="poster-card">
+              <div className="movie-card__info">
+                <span className="movie-card__meta">
+                  {movie.meta} -{" "}
+                  <span className="movie-card__status">
+                     {movie.status}
+                  </span>
+                </span>
 
-                  <div className="image-slot poster-slot">
-                    <img
-                      src={movie.img}
-                      alt={movie.title}
-                    />
+                <h3>{movie.title}</h3>
 
-                    <div className="slot-center">
-                      <strong>{movie.title}</strong>
-                    </div>
-                  </div>
+                
+              </div>
 
-                  <div className="poster-card-footer">
-                    <span>{movie.meta}</span>
-                  </div>
-
-                </article>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <button
-          type="button"
-          className="poster-carousel__arrow poster-carousel__arrow--right"
-          onClick={scrollNext}
-          aria-label="Siguientes películas"
-        >
-          <ChevronRight size={24} />
-        </button>
-
+            </article>
+          </a>
+        ))}
       </div>
     </section>
   );

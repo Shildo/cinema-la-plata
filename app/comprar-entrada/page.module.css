@@ -16,8 +16,6 @@
       color-mix(in srgb, var(--blue) 45%, var(--black)) 45%,
       var(--black) 100%
     );
-
-  color: var(--cream);
 }
 
 .purchase-header {
@@ -42,7 +40,7 @@
 .purchase-header h1 {
   margin: 0 0 20px;
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(3rem, 5vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
@@ -52,7 +50,7 @@
 .purchase-header > p:last-child {
   max-width: 550px;
 
-  color: #c6cde6;
+  color: var(--white);
 
   font-size: 15px;
   line-height: 1.6;
@@ -67,146 +65,327 @@
   align-items: start;
 }
 
-.purchase-summary {
-  padding: 32px;
 
-  background: var(--cream);
+/* =========================================
+   TICKET
+   ========================================= */
+
+
+.purchase-summary {
+  --notch-size: 18px;
+
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+
+  background: var(--white);
   color: var(--black);
 
-  box-shadow: 17px 18px 30px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    12px 16px 0 rgba(0, 0, 0, 0.12),
+    20px 25px 35px rgba(0, 0, 0, 0.22);
+
+  /* Primera capa: el ticket completo.
+     Las capas siguientes son los recortes individuales. */
+  mask-image:
+  linear-gradient(#000 0 0),
+
+  /* Arriba: 12 hendiduras */
+  radial-gradient(circle var(--notch-size) at 0% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 9.5% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 18% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 27% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 36% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 45% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 54% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 63% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 72% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 81% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 90.5% 0, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 100% 0, #000 98%, transparent 100%),
+
+  /* Abajo: 12 hendiduras */
+  radial-gradient(circle var(--notch-size) at 0% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 9.5% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 18% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 27% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 36% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 45% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 54% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 63% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 72% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 81% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 90.5% 100%, #000 98%, transparent 100%),
+  radial-gradient(circle var(--notch-size) at 100% 100%, #000 98%, transparent 100%),
+
+  /* Costados: conservar las dos hendiduras laterales */
+  radial-gradient(circle 24px at 0 50%, #000 98%, transparent 100%),
+  radial-gradient(circle 24px at 100% 50%, #000 98%, transparent 100%);
+
+mask-composite:
+  subtract,
+  add, add, add, add, add, add, add, add, add, add, add,
+  add, add, add, add, add, add, add, add, add, add, add, add,
+  add, add;
 }
 
-.summary-header {
+@media (max-width: 600px) {
+  .purchase-summary {
+    --notch-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .purchase-summary {
+    --notch-size: 10px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1299px) {
+  .purchase-summary {
+    --notch-size: 14px;
+  }
+}
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.ticket-content {
+  position: relative;
+  z-index: 2;
+  padding: 36px 38px;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.ticket-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   padding-bottom: 20px;
 
-  border-bottom: 1px solid rgba(16, 25, 54, 0.15);
+  border-bottom: 1px solid
+    rgba(16, 25, 54, 0.18);
 }
 
-.summary-header p {
-  margin: 0;
+.ticket-header span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.ticket-header span:first-child {
+  color: var(--red);
+}
+
+.ticket-header span:last-child {
+  color: var(--blue);
+}
+
+
+/* =========================================
+   PELÍCULA
+   ========================================= */
+
+.ticket-movie {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+
+  gap: 26px;
+
+  padding: 26px 0;
+
+  border-bottom: 1px dashed
+    rgba(16, 25, 54, 0.3);
+}
+
+.ticket-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+
+  overflow: hidden;
+
+  background: var(--black);
+}
+
+.ticket-poster img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.ticket-movie-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ticket-movie-info small {
+  margin-bottom: 10px;
 
   color: var(--red);
 
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
 }
 
-.summary-header span {
-  color: var(--blue);
+.ticket-movie-info h2 {
+  margin: 0 0 16px;
 
-  font-size: 11px;
+  font-family: "Satoshi Medium", sans-serif;
+
+  font-size: clamp(25px, 2.5vw, 34px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.03em;
+}
+
+.ticket-movie-info > span {
+  padding: 7px 10px;
+
+  background: var(--blue);
+
+  color: var(--white);
+
+  font-size: 10px;
   font-weight: 800;
-}
 
-.summary-movie {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-
-  gap: 20px;
-
-  padding: 25px 0;
-
-  border-bottom: 1px solid rgba(16, 25, 54, 0.15);
-}
-
-.summary-poster {
-  aspect-ratio: 2 / 3;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  font-size: 8px;
-  font-weight: 800;
   letter-spacing: 0.08em;
 }
 
-.summary-movie small {
-  color: var(--red);
 
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-}
+/* =========================================
+   DETALLES
+   ========================================= */
 
-.summary-movie h2 {
-  margin: 8px 0 0;
-
-  font-family: "Satoshi Medium", sans-serif;
-  font-size: 25px;
-  line-height: 1;
-}
-
-.summary-details {
+.ticket-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  gap: 25px;
-
-  padding: 28px 0;
+  padding: 24px 0 10px;
 }
 
-.summary-details div {
+.ticket-details > div {
+  min-height: 85px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  padding: 10px 20px;
+}
+
+.ticket-details > div:nth-child(odd) {
+  border-right: 1px dashed
+    rgba(16, 25, 54, 0.25);
+}
+
+.ticket-details > div:nth-child(-n + 2) {
+  border-bottom: 1px dashed
+    rgba(16, 25, 54, 0.25);
+}
+
+.ticket-details span {
+  color: var(--blue);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.ticket-details strong {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.ticket-details small {
+  color: #68718b;
+
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+
+/* =========================================
+   FOOTER / PRECIO
+   ========================================= */
+
+.ticket-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-top: 16px;
+  padding-top: 22px;
+
+  border-top: 1px dashed
+    rgba(16, 25, 54, 0.3);
+}
+
+.ticket-quantity {
   display: flex;
   flex-direction: column;
 
   gap: 5px;
 }
 
-.summary-details span {
-  color: var(--blue);
-
-  font-size: 9px;
+.ticket-footer span {
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+
+  letter-spacing: 0.1em;
 }
 
-.summary-details strong {
-  font-size: 14px;
-}
-
-.summary-details small {
+.ticket-footer small {
   color: #68718b;
 
-  font-size: 10px;
+  font-size: 11px;
 }
 
-.summary-total {
+.ticket-total {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
 
-  padding-top: 20px;
-
-  border-top: 1px solid rgba(16, 25, 54, 0.15);
+  gap: 4px;
 }
 
-.summary-total span {
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.summary-total strong {
+.ticket-total span {
   color: var(--red);
-
-  font-size: 18px;
 }
+
+.ticket-total strong {
+  font-family: "Satoshi Medium", sans-serif;
+
+  font-size: clamp(28px, 3vw, 38px);
+
+  line-height: 0.9;
+}
+
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
 
 .purchase-form-wrapper {
   padding: clamp(25px, 4vw, 45px);
 
   background: rgba(8, 14, 39, 0.75);
 
-  border: 1px solid rgba(239, 229, 206, 0.12);
+  border: 1px solid
+    rgba(239, 229, 206, 0.12);
 }
 
 .form-header {
@@ -220,6 +399,7 @@
 
   font-size: 10px;
   font-weight: 800;
+
   letter-spacing: 0.1em;
 }
 
@@ -227,8 +407,11 @@
   margin: 0 0 12px;
 
   font-family: "Satoshi Medium", sans-serif;
+
   font-size: clamp(30px, 3vw, 45px);
+
   line-height: 1;
+
   font-weight: 400;
 }
 
@@ -253,10 +436,11 @@
 }
 
 .form-group label {
-  color: var(--cream);
+  color: var(--white);
 
   font-size: 10px;
   font-weight: 800;
+
   letter-spacing: 0.06em;
 }
 
@@ -266,10 +450,12 @@
 
   padding: 14px 15px;
 
-  border: 1px solid rgba(239, 229, 206, 0.2);
+  border: 1px solid
+    rgba(239, 229, 206, 0.2);
 
   background: rgba(255, 255, 255, 0.04);
-  color: var(--cream);
+
+  color: var(--white);
 
   font-family: inherit;
   font-size: 13px;
@@ -294,7 +480,7 @@
 
 .form-group select option {
   background: var(--black);
-  color: var(--cream);
+  color: var(--white);
 }
 
 .form-row {
@@ -310,11 +496,17 @@
   margin-top: 10px;
 }
 
+
+/* =========================================
+   ESTADO SIN RESERVA
+   ========================================= */
+
 .purchase-empty {
   min-height: 70vh;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -333,12 +525,31 @@
   color: #aeb6cf;
 }
 
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1100px) {
+  .ticket-content {
+    padding: 32px 28px;
+  }
+
+  .ticket-movie {
+    grid-template-columns: 120px 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .purchase-layout {
     grid-template-columns: 1fr;
   }
 
   .purchase-summary {
+    max-width: 700px;
+  }
+
+  .purchase-form-wrapper {
     max-width: 700px;
   }
 }
@@ -349,20 +560,57 @@
     padding-right: 20px;
   }
 
-  .purchase-summary {
-    padding: 22px;
+  .ticket-content {
+    padding: 30px 34px;
   }
 
-  .summary-movie {
+  .ticket-movie {
     grid-template-columns: 90px 1fr;
+
+    gap: 16px;
+
+    padding: 22px 0;
   }
 
-  .summary-details {
+  .ticket-movie-info h2 {
+    font-size: 22px;
+  }
+
+  .ticket-details {
     grid-template-columns: 1fr;
-    gap: 18px;
+
+    padding-top: 18px;
+  }
+
+  .ticket-details > div {
+    min-height: auto;
+
+    padding: 12px 0;
+  }
+
+  .ticket-details > div:nth-child(odd) {
+    border-right: none;
+  }
+
+  .ticket-details > div:nth-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .ticket-details > div:not(:last-child) {
+    border-bottom: 1px dashed
+      rgba(16, 25, 54, 0.25);
+  }
+
+  .ticket-footer {
+    margin-top: 10px;
+  }
+
+  .ticket-total strong {
+    font-size: 30px;
   }
 
   .form-row {
     grid-template-columns: 1fr;
   }
+
 }

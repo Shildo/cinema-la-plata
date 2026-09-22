@@ -87,6 +87,42 @@ export const movies: Movie[] = [
     genre: "Animación",
     formats: ["HD", "3D", "ATMOS"],
   },
+  {
+    slug: "diablo-viste-a-la-moda-2",
+    title: "El diablo viste a la moda 2",
+    meta: "COMEDIA",
+    synopsis:
+      "Sigue la lucha de Miranda Priestly contra Emily Charlton, su ex asistente convertida en ejecutiva rival, mientras compiten por los ingresos por publicidad en medio de la decadencia de los medios impresos y Miranda se acerca a la jubilación.",
+    image: "/peliculas/aficheDiabloVisteModa2.jpg",
+    trailer: "https://www.youtube.com/watch?v=aXdjJbVrJeg",
+    duration: "2h 0min",
+    genre: "Comedia",
+    formats: ["HD", "3D"],
+  },
+  {
+    slug: "michael",
+    title: "Michael",
+    meta: "COMEDIA / BIOGRAFÍA",
+    synopsis:
+      "Muestra el viaje de Michael Jackson más allá de la música, desde el descubrimiento de su extraordinario talento como líder de los Jackson Five hasta convertirse en una visionaria estrella cuya ambición creativa despertó un incansable afán por consagrarse como el mayor icono de la industria del entretenimiento.",
+    image: "/peliculas/aficheMichael.jpg",
+    trailer: "https://www.youtube.com/watch?v=3zOLzsbOleM",
+    duration: "2h 7min",
+    genre: "Documental Biográfico",
+    formats: ["HD", "ATMOS"],
+  },
+  {
+    slug: "scary-movie-terrorificamente-incorrecta",
+    title: "Scary Movie: Terrorificamente incorrecta",
+    meta: "COMEDIA / TERROR",
+    synopsis:
+      "Sexta entrega de la saga de Scary Movie. Veintiséis años después de conseguir escapar de un asesino enmascarado sospechosamente familiar (Ghostface), el Core Four están de vuelta en el punto de mira del asesino y ninguna película de terror está a salvo.",
+    image: "/peliculas/aficheScaryMovie.jpg",
+    trailer: "https://www.youtube.com/watch?v=g9LF_YLkpF0",
+    duration: "1h 36min",
+    genre: "Comedia Terror",
+    formats: ["HD", "3D", "ATMOS"],
+  },
 ];
 
 export function getMovie(slug: string) {

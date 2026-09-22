@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <>
       <main>
+        <Navbar />
         <Hero />
         <MovieSection />
         <ComplexSection />
@@ -23,6 +24,7 @@ export default function Home() {
         {/* <Benefits /> */}
         <News />
         <Contact /> 
+        <Footer />
       </main>
     </>
   );

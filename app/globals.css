@@ -21,14 +21,16 @@
 ========================= */
 
 :root {
-  --lightblue: #5f72f2;
-  --blue: #24356b;
-  --red: #de2b1b;
+  /* --lightblue: #5f72f2; */
+  --blue: #0c14e2;
+  --red: #ff1319;
   --purple: #c6009f;
-  --yellow: #fec615;
-  --cream: #eee2cc;
+  --orange: #ff9800;
+  --yellow: #ffdd12;
+  /* --cream: #eee2cc; */
 
   --black: #000000;
+  --white: #ffffff;
   --muted: #b9b0a0;
 
   --radius: 0.65rem;
@@ -53,7 +55,7 @@ body {
   min-width: 320px;
 
   background: var(--black);
-  color: var(--cream);
+  color: var(--white);
 
   font-family: "Satoshi Medium", sans-serif;
 }
@@ -81,7 +83,7 @@ h1,
 h2,
 h3 {
   font-family:
-    "Neufile Medium", sans-serif;
+    "Satoshi Medium", sans-serif;
 }
 
 p,
@@ -137,7 +139,7 @@ p {
 
   padding: 0.9rem 0;
 
-  color: var(--cream);
+  color: var(--white);
 
   font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(2rem, 4.5vw, 4rem);
@@ -230,7 +232,7 @@ p {
   align-items: center;
   justify-content: flex-start;
 
-  color: var(--cream);
+  color: var(--white);
 
   font-size: 0.78rem;
   font-weight: 700;
@@ -263,7 +265,7 @@ p {
 }
 
 .navbar__links a {
-  color: var(--cream);
+  color: var(--white);
 
   transition:
     color 180ms var(--ease-out),
@@ -282,7 +284,7 @@ p {
   align-items: center;
   gap: 0.55rem;
 
-  color: var(--cream) !important;
+  color: var(--white) !important;
 
   font-size: 1rem;
   font-weight: 700;
@@ -355,7 +357,7 @@ p {
 .navbar__account-menu a {
   padding: 10px 12px;
 
-  color: var(--cream);
+  color: var(--white);
   text-decoration: none;
 
   font-size: 0.8rem;
@@ -368,7 +370,7 @@ p {
 
 .navbar__account-menu a:hover {
   background: var(--blue);
-  color: var(--cream);
+  color: var(--white);
 }
 
 /* =========================
@@ -450,7 +452,7 @@ p {
   align-items: center;
   gap: 0.6rem;
 
-  color: var(--lightblue);
+  color: var(--blue);
 
   font-size: 0.875rem;
   font-weight: 800;
@@ -474,7 +476,7 @@ p {
 .hero h1 {
   margin-bottom: 1.2rem;
 
-  color: var(--cream);
+  color: var(--white);
 
   font-size: clamp(3.7rem, 7vw, 7.5rem);
 
@@ -484,7 +486,7 @@ p {
 
   font-weight: 400;
   
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
 }
 
 .hero h1 span {
@@ -542,7 +544,7 @@ p {
 .button--primary {
   background: var(--red);
 
-  color: var(--cream);
+  color: var(--white);
 
   box-shadow:
     0 10px 30px rgba(223, 43, 26, 0.26);
@@ -553,7 +555,7 @@ p {
 }
 
 .button--secondary {
-  color: var(--cream);
+  color: var(--white);
 
   border-color: rgba(254, 198, 21, 0.66);
 
@@ -567,7 +569,7 @@ p {
 }
 
 .button--terciary {
-  color: var(--cream);
+  color: var(--white);
   background: var(--blue);
   box-shadow:
     0 10px 30px rgba(95, 114, 242, 0.26);
@@ -680,7 +682,7 @@ p {
 
   gap: 1.6rem 5rem;
 
-  background: var(--cream);
+  background: var(--white);
   color: var(--black);
 }
 
@@ -764,7 +766,7 @@ p {
 }
 
 .date-tabs button.active {
-  color: var(--cream);
+  color: var(--white);
 
   background: var(--red);
 
@@ -918,81 +920,20 @@ p {
 /* =========================
    MOVIE SECTION
 ========================= */
-
-.poster-carousel {
-  position: relative;
-}
-
-.poster-carousel__arrow {
-  z-index: 5;
-
-  width: 44px;
-  height: 44px;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid rgba(239, 229, 206, 0.35);
-  border-radius: 50%;
-
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--cream);
-
-  cursor: pointer;
-
-  transform: translateY(-50%);
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.poster-carousel__arrow:hover {
-  background: var(--lightblue);
-  color: var(--black);
-  transform: translateY(-50%) scale(1.08);
-}
-
-.poster-carousel__arrow--left {
-  left: 24px;
-}
-
-.poster-carousel__arrow--right {
-  right: 24px;
-}
-
-@media (max-width: 660px) {
-  .poster-carousel__arrow {
-    width: 32px;
-    height: 32px;
-  }
-
-  .poster-carousel__arrow--left {
-    left: 8px;
-  }
-
-  .poster-carousel__arrow--right {
-    right: 8px;
-  }
-}
-
 .movie-section {
   padding: clamp(2.5rem, 3vw, 8rem) clamp(1rem, 2vw, 8rem);
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 3vw, 8rem);
-  color: var(--cream);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  color: var(--white);
 }
 
 .movie-section__decoration {
   position: absolute;
   left: 0;
   bottom: 0;
-
   width: clamp(180px, 25vw, 380px);
   height: auto;
-
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -1000,175 +941,142 @@ p {
 
 .section-row {
   padding: 0 clamp(1.25rem, 7vw, 8.5rem);
-
   display: flex;
   align-items: end;
   justify-content: space-between;
-
   gap: 1.5rem;
 }
 
 .section-heading {
   max-width: 900px;
-  
-  .eyebrow {
-    font-size: 1.5rem;
-  }
 }
 
+.section-heading .eyebrow {
+  font-size: 1.5rem;
+}
 
 .section-heading h2 {
   margin-top: 2rem;
-
-  font-family: "Neufile Medium", sans-serif;
-
+  font-family: "Satoshi Medium", sans-serif;
   color: inherit;
-
   font-size: clamp(2.4rem, 4.4vw, 4.7rem);
-
   line-height: 1;
-
   letter-spacing: -0.05em;
-
   font-weight: 400;
 }
 
-/* Posters */
-.poster-carousel {
-  position: relative;
+/* =========================
+   MOVIES GRID
+========================= */
+
+.movies-grid {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(20px, 5vw, 60px);
+  max-width: 1550px;
+  margin: 0 auto;
+
+  padding: 0 clamp(1.25rem, 4vw, 4rem);
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(2rem, 2vw, 5rem) clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
-.poster-viewport {
-  user-select: none;
-  overflow: hidden;
-  justify-self: center;
-  width: 75%;
+.movie-card-link {
+  display: block;
 
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
+  color: inherit;
+  text-decoration: none;
 }
 
-.poster-rail {
-  display: flex;
-  gap: 2rem;
-}
-
-.poster-card-link:last-child {
-  margin-right: 2rem;
-}
-
-.poster-card-link {
-  flex: 0 0 clamp(160px, 20vw, 280px);
-  min-width: 0;
-}
-
-.poster-card {
+.movie-card {
   width: 100%;
 }
 
-.poster-slot {
+.movie-card__image {
   position: relative;
+
+  width: 100%;
   aspect-ratio: 2 / 3;
+
   overflow: hidden;
 
   background: #121d43;
   border-radius: 5px;
-
-  transition: transform 0.25s ease;
 }
 
-.poster-slot:hover {
-  transform: translateY(-6px) scale(1.04);
-  cursor: pointer;
-}
-
-.poster-slot::before {
+.movie-card__image::before {
   content: "";
 
   position: absolute;
-  z-index: 1;
-  inset: 10px;
+  z-index: 2;
+  inset: 12px;
 
   border: 1px solid rgba(255, 255, 255, 0.12);
 
   pointer-events: none;
 }
 
-.poster-slot img {
-  position: absolute;
-  inset: 0;
+.movie-card__image img {
+  display: block;
 
   width: 100%;
   height: 100%;
 
   object-fit: cover;
+
+  transition: transform 0.4s ease;
 }
 
-.poster-slot .slot-center {
-  position: absolute;
-  z-index: 2;
-
-  inset: auto 0 0;
-
-  padding: 3rem 1.2rem 1.4rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  text-align: center;
-
-  background: linear-gradient(
-    0deg,
-    rgba(4, 9, 26, 0.9),
-    transparent
-  );
-
-  color: #fff;
+.movie-card-link:hover .movie-card__image img {
+  transform: scale(1.035);
 }
 
-.poster-slot .slot-center strong {
-  font-size: 0.85rem;
-  letter-spacing: 0.01em;
+.movie-card__info {
+  padding-top: 1rem;
 }
 
-.poster-card-footer {
-  margin-top: 1rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.movie-card__meta {
+  display: block;
 
   color: #bbc2db;
 
-  font-size: 0.63rem;
+  font-size: 0.65rem;
   font-weight: 800;
-
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
+.movie-card__info h3 {
+  margin: 0.75rem 0 0;
 
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+}
+
+.movie-card__status {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
 
 /* Responsive */
+
+@media (max-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 660px) {
   .section-row {
@@ -1178,17 +1086,15 @@ p {
     flex-direction: column;
   }
 
-  .poster-rail {
-    gap: 1rem;
+  .movies-grid {
+    grid-template-columns: 1fr;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+    gap: 4rem;
   }
 
-  .poster-card-link {
-    flex: 0 0 160px;
-  }
-
-  .poster-card:nth-child(2) .poster-slot,
-  .poster-card:nth-child(4) .poster-slot {
-    transform: translateY(0.8rem);
+  .movie-card__info h3 {
+    font-size: clamp(2.5rem, 11vw, 4rem);
   }
 }
 
@@ -1206,8 +1112,42 @@ p {
   grid-template-columns: 0.78fr 1.22fr;
   gap: clamp(48px, 7vw, 120px);
 
-  background: linear-gradient(to bottom, var(--black), var(--blue));
-  color: var(--cream);
+  background: linear-gradient(
+    to bottom,
+    var(--black) 0%,
+    var(--blue) 65%,
+    var(--red) 100%
+  );
+
+  color: var(--white);
+}
+
+.complex-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      var(--red) 0%,
+      color-mix(in srgb, var(--red) 50%, var(--orange)) 35%,
+      var(--orange) 100%
+    );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 75%,
+    black 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 55%,
+    black 100%
+  );
+
+  pointer-events: none;
 }
 
 .complex-section::before {
@@ -1253,7 +1193,7 @@ p {
 .complex-side h2 {
   margin-top: 2rem;
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(2.4rem, 4.4vw, 4.7rem);
   line-height: 1;
   letter-spacing: -0.05em;
@@ -1263,7 +1203,7 @@ p {
 .complex-list {
   margin-top: 42px;
 
-  border-top: 1px solid var(--lightblue);
+  border-top: 1px solid var(--blue);
 }
 
 .complex-list button {
@@ -1278,10 +1218,10 @@ p {
   gap: 8px;
 
   border: 0;
-  border-bottom: 1px solid var(--lightblue);
+  border-bottom: 1px solid var(--blue);
 
   background: transparent;
-  color: var(--cream);
+  color: var(--white);
 
   text-align: left;
 
@@ -1345,7 +1285,7 @@ p {
   position: relative;
 
   background: var(--black);
-  color: var(--cream);
+  color: var(--white);
 
   box-shadow: 17px 18px 30px rgba(0, 0, 0, 0.4);
 }
@@ -1380,14 +1320,14 @@ p {
 .complex-facts span {
   grid-row: span 2;
 
-  color: var(--lightblue);
+  color: var(--blue);
 
   font-size: 10px;
   font-weight: 800;
 }
 
 .complex-facts small {
-  color: var(--lightblue);
+  color: var(--blue);
 
   font-size: 12px;
   font-weight: 700;
@@ -1498,16 +1438,11 @@ p {
   gap: clamp(50px, 7vw, 100px);
 
   background:
-    radial-gradient(
-      circle at 80% 50%,
-      color-mix(in srgb, var(--purple) 55%, transparent),
-      transparent 42%
-    ),
     linear-gradient(
-      120deg,
-      var(--purple) 0%,
-      color-mix(in srgb, var(--purple) 45%, #050817) 55%,
-      var(--lightblue) 100%
+      to right,
+      var(--red) 0%,
+      color-mix(in srgb, var(--red) 50%, var(--orange)) 35%,
+      var(--orange) 100%
     );
 
   color: #fff;
@@ -1557,7 +1492,7 @@ p {
 .experience-main h2 {
   margin-top: 2rem;
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(2.4rem, 4.4vw, 4.7rem);
   line-height: 1;
   letter-spacing: -0.05em;
@@ -1662,7 +1597,7 @@ p {
 .experience-grid p {
   margin: 0;
 
-  color: var(--cream);
+  color: var(--white);
   font-family: "Satoshi Medium", sans-serif;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -1722,7 +1657,7 @@ p {
   overflow: hidden;
 
   padding: clamp(2rem, 3vw, 8rem);
-  color: var(--cream);
+  color: var(--white);
 
    background:
     radial-gradient(
@@ -1886,7 +1821,7 @@ p {
   position: relative;
   overflow: hidden;
 
-  background: var(--cream);
+  background: var(--white);
 
   padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8.5rem);
 
@@ -1934,7 +1869,7 @@ p {
 
   color: var(--black);
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(2.4rem, 4.4vw, 4.7rem);
   line-height: 1;
   letter-spacing: -0.05em;
@@ -1998,8 +1933,8 @@ p {
 
   gap: clamp(3rem, 8vw, 10rem);
 
-  background: var(--lightblue);
-  color: var(--cream);
+  background: var(--blue);
+  color: var(--white);
 }
 
 .contact-intro {
@@ -2022,9 +1957,9 @@ p {
 .contact-intro h2 {
   margin: 2rem 0 1rem 0;
 
-  color: var(--blue);
+  color: var(--white);
 
-  font-family: "Neufile Medium", sans-serif;
+  font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(3.25rem, 5vw, 5.4rem);
   line-height: 0.85;
   letter-spacing: -0.06em;
@@ -2034,7 +1969,7 @@ p {
 .contact-intro > p:not(.contact-eyebrow) {
   margin: 0;
 
-  color: var(--cream);
+  color: var(--white);
 
   font-size: 1rem;
 }
@@ -2053,7 +1988,7 @@ p {
   align-items: center;
   gap: 0.65rem;
 
-  color: var(--blue);
+  color: var(--white);
 
   font-size: 0.875rem;
   font-weight: 700;
@@ -2084,7 +2019,7 @@ p {
 
   padding: clamp(1.5rem, 3vw, 2.7rem);
 
-  background: var(--cream);
+  background: var(--white);
   color: var(--black);
 
   box-shadow: 17px 18px 0 rgba(0, 0, 0, 0.23);
@@ -2123,7 +2058,7 @@ p {
 }
 
 .contact-form input:focus {
-  border-color: var(--lightblue);
+  border-color: var(--blue);
 }
 
 .contact-form .button {
@@ -2212,7 +2147,7 @@ p {
   gap: 20px;
 
   background: var(--black);
-  color: var(--cream);
+  color: var(--white);
 
   border-top: 1px solid rgba(239, 229, 206, 0.12);
 }

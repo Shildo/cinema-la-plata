@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 type BookingData = {
-
   movie: {
-	slug: string;
-	title: string;
-	image: string;
+    slug: string;
+    title: string;
+    image: string;
   } | null;
 
   site: {
@@ -78,87 +77,86 @@ export default function PurchasePage() {
       </section>
 
       <section className={styles["purchase-layout"]}>
+        {/* =========================================
+            TICKET
+            ========================================= */}
+
         <div className={styles["purchase-summary"]}>
-          <div className={styles["summary-header"]}>
-            <p>RESUMEN</p>
-
-            <span>01</span>
-          </div>
-
-          	<div className={styles["summary-movie"]}>
-            	<div className={styles["summary-poster"]}>
-					{booking.movie?.image && (
-						<img
-							src={booking.movie.image}
-							alt={booking.movie.title}
-						/>
-					)}
-            	</div>
-				<div>
-				<small>PELÍCULA</small>
-				<h2>{booking.movie?.title}</h2>
-				</div>
-          	</div>
-
-          <div className={styles["summary-details"]}>
-            <div>
-              <span>SEDE</span>
-
-              <strong>
-                {booking.site?.name}
-              </strong>
-
-              <small>
-                {booking.site?.location}
-              </small>
+          <div className={styles["ticket-content"]}>
+            <div className={styles["ticket-header"]}>
+              <span>CINEMA LA PLATA</span>
+              <span>ENTRADA</span>
             </div>
 
-            <div>
-              <span>FORMATO</span>
+            <div className={styles["ticket-movie"]}>
+              <div className={styles["ticket-poster"]}>
+                {booking.movie?.image && (
+                  <img
+                    src={booking.movie.image}
+                    alt={booking.movie.title}
+                  />
+                )}
+              </div>
 
-              <strong>
-                {booking.format}
-              </strong>
+              <div className={styles["ticket-movie-info"]}>
+                <small>PELÍCULA</small>
+
+                <h2>{booking.movie?.title}</h2>
+
+                <span>{booking.format}</span>
+              </div>
             </div>
 
-            <div>
-              <span>FECHA</span>
+            <div className={styles["ticket-details"]}>
+              <div>
+                <span>SEDE</span>
+                <strong>{booking.site?.name}</strong>
+                <small>{booking.site?.location}</small>
+              </div>
 
-              <strong>
-                {booking.date?.fullDate}
-              </strong>
+              <div>
+                <span>FECHA</span>
+                <strong>{booking.date?.fullDate}</strong>
+              </div>
+
+              <div>
+                <span>HORARIO</span>
+                <strong>{booking.time}</strong>
+              </div>
+
+              <div>
+                <span>BUTACAS</span>
+                <strong>{booking.seats.join(" · ")}</strong>
+              </div>
             </div>
 
-            <div>
-              <span>HORARIO</span>
+            <div className={styles["ticket-footer"]}>
+              <div className={styles["ticket-quantity"]}>
+                <span>
+                  {booking.seats.length}{" "}
+                  {booking.seats.length === 1
+                    ? "ENTRADA"
+                    : "ENTRADAS"}
+                </span>
 
-              <strong>
-                {booking.time}
-              </strong>
+                <small>$8.500 c/u</small>
+              </div>
+
+              <div className={styles["ticket-total"]}>
+                <span>TOTAL</span>
+
+                <strong>
+                  $
+                  {(booking.seats.length * 8500).toLocaleString("es-AR")}
+                </strong>
+              </div>
             </div>
-
-            <div>
-              <span>BUTACAS</span>
-
-              <strong>
-                {booking.seats.join(" · ")}
-              </strong>
-            </div>
-          </div>
-
-          <div className={styles["summary-total"]}>
-            <span>
-              {booking.seats.length}{" "}
-              {booking.seats.length === 1
-                ? "ENTRADA"
-                : "ENTRADAS"}
-            </span>
-
-            <strong>
-              A confirmar
-            </strong>
           </div>
         </div>
+
+        {/* =========================================
+            FORMULARIO
+            ========================================= */}
 
         <div className={styles["purchase-form-wrapper"]}>
           <div className={styles["form-header"]}>
@@ -240,7 +238,10 @@ export default function PurchasePage() {
                 Medio de pago
               </label>
 
-              <select id="payment" defaultValue="">
+              <select
+                id="payment"
+                defaultValue=""
+              >
                 <option value="" disabled>
                   Seleccioná un medio de pago
                 </option>
