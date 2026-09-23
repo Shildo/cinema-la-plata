@@ -31,6 +31,12 @@ export default async function MoviePage({ params }: MoviePageProps) {
       <section className={styles["movie-detail"]}>
         <div className={styles["movie-detail__poster"]}>
           <img src={movie.image} alt={movie.title} />
+
+          <img
+            src={movie.restriction}
+            alt={`Clasificación de edad para ${movie.title}`}
+            className={styles["movie-detail__restriction"]}
+          />
         </div>
 
         <div className={styles["movie-detail__content"]}>

@@ -8,6 +8,7 @@ const movies = [
     meta: "ACCIÓN / AVENTURA",
     img: "/peliculas/aficheSpiderman.jpeg",
     url: "/pelicula/spiderman",
+    restriction: "/restrictions/supervision-parental.PNG",
   },
   {
     key: 1,
@@ -16,30 +17,34 @@ const movies = [
     meta: "COMEDIA / INFANTIL",
     img: "/peliculas/aficheMinions.jpeg",
     url: "/pelicula/minions",
+    restriction: "/restrictions/general.PNG",
   },
   {
     key: 2,
-    title: "Solo por una noche",
+    title: "Sólo por una noche",
     status: "Próximamente",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheSoloPorUnaNoche.jpeg",
     url: "/pelicula/solo-por-una-noche",
+    restriction: "/restrictions/r-13.PNG",
   },
   {
     key: 3,
-    title: "Narciso",
+    title: "Yo, Narciso",
     status: "Próximamente",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheNarciso.jpeg",
     url: "/pelicula/narciso",
+    restriction: "/restrictions/general.PNG",
   },
   {
     key: 4,
-    title: "Odisea",
+    title: "La Odisea",
     status: "En cartelera",
     meta: "ACCIÓN / FANTASÍA",
     img: "/peliculas/aficheOdisea.jpeg",
     url: "/pelicula/odisea",
+    restriction: "/restrictions/supervision-parental.PNG",
   },
   {
     key: 5,
@@ -48,6 +53,7 @@ const movies = [
     meta: "INFANTIL / AVENTURA",
     img: "/peliculas/aficheToystory5.jpeg",
     url: "/pelicula/toystory5",
+    restriction: "/restrictions/general.PNG",
   },
   {
     key: 6,
@@ -56,6 +62,7 @@ const movies = [
     meta: "COMEDIA",
     img: "/peliculas/aficheDiabloVisteModa2.jpg",
     url: "/pelicula/diablo-viste-a-la-moda-2",
+    restriction: "/restrictions/r-13.PNG",
   },
   {
     key: 7,
@@ -64,14 +71,16 @@ const movies = [
     meta: "COMEDIA / BIOGRAFÍA",
     img: "/peliculas/aficheMichael.jpg",
     url: "/pelicula/michael",
+    restriction: "/restrictions/r-13.PNG",
   },
   {
     key: 8,
-    title: "Scary Movie: Terrorificamente incorrecta",
+    title: "Scary Movie: Terroríficamente incorrecta",
     status: "En cartelera",
     meta: "COMEDIA / TERROR",
     img: "/peliculas/aficheScaryMovie.jpg",
     url: "/pelicula/scary-movie-terrorificamente-incorrecta",
+    restriction: "/restrictions/r-17.PNG",
   }
 ];
 
@@ -109,8 +118,16 @@ export default function MovieSection() {
 
               <div className="movie-card__image">
                 <img
+                  className="movie-card__poster"
                   src={movie.img}
                   alt={`Afiche de ${movie.title}`}
+                />
+
+                <img
+                  className="movie-card__restriction"
+                  src={movie.restriction}
+                  alt={`Clasificación de edad para ${movie.title}`}
+                  loading="lazy"
                 />
               </div>
 

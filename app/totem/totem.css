@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(to bottom right, var(--blue), var(--black));
 }
 
 .totem__background {
@@ -11,13 +11,13 @@
   top: 40%;
   left: 50%;
 
-  width: min(60vw, 1200px);
+  width: min(88vw, 1200px);
   height: auto;
 
   transform: translate(-50%, -50%);
   object-fit: contain;
+  mix-blend-mode: screen;
 }
-
 .totem__overlay {
   position: absolute;
   inset: 0;
@@ -33,9 +33,9 @@
   transform: translateX(-50%);
 
   display: flex;
-  gap: 28px;
+  gap: 150px;
 
-  width: min(800px, 50vw);
+  width: min(1000px, 73vw);
 }
 
 .totem__button {

@@ -8,6 +8,7 @@ export type Movie = {
   duration: string;
   genre: string;
   formats: string[];
+  restriction: string;
 };
 
 export const movies: Movie[] = [
@@ -22,6 +23,7 @@ export const movies: Movie[] = [
     duration: "2h 25min",
     genre: "Acción",
     formats: ["HD", "3D"],
+    restriction: "/restrictions/supervision-parental.PNG",
   },
 
   {
@@ -35,11 +37,12 @@ export const movies: Movie[] = [
     duration: "1h 30min",
     genre: "Animación",
     formats: ["HD", "ATMOS"],
+    restriction: "/restrictions/general.PNG",
   },
 
   {
     slug: "solo-por-una-noche",
-    title: "Solo por una noche",
+    title: "Sólo por una noche",
     meta: "COMEDIA / ROMANCE",
     synopsis:
       "Una aventura inesperada que comienza durante una noche que ninguno de sus protagonistas olvidará.",
@@ -48,11 +51,12 @@ export const movies: Movie[] = [
     duration: "1h 42min",
     genre: "Aventura",
     formats: ["HD", "3D", "4D"],
+    restriction: "/restrictions/r-13.PNG",
   },
 
   {
     slug: "narciso",
-    title: "Yo Narciso",
+    title: "Yo, Narciso",
     meta: "COMEDIA / ROMANCE",
     synopsis:
       "Una historia de humor, encuentros inesperados y situaciones que pondrán a prueba a sus protagonistas.",
@@ -61,11 +65,12 @@ export const movies: Movie[] = [
     duration: "1h 35min",
     genre: "Comedia",
     formats: ["HD", "3D"],
+    restriction: "/restrictions/general.PNG",
   },
 
   {
     slug: "odisea",
-    title: "Odisea",
+    title: "La Odisea",
     meta: "ACCIÓN / FANTASÍA",
     synopsis:
       "Un thriller que llevará a sus protagonistas al límite mientras intentan descubrir qué se esconde detrás de una serie de acontecimientos inexplicables.",
@@ -74,6 +79,7 @@ export const movies: Movie[] = [
     duration: "2h 53min",
     genre: "Thriller",
     formats: ["HD", "3D", "4D", "ATMOS"],
+    restriction: "/restrictions/supervision-parental.PNG",
   },
   {
     slug: "toystory5",
@@ -86,6 +92,7 @@ export const movies: Movie[] = [
     duration: "1h 42min",
     genre: "Animación",
     formats: ["HD", "3D", "ATMOS"],
+    restriction: "/restrictions/general.PNG",
   },
   {
     slug: "diablo-viste-a-la-moda-2",
@@ -98,6 +105,7 @@ export const movies: Movie[] = [
     duration: "2h 0min",
     genre: "Comedia",
     formats: ["HD", "3D"],
+    restriction: "/restrictions/r-13.PNG",
   },
   {
     slug: "michael",
@@ -110,10 +118,11 @@ export const movies: Movie[] = [
     duration: "2h 7min",
     genre: "Documental Biográfico",
     formats: ["HD", "ATMOS"],
+    restriction: "/restrictions/r-13.PNG",
   },
   {
     slug: "scary-movie-terrorificamente-incorrecta",
-    title: "Scary Movie: Terrorificamente incorrecta",
+    title: "Scary Movie: Terroríficamente incorrecta",
     meta: "COMEDIA / TERROR",
     synopsis:
       "Sexta entrega de la saga de Scary Movie. Veintiséis años después de conseguir escapar de un asesino enmascarado sospechosamente familiar (Ghostface), el Core Four están de vuelta en el punto de mira del asesino y ninguna película de terror está a salvo.",
@@ -122,6 +131,7 @@ export const movies: Movie[] = [
     duration: "1h 36min",
     genre: "Comedia Terror",
     formats: ["HD", "3D", "ATMOS"],
+    restriction: "/restrictions/r-17.PNG",
   },
 ];
 

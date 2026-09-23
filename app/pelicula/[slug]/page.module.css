@@ -264,6 +264,20 @@
   font-weight: 700;
 }
 
+.movie-detail__poster .movie-detail__restriction {
+  position: absolute;
+  z-index: 2;
+  left: 0.9rem;
+  bottom: 0.9rem;
+
+  width: clamp(4rem, 5vw, 6rem);
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
 /* =========================
    RESPONSIVE
 ========================= */

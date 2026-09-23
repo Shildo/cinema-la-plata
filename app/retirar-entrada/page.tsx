@@ -94,22 +94,22 @@ export default function RetirarEntradaPage() {
           </label>
 
           <input
-			id="ticket-search"
-			type="text"
-			inputMode="numeric"
-			pattern="[0-9]*"
-			value={search}
-			onChange={(event) => {
-				const value = event.target.value.replace(/\D/g, "");
-				setSearch(value);
-			}}
-			onKeyDown={(event) => {
-				if (event.key === "Enter") {
-				handleSearch();
-				}
-			}}
-			placeholder="Ingresá tu DNI"
-		/>
+            id="ticket-search"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={search}
+            onChange={(event) => {
+              const value = event.target.value.replace(/\D/g, "");
+              setSearch(value);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+              handleSearch();
+              }
+            }}
+            placeholder="Ingresá tu DNI"
+          />
 
           <button
             type="button"
@@ -183,8 +183,6 @@ export default function RetirarEntradaPage() {
             </>
           ) : (
             <div className={styles.retirarEmpty}>
-              <span>ENTRADA</span>
-
               <h2>
                 Tu entrada aparecerá acá
               </h2>
