@@ -30,7 +30,7 @@ const mockTickets = [
     codigo: "CINE-2026-003",
     dni: "42156789",
     pelicula: "Toy Story 5",
-    poster: "/peliculas/aficheToyStory5.jpeg",
+    poster: "/peliculas/aficheToystory5.jpeg",
     fecha: "23 de septiembre",
     horario: "16:30",
     sala: "Sala 2",
