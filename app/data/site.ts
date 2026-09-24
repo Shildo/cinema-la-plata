@@ -5,6 +5,7 @@ export type Site = {
   imgURL: string;
   rooms: string;
   locationURL: string;
+  cinemaID: "rocha" | "ocho";
 };
 
 export const sites: Site[] = [
@@ -15,6 +16,7 @@ export const sites: Site[] = [
     imgURL: "/sedes/city.JPEG",
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/JCh4EGS9Bo3hhXwg6",
+    cinemaID: "ocho",
   },
   {
     number: "02",
@@ -23,6 +25,7 @@ export const sites: Site[] = [
     imgURL: "/sedes/paradiso.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/9pcaCXtL7LStEbJu9",
+    cinemaID: "rocha",
   },
   {
     number: "03",
@@ -31,6 +34,7 @@ export const sites: Site[] = [
     imgURL: "/sedes/ocho.jpeg",
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/YN8YFMhX47n3wSyD6",
+    cinemaID: "ocho",
   },
   {
     number: "04",
@@ -39,6 +43,7 @@ export const sites: Site[] = [
     imgURL: "/sedes/rocha.JPEG",
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/AMKFx3ypYin7Cx517",
+    cinemaID: "rocha",
   },
   {
     number: "05",
@@ -47,5 +52,6 @@ export const sites: Site[] = [
     imgURL: "/sedes/san-martin.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/LrjGXcBWd9sDJcMn8",
+    cinemaID: "ocho",
   },
 ];

@@ -1010,8 +1010,8 @@ p {
   left: 0.75rem;
   bottom: 0.75rem;
 
-  width: clamp(5rem, 5vw, 6rem);
-  height: auto;
+  height: 1.5rem;
+  width: auto;
   object-fit: contain;
 
   filter: drop-shadow(0 2px 6px rgb(0 0 0 / 60%));

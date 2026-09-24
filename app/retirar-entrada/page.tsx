@@ -188,7 +188,7 @@ export default function RetirarEntradaPage() {
               </h2>
 
               <p>
-                Buscá una compra para visualizarla antes de imprimirla.
+                Buscá tu compra para visualizarla antes de imprimirla.
               </p>
             </div>
           )}

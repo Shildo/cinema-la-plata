@@ -1,7 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { cinemaRooms, roomLayouts } from "../../../app/data/cinemaRooms";
+import AsientoButaca from "../../../public/svg/AsientoButaca";
+import CirculoButaca from "../../../public/svg/CirculoButaca";
+import Pantalla from "../../../public/svg/Pantalla";
+
 import styles from "./MovieBooking.module.css";
 
 type Site = {
@@ -11,6 +17,7 @@ type Site = {
   imgURL: string;
   rooms: string;
   locationURL: string;
+  cinemaID: "rocha" | "ocho";
 };
 
 type Movie = {
@@ -58,17 +65,6 @@ const showtimes = [
   },
 ];
 
-const seatRows = [
-  { row: "A", seats: 8 },
-  { row: "B", seats: 8 },
-  { row: "C", seats: 10 },
-  { row: "D", seats: 10 },
-  { row: "E", seats: 10 },
-  { row: "F", seats: 12 },
-  { row: "G", seats: 12 },
-  { row: "H", seats: 12 },
-];
-
 export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const router = useRouter();
 
@@ -78,36 +74,98 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  
-  const toggleSeat = (seat: string) => {
-  setSelectedSeats((current) =>
-    current.includes(seat)
-      ? current.filter((selected) => selected !== seat)
-      : [...current, seat]
+
+  const selectedSiteData = sites.find(
+    (site) => site.number === selectedSite
   );
-};
+
+  const availableRooms = cinemaRooms.filter(
+    (room) => room.cinema === selectedSiteData?.cinemaID
+  );
+
+  const selectedDay = showtimes.find((day) => day.date === selectedDate);
+
+  const selectedTimeIndex =
+    selectedDay?.times.indexOf(selectedTime ?? "") ?? -1;
+
+  // Asignación provisoria: reparte los horarios entre las salas del cine.
+  const selectedRoom =
+    availableRooms.length > 0 && selectedTimeIndex >= 0
+      ? availableRooms[selectedTimeIndex % availableRooms.length]
+      : undefined;
+
+  const selectedLayout = roomLayouts.find(
+    (layout) => layout.id === selectedRoom?.layoutId
+  );
+
+  const canSelectFormat = selectedSite !== null;
+  const canSelectShowtime =
+    selectedSite !== null && selectedFormat !== null;
+  const canSelectSeats =
+    selectedSite !== null &&
+    selectedFormat !== null &&
+    selectedDate !== null &&
+    selectedTime !== null;
+
+  const toggleSeat = (seatId: string) => {
+    setSelectedSeats((current) =>
+      current.includes(seatId)
+        ? current.filter((seat) => seat !== seatId)
+        : [...current, seatId]
+    );
+  };
 
   const handleSiteSelect = (siteNumber: string) => {
     setSelectedSite(siteNumber);
+    setSelectedFormat(null);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setSelectedSeats([]);
   };
 
+  const handleFormatSelect = (format: string) => {
+    setSelectedFormat(format);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setSelectedSeats([]);
+  };
+
+  const renderSeatRange = (
+    rowLabel: string,
+    start: number,
+    count: number
+  ) =>
+    Array.from({ length: count }, (_, index) => {
+      const seatNumber = start + index;
+      const seatId = `${rowLabel}${seatNumber}`;
+      const isSelected = selectedSeats.includes(seatId);
+
+      return (
+        <button
+          type="button"
+          key={seatId}
+          className={`${styles["seat"]} ${
+            isSelected ? styles.selected : ""
+          }`}
+          onClick={() => toggleSeat(seatId)}
+          aria-label={`Butaca ${rowLabel} ${seatNumber}`}
+          aria-pressed={isSelected}
+        >
+          <AsientoButaca
+            number={seatNumber}
+            className={styles["seat-icon"]}
+          />
+        </button>
+      );
+    });
+
   const handleContinueToPurchase = () => {
-    const selectedSiteData = sites.find(
-      (site) => site.number === selectedSite
-    );
-
-    const selectedDay = showtimes.find(
-      (day) => day.date === selectedDate
-    );
-
     const bookingData = {
-      movie: movie
-        ? {
-            slug: movie.slug,
-            title: movie.title,
-            image: movie.image,
-          }
-        : null,
+      movie: {
+        slug: movie.slug,
+        title: movie.title,
+        image: movie.image,
+      },
 
       site: selectedSiteData
         ? {
@@ -127,26 +185,20 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
         : null,
 
       time: selectedTime,
-
       seats: selectedSeats,
+
+      room: selectedRoom
+        ? {
+            id: selectedRoom.id,
+            name: selectedRoom.name,
+            layoutId: selectedRoom.layoutId,
+          }
+        : null,
     };
 
-    sessionStorage.setItem(
-      "movieBooking",
-      JSON.stringify(bookingData)
-    );
-
+    sessionStorage.setItem("movieBooking", JSON.stringify(bookingData));
     router.push("/comprar-entrada");
   };
-
-  const canSelectFormat = selectedSite !== null;
-  const canSelectShowtime =
-    selectedSite !== null && selectedFormat !== null;
-  const canSelectSeats =
-    selectedSite !== null &&
-    selectedFormat !== null &&
-    selectedDate !== null &&
-    selectedTime !== null;
 
   return (
     <section className={styles["booking-section"]}>
@@ -203,12 +255,8 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
         <div className={styles["booking-content"]}>
           <div className={styles["booking-heading"]}>
             <p>01 / SEDE</p>
-
             <h3>¿Dónde querés ver la película?</h3>
-
-            <span>
-              Seleccioná uno de nuestros complejos para continuar.
-            </span>
+            <span>Seleccioná uno de nuestros complejos para continuar.</span>
           </div>
 
           <div className={styles["site-grid"]}>
@@ -217,9 +265,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                 type="button"
                 key={site.number}
                 className={`${styles["site-card"]} ${
-                  selectedSite === site.number
-                    ? styles.selected
-                    : ""
+                  selectedSite === site.number ? styles.selected : ""
                 }`}
                 onClick={() => handleSiteSelect(site.number)}
               >
@@ -255,16 +301,14 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
         <div className={styles["booking-content"]}>
           <div className={styles["booking-heading"]}>
             <p>02 / FORMATO</p>
-
             <h3>¿Cómo querés verla?</h3>
-
             <span>
               Elegí el formato que preferís para disfrutar la película.
             </span>
           </div>
 
           <div className={styles["format-grid"]}>
-            {["HD", "3D", "4D", "ATMOS"].map((format, index) => {
+            {["HD", "3D", "4D", "ATMOS"].map((format) => {
               const isAvailable = movie.formats.includes(format);
 
               return (
@@ -276,9 +320,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                     selectedFormat === format ? styles.selected : ""
                   } ${!isAvailable ? styles.disabled : ""}`}
                   onClick={() => {
-                    if (isAvailable) {
-                      setSelectedFormat(format);
-                    }
+                    if (isAvailable) handleFormatSelect(format);
                   }}
                 >
                   <strong>{format}</strong>
@@ -289,7 +331,6 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                     {format === "4D" && "Experiencia inmersiva"}
                     {format === "ATMOS" && "Sonido envolvente"}
                   </small>
-
                 </button>
               );
             })}
@@ -315,187 +356,204 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             )}
           </div>
         </div>
-    )}
+      )}
 
       {currentStep === 2 && (
-  <div className={styles["booking-content"]}>
-    <div className={styles["booking-heading"]}>
-      <p>03 / FUNCIÓN</p>
+        <div className={styles["booking-content"]}>
+          <div className={styles["booking-heading"]}>
+            <p>03 / FUNCIÓN</p>
+            <h3>¿Cuándo querés verla?</h3>
+            <span>Elegí el día y horario que mejor te quede.</span>
+          </div>
 
-      <h3>¿Cuándo querés verla?</h3>
-
-      <span>
-        Elegí el día y horario que mejor te quede.
-      </span>
-    </div>
-
-    <div className={styles["date-grid"]}>
-      {showtimes.map((day) => (
-        <button
-          type="button"
-          key={day.date}
-          className={`${styles["date-card"]} ${
-            selectedDate === day.date ? styles.selected : ""
-          }`}
-          onClick={() => {
-            setSelectedDate(day.date);
-            setSelectedTime(null);
-          }}
-        >
-          <span>{day.date.split(" ")[0]}</span>
-          <strong>{day.date.split(" ")[1]}</strong>
-          <small>{day.fullDate}</small>
-        </button>
-      ))}
-    </div>
-
-    {selectedDate && (
-      <div className={styles["showtimes"]}>
-        <div className={styles["showtimes-heading"]}>
-          <span>HORARIOS DISPONIBLES</span>
-          <strong>
-            {showtimes.find((day) => day.date === selectedDate)?.fullDate}
-          </strong>
-        </div>
-
-        <div className={styles["showtime-grid"]}>
-          {showtimes
-            .find((day) => day.date === selectedDate)
-            ?.times.map((time) => (
+          <div className={styles["date-grid"]}>
+            {showtimes.map((day) => (
               <button
                 type="button"
-                key={time}
-                className={`${styles["showtime"]} ${
-                  selectedTime === time ? styles.selected : ""
+                key={day.date}
+                className={`${styles["date-card"]} ${
+                  selectedDate === day.date ? styles.selected : ""
                 }`}
-                onClick={() => setSelectedTime(time)}
+                onClick={() => {
+                  setSelectedDate(day.date);
+                  setSelectedTime(null);
+                  setSelectedSeats([]);
+                }}
               >
-                {time}
+                <span>{day.date.split(" ")[0]}</span>
+                <strong>{day.date.split(" ")[1]}</strong>
+                <small>{day.fullDate}</small>
               </button>
             ))}
-        </div>
-      </div>
-    )}
+          </div>
 
-    <div className={styles["booking-navigation"]}>
-      <button
-        type="button"
-        className="button button--primary"
-        onClick={() => setCurrentStep(1)}
-      >
-        ← Volver
-      </button>
+          {selectedDate && (
+            <div className={styles["showtimes"]}>
+              <div className={styles["showtimes-heading"]}>
+                <span>HORARIOS DISPONIBLES</span>
+                <strong>{selectedDay?.fullDate}</strong>
+              </div>
 
-      {selectedTime && (
-        <button
-          type="button"
-          className="button button--primary"
-          onClick={() => setCurrentStep(3)}
-        >
-          Continuar →
-        </button>
-      )}
-    </div>
-  </div>
-)}
-
-      {currentStep === 3 && (
-  <div className={styles["booking-content"]}>
-    <div className={styles["booking-heading"]}>
-      <p>04 / BUTACAS</p>
-
-      <h3>¿Dónde querés sentarte?</h3>
-
-      <span>
-        Seleccioná las butacas que quieras ocupar para continuar.
-      </span>
-    </div>
-
-    <div className={styles["cinema-room"]}>
-      <div className={styles["screen"]}>
-        PANTALLA
-      </div>
-
-      <div className={styles["seat-map"]}>
-        {seatRows.map((row) => (
-          <div className={styles["seat-row"]} key={row.row}>
-            <span className={styles["row-label"]}>
-              {row.row}
-            </span>
-
-            <div className={styles["seats"]}>
-              {Array.from({ length: row.seats }, (_, index) => {
-                const seatNumber = index + 1;
-                const seatId = `${row.row}${seatNumber}`;
-
-                return (
+              <div className={styles["showtime-grid"]}>
+                {selectedDay?.times.map((time) => (
                   <button
                     type="button"
-                    key={seatId}
-                    className={`${styles["seat"]} ${
-                      selectedSeats.includes(seatId)
-                        ? styles.selected
-                        : ""
+                    key={time}
+                    className={`${styles["showtime"]} ${
+                      selectedTime === time ? styles.selected : ""
                     }`}
-                    onClick={() => toggleSeat(seatId)}
-                    aria-label={`Butaca ${seatId}`}
-                    aria-pressed={selectedSeats.includes(seatId)}
+                    onClick={() => {
+                      setSelectedTime(time);
+                      setSelectedSeats([]);
+                    }}
                   >
-                    {seatNumber}
+                    {time}
                   </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className={styles["booking-navigation"]}>
+            <button
+              type="button"
+              className="button button--primary"
+              onClick={() => setCurrentStep(1)}
+            >
+              ← Volver
+            </button>
+
+            {selectedTime && (
+              <button
+                type="button"
+                className="button button--primary"
+                onClick={() => setCurrentStep(3)}
+              >
+                Continuar →
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {currentStep === 3 && (
+        <div className={styles["booking-content"]}>
+          <div className={styles["booking-heading"]}>
+            <p>04 / BUTACAS</p>
+            <h3>¿Dónde querés sentarte?</h3>
+            <span>
+              Seleccioná las butacas que quieras ocupar para continuar.
+            </span>
+          </div>
+
+          <div className={styles["cinema-room"]}>
+            <h4 className={styles["room-title"]}>{selectedRoom?.name}</h4>
+
+            <div className={styles["screen-container"]}>
+              <span>PANTALLA</span>
+              <Pantalla
+                className={styles["screen"]}
+                aria-label="Pantalla"
+              />
+            </div>
+
+            <div className={styles["seat-map"]}>
+              {selectedLayout?.rows.map((row) => {
+                // Las filas con seatGroups usan el diseño especial de Rocha sala 1.
+                if (row.seatGroups) {
+                  const [leftCount, middleCount, rightCount] = row.seatGroups;
+                  const middleStart = leftCount + 1;
+                  const rightStart = leftCount + middleCount + 1;
+
+                  return (
+                    <div className={styles["seat-row-rocha"]} key={row.label}>
+                      <div className={`${styles["seat-group"]} ${styles["seat-group-left"]}`}>
+                        {renderSeatRange(row.label, 1, leftCount)}
+                      </div>
+
+                      <CirculoButaca
+                        label={row.label}
+                        className={styles["row-label-inline"]}
+                      />
+
+                      <div className={`${styles["seat-group"]} ${styles["seat-group-middle"]}`}>
+                        {renderSeatRange(row.label, middleStart, middleCount)}
+                      </div>
+
+                      <CirculoButaca
+                        label={row.label}
+                        className={styles["row-label-inline"]}
+                      />
+
+                      <div className={`${styles["seat-group"]} ${styles["seat-group-right"]}`}>
+                        {renderSeatRange(row.label, rightStart, rightCount)}
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Las filas de las otras salas siguen con su diseño normal.
+                return (
+                  <div className={styles["seat-row"]} key={row.label}>
+                    <CirculoButaca
+                      label={row.label}
+                      className={styles["row-label"]}
+                    />
+
+                    <div
+                      className={`${styles["seats"]} ${
+                        row.align === "start" ? styles["seats-start"] : ""
+                      }`}
+                    >
+                      {renderSeatRange(row.label, 1, row.seatCount)}
+                    </div>
+
+                    <CirculoButaca
+                      label={row.label}
+                      className={styles["row-label"]}
+                    />
+                  </div>
                 );
               })}
             </div>
+
+            <p className={styles["room-capacity"]}>
+              Capacidad:{" "}
+              {selectedLayout?.rows.reduce(
+                (total, row) => total + row.seatCount,
+                0
+              ) ?? 0}
+            </p>
           </div>
-        ))}
-      </div>
 
-      <div className={styles["seat-legend"]}>
-        <div>
-          <span className={styles["seat-legend__available"]} />
-          <small>Disponible</small>
+          {selectedSeats.length > 0 && (
+            <div className={styles["selected-seats"]}>
+              <span>BUTACAS SELECCIONADAS</span>
+              <strong>{selectedSeats.join(" · ")}</strong>
+            </div>
+          )}
+
+          <div className={styles["booking-navigation"]}>
+            <button
+              type="button"
+              className="button button--primary"
+              onClick={() => setCurrentStep(2)}
+            >
+              ← Volver
+            </button>
+
+            {selectedSeats.length > 0 && (
+              <button
+                type="button"
+                className="button button--primary"
+                onClick={handleContinueToPurchase}
+              >
+                Continuar →
+              </button>
+            )}
+          </div>
         </div>
-
-        <div>
-          <span className={styles["seat-legend__selected"]} />
-          <small>Seleccionada</small>
-        </div>
-      </div>
-    </div>
-
-    {selectedSeats.length > 0 && (
-      <div className={styles["selected-seats"]}>
-        <span>
-          BUTACAS SELECCIONADAS
-        </span>
-
-        <strong>
-          {selectedSeats.join(" · ")}
-        </strong>
-      </div>
-    )}
-
-    <div className={styles["booking-navigation"]}>
-      <button
-        type="button"
-        className="button button--primary"
-        onClick={() => setCurrentStep(2)}
-      >
-        ← Volver
-      </button>
-
-      {selectedSeats.length > 0 && (
-        <button
-          type="button"
-          className="button button--primary"
-          onClick={handleContinueToPurchase}
-        >
-          Continuar →
-        </button>
       )}
-    </div>
-  </div>
-)}
     </section>
   );
 }

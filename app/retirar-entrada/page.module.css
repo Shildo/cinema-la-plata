@@ -1,7 +1,10 @@
 .retirar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
   padding: 30px 50px;
-  background: var(--black);
+  background: linear-gradient(to bottom right, var(--blue), var(--black));
   color: var(--white);
   font-family: "Satoshi Medium", sans-serif;
 }
@@ -152,7 +155,6 @@
   overflow: hidden;
   border-radius: 14px;
   background: #fff;
-  box-shadow: 6px 6px 0 var(--purple);
 }
 
 .ticketPoster {
@@ -271,7 +273,7 @@
   max-width: 600px;
   margin: 0;
   font-family: "Satoshi Medium", sans-serif;
-  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  font-size: clamp(2.5rem, 3.8vw, 4.5rem);
   line-height: 0.95;
   font-weight: 400;
 }
@@ -279,7 +281,7 @@
 .retirarEmpty p {
   max-width: 500px;
   margin: 24px 0 0;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.4;
   opacity: 0.65;
 }
