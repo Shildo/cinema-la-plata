@@ -1124,10 +1124,6 @@ p {
   }
 }
 
-/* =========================
-   COMPLEX SECTION
-========================= */
-
 .complex-section {
   position: relative;
   overflow: visible;
@@ -1317,6 +1313,7 @@ p {
 }
 
 .complex-card h3 {
+  height: clamp(28.5px, 2.85vw, 45.6px);
   margin: 0 0 18px;
 
   font-family: "Satoshi Medium", sans-serif;
@@ -1324,6 +1321,15 @@ p {
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 400;
+}
+
+.complex-card-logo img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .complex-facts {
@@ -1445,6 +1451,7 @@ p {
     aspect-ratio: 4 / 3;
   }
 }
+
 
 /* =========================
    EXPERIENCE SECTION

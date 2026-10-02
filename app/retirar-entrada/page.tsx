@@ -12,6 +12,7 @@ const mockTickets = [
     fecha: "22 de septiembre",
     horario: "20:30",
     sala: "Sala 3",
+    cine: "Cinema City",
     asiento: "F12",
     cantidad: 1,
   },
@@ -23,6 +24,7 @@ const mockTickets = [
     fecha: "22 de septiembre",
     horario: "18:00",
     sala: "Sala 1",
+    cine: "Cinema Paradiso",
     asiento: "C08",
     cantidad: 2,
   },
@@ -34,6 +36,7 @@ const mockTickets = [
     fecha: "23 de septiembre",
     horario: "16:30",
     sala: "Sala 2",
+    cine: "Cinema Ocho",
     asiento: "B14",
     cantidad: 3,
   },
@@ -45,6 +48,7 @@ const mockTickets = [
     fecha: "23 de septiembre",
     horario: "21:00",
     sala: "Sala 4",
+    cine: "Cinema San Martín",
     asiento: "G07",
     cantidad: 1,
   },
@@ -171,6 +175,26 @@ export default function RetirarEntradaPage() {
                     <strong>{ticket.codigo}</strong>
                   </div>
                 </div>
+              </div>
+
+              <div className={styles.ticketReceipt}>
+                <header className={styles.receiptHeader}>
+                  <strong>CINEMA LA PLATA</strong>
+                  <span style={{ textTransform: 'uppercase' }}>{ticket.cine}</span>
+                </header>
+                <h2>{ticket.pelicula}</h2>
+                <div className={styles.receiptDetails}>
+                  <div><span>Fecha</span><strong>{ticket.fecha}</strong></div>
+                  <div><span>Hora</span><strong>{ticket.horario}</strong></div>
+                  <div><span>Sala</span><strong>{ticket.sala}</strong></div>
+                  <div><span>Asiento</span><strong>{ticket.asiento}</strong></div>
+                  <div><span>Entradas</span><strong>{ticket.cantidad}</strong></div>
+                </div>
+                <footer className={styles.receiptCode}>
+                  <span>CÓDIGO DE COMPRA</span>
+                  <strong>{ticket.codigo}</strong>
+                  <small>Conservá este ticket durante la función</small>
+                </footer>
               </div>
 
               <button

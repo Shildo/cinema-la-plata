@@ -35,7 +35,7 @@
   display: flex;
   gap: 150px;
 
-  width: min(1000px, 73vw);
+  width: min(450px, 25vw);
 }
 
 .totem__button {

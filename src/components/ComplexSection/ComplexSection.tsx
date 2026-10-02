@@ -12,7 +12,8 @@ const complexes = [
     location: "Calle 50 entre 9 y 10.",
     imgURL: "/sedes/city.JPEG",
     rooms: "Sala 1, 2 y 3.",
-    locationURL: "https://maps.app.goo.gl/JCh4EGS9Bo3hhXwg6"
+    locationURL: "https://maps.app.goo.gl/JCh4EGS9Bo3hhXwg6",
+    logoURL: "/sedes/citylogo.png"
   },  
   {
     number: "02",
@@ -20,7 +21,8 @@ const complexes = [
     location: "Calle 46 entre 10 y 11.",
     imgURL: "/sedes/paradiso.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
-    locationURL: "https://maps.app.goo.gl/9pcaCXtL7LStEbJu9"
+    locationURL: "https://maps.app.goo.gl/9pcaCXtL7LStEbJu9",
+    logoURL: "/sedes/paradisologo.png"
   },
   {
     number: "03",
@@ -28,7 +30,8 @@ const complexes = [
     location: "Calle 8 entre 51 y 53.",
     imgURL: "/sedes/ocho.jpeg",
     rooms: "Sala 1, 2 y 3.",
-    locationURL: "https://maps.app.goo.gl/YN8YFMhX47n3wSyD6"
+    locationURL: "https://maps.app.goo.gl/YN8YFMhX47n3wSyD6",
+    logoURL: "/sedes/ochologo.png"
   },
   {
     number: "04",
@@ -36,7 +39,8 @@ const complexes = [
     location: "Calle 49 entre 7 y 8.",
     imgURL: "/sedes/rocha.JPEG",
     rooms: "Sala 1, 2 y 3.",
-    locationURL: "https://maps.app.goo.gl/AMKFx3ypYin7Cx517"
+    locationURL: "https://maps.app.goo.gl/AMKFx3ypYin7Cx517",
+    logoURL: "/sedes/rochalogo.png"
   },
   {
     number: "05",
@@ -44,7 +48,8 @@ const complexes = [
     location: "Avenida 7 entre 50 y 51.",
     imgURL: "/sedes/san-martin.JPEG",
     rooms: "Sala 1, 2, 3 y 4.",
-    locationURL: "https://maps.app.goo.gl/LrjGXcBWd9sDJcMn8"
+    locationURL: "https://maps.app.goo.gl/LrjGXcBWd9sDJcMn8",
+    logoURL: "/sedes/san-martinlogo.png"
   },
 ];
 
@@ -89,7 +94,9 @@ export default function ComplexSection() {
         </div>
 
         <div className="complex-card">
-          <h3>{selectedComplex.name}</h3>
+          <h3 className="complex-card-logo">
+            <img src={selectedComplex.logoURL} alt={selectedComplex.name} />
+          </h3>
 
           <div className="complex-facts">
             <div>

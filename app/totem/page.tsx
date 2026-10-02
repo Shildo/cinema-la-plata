@@ -17,11 +17,6 @@ export default function TotemPage() {
 
       <div className="totem__buttons">
         <a
-          href="/#peliculas"
-          className="totem__button"
-        >Comprar entrada</a>
-
-        <a
           href="/retirar-entrada"
           className="totem__button"
         >Retirar entrada</a>
