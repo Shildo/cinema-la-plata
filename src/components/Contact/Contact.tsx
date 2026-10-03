@@ -15,7 +15,7 @@ export default function Contact() {
         <h2>
           Hablemos
           <br />
-          de cine.
+          de cine
         </h2>
 
         <p>

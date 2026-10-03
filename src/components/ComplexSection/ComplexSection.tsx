@@ -64,7 +64,7 @@ export default function ComplexSection() {
         <h2>
           Conocé nuestras
           <br />
-          sedes.
+          sedes
         </h2>
 
         <div className="complex-list">

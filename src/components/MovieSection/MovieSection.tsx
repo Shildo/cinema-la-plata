@@ -98,7 +98,7 @@ export default function MovieSection() {
           </p>
 
           <h2>
-            Descubrí tu próxima historia.
+            Descubrí tu próxima historia
           </h2>
 
           <p className="section-copy">

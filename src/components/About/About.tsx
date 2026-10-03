@@ -17,7 +17,7 @@ export default function About() {
         <h2>
           El cine que siempre 
           <br />
-          te acompaña.
+          te acompaña
         </h2>
 
         <p>

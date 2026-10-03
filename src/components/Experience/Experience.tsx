@@ -13,7 +13,7 @@ export default function Experience() {
         <h2>
           Elegí cómo queres
           <br />
-          sentir la función.
+          sentir la función
         </h2>
 
         <p>
