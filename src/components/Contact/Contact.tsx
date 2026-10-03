@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import Phone from "../../../public/svg/Phone";
 import Instagram from "../../../public/svg/Instagram";
 import TikTok from "../../../public/svg/TikTok";
 import YouTube from "../../../public/svg/Youtube";
