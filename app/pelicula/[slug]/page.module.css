@@ -264,6 +264,19 @@
   font-weight: 700;
 }
 
+.movie-detail__poster .movie-detail__badge {
+  position: absolute;
+  z-index: 3;
+  top: -0.7rem;
+  right: -0.85rem;
+  width: min(46%, 175px);
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  transform: rotate(8deg);
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.4));
+}
+
 .movie-detail__poster .movie-detail__restriction {
   position: absolute;
   z-index: 2;

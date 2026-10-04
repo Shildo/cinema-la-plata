@@ -9,6 +9,7 @@ export type Movie = {
   genre: string;
   formats: string[];
   restriction: string;
+  badge?: string;
 };
 
 export const movies: Movie[] = [
@@ -82,7 +83,7 @@ export const movies: Movie[] = [
     restriction: "/restrictions/supervision-parental.PNG",
   },
   {
-    slug: "toystory5",
+    slug: "toy-story-5",
     title: "Toy Story 5",
     meta: "INFANTIL / AVENTURA",
     synopsis:
@@ -133,6 +134,46 @@ export const movies: Movie[] = [
     formats: ["HD", "3D", "ATMOS"],
     restriction: "/restrictions/r-17.PNG",
   },
+  {
+    slug: "playa-de-lobos",
+    title: "Playa de Lobos",
+    meta: "COMEDIA / THRILLER",
+    synopsis:
+      "Manu trabaja en un chiringuito. Klaus no suelta la última hamaca. Lo que parece un encuentro entre opuestos se vuelve sospechoso cuando Manu duda de Klaus. La tensión aumenta.",
+    image: "/peliculas/afichePlayaDeLobos.jpg",
+    trailer: "https://www.youtube.com/watch?v=pS_bQp0KcN4",
+    duration: "1h 40min",
+    genre: "Comedia Thriller",
+    formats: ["HD", "3D"],
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    slug: "scream-7",
+    title: "Scream 7",
+    meta: "TERROR / THRILLER",
+    synopsis:
+      "Cuando un nuevo asesino Ghostface aparece en el tranquilo pueblo donde Sidney Prescott (Neve Campbell) ha construido una nueva vida, sus peores miedos se hacen realidad cuando su hija (Isabel May) se convierte en el siguiente objetivo.",
+    image: "/peliculas/aficheScream7.jpg",
+    trailer: "https://www.youtube.com/watch?v=WZXCpje7ZNo",
+    duration: "1h 54min",
+    genre: "Terror Thriller",
+    formats: ["HD", "3D", "4D", "ATMOS"],
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    slug: "el-agente-secreto",
+    title: "El Agente Secreto",
+    meta: "THRILLER / POLÍTICO",
+    synopsis:
+      "Bajo el espectro amenazador del Brasil de 1977, conocemos a Marcelo, un hombre de unos 40 años que se ha mudado recientemente a Recife, en la costa noreste de Brasil, para escapar de un pasado violento.",
+    image: "/peliculas/aficheElAgenteSecreto.jpeg",
+    trailer: "https://www.youtube.com/watch?v=YxvymcujX14",
+    duration: "2h 41min",
+    genre: "Thriller Político",
+    formats: ["HD", "ATMOS"],
+    restriction: "/restrictions/r-13.PNG",
+    badge: "/resources/cineBrasileñoCartel.png",
+  }
 ];
 
 export function getMovie(slug: string) {

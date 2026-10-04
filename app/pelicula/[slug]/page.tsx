@@ -32,6 +32,14 @@ export default async function MoviePage({ params }: MoviePageProps) {
         <div className={styles["movie-detail__poster"]}>
           <img src={movie.image} alt={movie.title} />
 
+          {movie.badge && (
+            <img
+              src={movie.badge}
+              alt="Cine brasileño"
+              className={styles["movie-detail__badge"]}
+            />
+          )}
+
           <img
             src={movie.restriction}
             alt={`Clasificación de edad para ${movie.title}`}

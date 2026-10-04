@@ -1042,6 +1042,18 @@ p {
   transform: scale(1.035);
 }
 
+.movie-card__image .movie-card__badge {
+  position: absolute;
+  z-index: 4;
+  top: -0.45rem;
+  right: -0.65rem;
+  width: min(46%, 150px);
+  height: auto;
+  object-fit: contain;
+  transform: rotate(8deg);
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 35%));
+  pointer-events: none;
+}
 .movie-card__image .movie-card__restriction {
   position: absolute;
   z-index: 3;
@@ -1058,17 +1070,21 @@ p {
 
 .movie-card__image {
   position: relative;
-
   width: 100%;
   aspect-ratio: 2 / 3;
+  overflow: visible;
+}
 
+.movie-card__frame {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
   overflow: hidden;
-
   background: #121d43;
   border-radius: 5px;
 }
 
-.movie-card__image::before {
+.movie-card__frame::before {
   content: "";
 
   position: absolute;
@@ -1080,7 +1096,7 @@ p {
   pointer-events: none;
 }
 
-.movie-card__image img {
+.movie-card__frame img {
   display: block;
 
   width: 100%;
@@ -1091,7 +1107,7 @@ p {
   transition: transform 0.4s ease;
 }
 
-.movie-card-link:hover .movie-card__image img {
+.movie-card-link:hover .movie-card__frame img {
   transform: scale(1.035);
 }
 

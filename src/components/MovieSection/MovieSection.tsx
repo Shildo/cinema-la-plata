@@ -52,7 +52,7 @@ const movies = [
     status: "En cartelera",
     meta: "INFANTIL / AVENTURA",
     img: "/peliculas/aficheToystory5.jpeg",
-    url: "/pelicula/toystory5",
+    url: "/pelicula/toy-story-5",
     restriction: "/restrictions/general.PNG",
   },
   {
@@ -81,6 +81,34 @@ const movies = [
     img: "/peliculas/aficheScaryMovie.jpg",
     url: "/pelicula/scary-movie-terrorificamente-incorrecta",
     restriction: "/restrictions/r-17.PNG",
+  },
+  {
+    key: 9,
+    title: "Playa de Lobos",
+    status: "En cartelera",
+    meta: "COMEDIA / THRILLER",
+    img: "/peliculas/afichePlayaDeLobos.jpg",
+    url: "/pelicula/playa-de-lobos",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 10,
+    title: "Scream 7",
+    status: "En cartelera",
+    meta: "TERROR / THRILLER",
+    img: "/peliculas/aficheScream7.jpg",
+    url: "/pelicula/scream-7",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 11,
+    title: "El agente secreto",
+    status: "En cartelera",
+    meta: "THRILLER / POLÍTICO",
+    img: "/peliculas/aficheElAgenteSecreto.jpeg",
+    url: "/pelicula/el-agente-secreto",
+    restriction: "/restrictions/r-13.PNG",
+    badge: "/resources/cineBrasileñoCartel.png",
   }
 ];
 
@@ -117,18 +145,29 @@ export default function MovieSection() {
             <article className="movie-card">
 
               <div className="movie-card__image">
-                <img
-                  className="movie-card__poster"
-                  src={movie.img}
-                  alt={`Afiche de ${movie.title}`}
-                />
+                <div className="movie-card__frame">
+                  <img
+                    className="movie-card__poster"
+                    src={movie.img}
+                    alt={`Afiche de ${movie.title}`}
+                  />
 
-                <img
-                  className="movie-card__restriction"
-                  src={movie.restriction}
-                  alt={`Clasificación de edad para ${movie.title}`}
-                  loading="lazy"
-                />
+                  <img
+                    className="movie-card__restriction"
+                    src={movie.restriction}
+                    alt={`Clasificación de edad para ${movie.title}`}
+                    loading="lazy"
+                  />
+                </div>
+
+                {movie.badge && (
+                  <img
+                    className="movie-card__badge"
+                    src={movie.badge}
+                    alt="Cine brasileño"
+                    loading="lazy"
+                  />
+                )}
               </div>
 
               <div className="movie-card__info">
