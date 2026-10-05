@@ -3,15 +3,7 @@ import "./totem.css";
 export default function TotemPage() {
   return (
     <main className="totem">
-      <video
-        className="totem__background"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/videos/logo-animation.mp4" type="video/mp4" />
-      </video>
+      <img className="totem__background" src="/logo.png" alt="Cinema La Plata" />
 
       <div className="totem__overlay" />
 
