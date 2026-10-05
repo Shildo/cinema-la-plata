@@ -67,6 +67,7 @@
 
 .booking-content {
   margin-top: 60px;
+  scroll-margin-top: 7rem;
 }
 
 .booking-heading {
@@ -389,6 +390,7 @@
 ========================= */
 
 .showtimes {
+  scroll-margin-top: 7rem;
   margin-top: 45px;
   padding-top: 25px;
 
@@ -731,7 +733,13 @@
   border: 1px solid rgba(239, 229, 206, 0.12);
 }
 
+.cinema-room__canvas {
+  width: max-content;
+  min-width: 100%;
+}
+
 .room-title {
+  width: 100%;
   margin: 0 0 32px;
   color: var(--white);
   font-size: clamp(28px, 5vw, 40px);
@@ -870,6 +878,7 @@
 }
 
 .room-capacity {
+  width: 100%;
   margin: 28px 0 0;
   color: var(--white);
   font-size: 13px;
@@ -1049,8 +1058,7 @@
   }
 
   .screen {
-    width: 75%;
-    margin-bottom: 40px;
+    width: 100%;
   }
 
   .seat-row {

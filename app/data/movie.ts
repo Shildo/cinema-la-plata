@@ -10,6 +10,7 @@ export type Movie = {
   formats: string[];
   restriction: string;
   badge?: string;
+  siteNumbers?: string[];
 };
 
 export const movies: Movie[] = [
@@ -25,6 +26,7 @@ export const movies: Movie[] = [
     genre: "Acción",
     formats: ["HD", "3D"],
     restriction: "/restrictions/supervision-parental.PNG",
+    siteNumbers: ["01", "03", "04"],
   },
 
   {
@@ -39,6 +41,7 @@ export const movies: Movie[] = [
     genre: "Animación",
     formats: ["HD", "ATMOS"],
     restriction: "/restrictions/general.PNG",
+    siteNumbers: ["01", "02", "03", "05"],
   },
 
   {
@@ -53,6 +56,7 @@ export const movies: Movie[] = [
     genre: "Aventura",
     formats: ["HD", "3D", "4D"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["02", "04"],
   },
 
   {
@@ -67,6 +71,7 @@ export const movies: Movie[] = [
     genre: "Comedia",
     formats: ["HD", "3D"],
     restriction: "/restrictions/general.PNG",
+    siteNumbers: ["01", "03", "05"],
   },
 
   {
@@ -81,6 +86,7 @@ export const movies: Movie[] = [
     genre: "Thriller",
     formats: ["HD", "3D", "4D", "ATMOS"],
     restriction: "/restrictions/supervision-parental.PNG",
+    siteNumbers: ["01", "02", "04", "05"],
   },
   {
     slug: "toy-story-5",
@@ -94,6 +100,7 @@ export const movies: Movie[] = [
     genre: "Animación",
     formats: ["HD", "3D", "ATMOS"],
     restriction: "/restrictions/general.PNG",
+    siteNumbers: ["02", "03", "05"],
   },
   {
     slug: "diablo-viste-a-la-moda-2",
@@ -107,6 +114,7 @@ export const movies: Movie[] = [
     genre: "Comedia",
     formats: ["HD", "3D"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["01", "04", "05"],
   },
   {
     slug: "michael",
@@ -120,6 +128,7 @@ export const movies: Movie[] = [
     genre: "Documental Biográfico",
     formats: ["HD", "ATMOS"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["02", "03", "04"],
   },
   {
     slug: "scary-movie-terrorificamente-incorrecta",
@@ -133,6 +142,7 @@ export const movies: Movie[] = [
     genre: "Comedia Terror",
     formats: ["HD", "3D", "ATMOS"],
     restriction: "/restrictions/r-17.PNG",
+    siteNumbers: ["01", "02", "05"],
   },
   {
     slug: "playa-de-lobos",
@@ -146,6 +156,7 @@ export const movies: Movie[] = [
     genre: "Comedia Thriller",
     formats: ["HD", "3D"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["02", "03", "04"],
   },
   {
     slug: "scream-7",
@@ -159,6 +170,7 @@ export const movies: Movie[] = [
     genre: "Terror Thriller",
     formats: ["HD", "3D", "4D", "ATMOS"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["01", "03", "04", "05"],
   },
   {
     slug: "el-agente-secreto",
@@ -172,6 +184,7 @@ export const movies: Movie[] = [
     genre: "Thriller Político",
     formats: ["HD", "ATMOS"],
     restriction: "/restrictions/r-13.PNG",
+    siteNumbers: ["02", "04", "05"],
     badge: "/resources/cineBrasileñoCartel.png",
   }
 ];

@@ -1447,6 +1447,10 @@ p {
   .complex-detail {
     max-width: 780px;
   }
+
+  .complex-card {
+    scroll-margin-bottom: 24px;
+  }
 }
 
 @media (max-width: 600px) {

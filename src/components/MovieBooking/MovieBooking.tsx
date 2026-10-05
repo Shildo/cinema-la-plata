@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { cinemaRooms, roomLayouts } from "../../../app/data/cinemaRooms";
@@ -30,6 +30,7 @@ type Movie = {
   duration: string;
   genre: string;
   formats: string[];
+  siteNumbers?: string[];
 };
 
 type MovieBookingProps = {
@@ -74,6 +75,58 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+
+  const bookingContentRef = useRef<HTMLDivElement>(null);
+  const [stepScrollRequest, setStepScrollRequest] = useState(0);
+  const siteContinueRef = useRef<HTMLButtonElement>(null);
+  const [siteContinueScrollRequest, setSiteContinueScrollRequest] = useState(0);
+  const showtimesRef = useRef<HTMLDivElement>(null);
+  const [showtimesScrollRequest, setShowtimesScrollRequest] = useState(0);
+  const showtimeContinueRef = useRef<HTMLButtonElement>(null);
+  const [showtimeContinueScrollRequest, setShowtimeContinueScrollRequest] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      bookingContentRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [stepScrollRequest]);
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      siteContinueRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [siteContinueScrollRequest]);
+
+  useEffect(() => {
+    if (selectedDate && window.matchMedia("(max-width: 1024px)").matches) {
+      showtimesRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [showtimesScrollRequest, selectedDate]);
+
+  useEffect(() => {
+    if (selectedTime && window.matchMedia("(max-width: 1024px)").matches) {
+      showtimeContinueRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [showtimeContinueScrollRequest, selectedTime]);
+  const handleStepClick = (step: number) => {
+    setCurrentStep(step);
+    setStepScrollRequest((request) => request + 1);
+  };
+
+  const availableSites = movie.siteNumbers
+    ? sites.filter((site) => movie.siteNumbers?.includes(site.number))
+    : sites;
 
   const selectedSiteData = sites.find(
     (site) => site.number === selectedSite
@@ -121,6 +174,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     setSelectedDate(null);
     setSelectedTime(null);
     setSelectedSeats([]);
+    setSiteContinueScrollRequest((request) => request + 1);
   };
 
   const handleFormatSelect = (format: string) => {
@@ -208,7 +262,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           className={`${styles["booking-step"]} ${
             currentStep === 0 ? styles.active : ""
           }`}
-          onClick={() => setCurrentStep(0)}
+          onClick={() => handleStepClick(0)}
         >
           <span>01</span>
           <strong>Seleccioná tu sede</strong>
@@ -220,7 +274,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           className={`${styles["booking-step"]} ${
             currentStep === 1 ? styles.active : ""
           } ${!canSelectFormat ? styles.disabled : ""}`}
-          onClick={() => setCurrentStep(1)}
+          onClick={() => handleStepClick(1)}
         >
           <span>02</span>
           <strong>Elegí el formato</strong>
@@ -232,7 +286,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           className={`${styles["booking-step"]} ${
             currentStep === 2 ? styles.active : ""
           } ${!canSelectShowtime ? styles.disabled : ""}`}
-          onClick={() => setCurrentStep(2)}
+          onClick={() => handleStepClick(2)}
         >
           <span>03</span>
           <strong>Elegí tu función</strong>
@@ -244,7 +298,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           className={`${styles["booking-step"]} ${
             currentStep === 3 ? styles.active : ""
           } ${!canSelectSeats ? styles.disabled : ""}`}
-          onClick={() => setCurrentStep(3)}
+          onClick={() => handleStepClick(3)}
         >
           <span>04</span>
           <strong>Seleccioná tus butacas</strong>
@@ -252,7 +306,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       </div>
 
       {currentStep === 0 && (
-        <div className={styles["booking-content"]}>
+        <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
             <p>01 / SEDE</p>
             <h3>¿Dónde querés ver la película?</h3>
@@ -260,7 +314,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           </div>
 
           <div className={styles["site-grid"]}>
-            {sites.map((site) => (
+            {availableSites.map((site) => (
               <button
                 type="button"
                 key={site.number}
@@ -287,8 +341,9 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <div className={styles["booking-next"]}>
               <button
                 type="button"
+                ref={siteContinueRef}
                 className="button button--primary"
-                onClick={() => setCurrentStep(1)}
+                onClick={() => handleStepClick(1)}
               >
                 Continuar →
               </button>
@@ -298,7 +353,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       )}
 
       {currentStep === 1 && (
-        <div className={styles["booking-content"]}>
+        <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
             <p>02 / FORMATO</p>
             <h3>¿Cómo querés verla?</h3>
@@ -308,19 +363,16 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           </div>
 
           <div className={styles["format-grid"]}>
-            {["HD", "3D", "4D", "ATMOS"].map((format) => {
-              const isAvailable = movie.formats.includes(format);
-
+            {movie.formats.map((format) => {
               return (
                 <button
                   type="button"
                   key={format}
-                  disabled={!isAvailable}
                   className={`${styles["format-card"]} ${
                     selectedFormat === format ? styles.selected : ""
-                  } ${!isAvailable ? styles.disabled : ""}`}
+                  }`}
                   onClick={() => {
-                    if (isAvailable) handleFormatSelect(format);
+                    handleFormatSelect(format);
                   }}
                 >
                   <strong>{format}</strong>
@@ -340,7 +392,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <button
               type="button"
               className="button button--primary"
-              onClick={() => setCurrentStep(0)}
+              onClick={() => handleStepClick(0)}
             >
               ← Volver
             </button>
@@ -349,7 +401,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
               <button
                 type="button"
                 className="button button--primary"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => handleStepClick(2)}
               >
                 Continuar →
               </button>
@@ -359,7 +411,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       )}
 
       {currentStep === 2 && (
-        <div className={styles["booking-content"]}>
+        <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
             <p>03 / FUNCIÓN</p>
             <h3>¿Cuándo querés verla?</h3>
@@ -378,6 +430,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                   setSelectedDate(day.date);
                   setSelectedTime(null);
                   setSelectedSeats([]);
+                  setShowtimesScrollRequest((request) => request + 1);
                 }}
               >
                 <span>{day.date.split(" ")[0]}</span>
@@ -388,7 +441,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           </div>
 
           {selectedDate && (
-            <div className={styles["showtimes"]}>
+            <div className={styles["showtimes"]} ref={showtimesRef}>
               <div className={styles["showtimes-heading"]}>
                 <span>HORARIOS DISPONIBLES</span>
                 <strong>{selectedDay?.fullDate}</strong>
@@ -405,6 +458,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                     onClick={() => {
                       setSelectedTime(time);
                       setSelectedSeats([]);
+                      setShowtimeContinueScrollRequest((request) => request + 1);
                     }}
                   >
                     {time}
@@ -418,7 +472,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <button
               type="button"
               className="button button--primary"
-              onClick={() => setCurrentStep(1)}
+              onClick={() => handleStepClick(1)}
             >
               ← Volver
             </button>
@@ -426,8 +480,9 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             {selectedTime && (
               <button
                 type="button"
+                ref={showtimeContinueRef}
                 className="button button--primary"
-                onClick={() => setCurrentStep(3)}
+                onClick={() => handleStepClick(3)}
               >
                 Continuar →
               </button>
@@ -437,7 +492,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       )}
 
       {currentStep === 3 && (
-        <div className={styles["booking-content"]}>
+        <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
             <p>04 / BUTACAS</p>
             <h3>¿Dónde querés sentarte?</h3>
@@ -447,18 +502,19 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           </div>
 
           <div className={styles["cinema-room"]}>
-            <h4 className={styles["room-title"]}>{selectedRoom?.name}</h4>
+            <div className={styles["cinema-room__canvas"]}>
+              <h4 className={styles["room-title"]}>{selectedRoom?.name}</h4>
 
-            <div className={styles["screen-container"]}>
-              <span>PANTALLA</span>
-              <Pantalla
-                className={styles["screen"]}
-                aria-label="Pantalla"
-              />
-            </div>
+              <div className={styles["screen-container"]}>
+                <span>PANTALLA</span>
+                <Pantalla
+                  className={styles["screen"]}
+                  aria-label="Pantalla"
+                />
+              </div>
 
-            <div className={styles["seat-map"]}>
-              {selectedLayout?.rows.map((row) => {
+              <div className={styles["seat-map"]}>
+                {selectedLayout?.rows.map((row) => {
                 // Las filas con seatGroups usan el diseño especial de Rocha sala 1.
                 if (row.seatGroups) {
                   const [leftCount, middleCount, rightCount] = row.seatGroups;
@@ -514,16 +570,17 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                     />
                   </div>
                 );
-              })}
-            </div>
+                })}
+              </div>
 
-            <p className={styles["room-capacity"]}>
-              Capacidad:{" "}
-              {selectedLayout?.rows.reduce(
-                (total, row) => total + row.seatCount,
-                0
-              ) ?? 0}
-            </p>
+              <p className={styles["room-capacity"]}>
+                Capacidad:{" "}
+                {selectedLayout?.rows.reduce(
+                  (total, row) => total + row.seatCount,
+                  0
+                ) ?? 0}
+              </p>
+            </div>
           </div>
 
           {selectedSeats.length > 0 && (
@@ -537,7 +594,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <button
               type="button"
               className="button button--primary"
-              onClick={() => setCurrentStep(2)}
+              onClick={() => handleStepClick(2)}
             >
               ← Volver
             </button>

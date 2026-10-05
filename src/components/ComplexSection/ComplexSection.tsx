@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapPin } from "lucide-react"
 import { Tickets } from "lucide-react";
 import { Clock9 } from "lucide-react";
@@ -55,6 +55,24 @@ const complexes = [
 
 export default function ComplexSection() {
   const [selectedComplex, setSelectedComplex] = useState(complexes[0]);
+  const [cardScrollRequest, setCardScrollRequest] = useState(0);
+  const complexCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardScrollRequest === 0 || !window.matchMedia("(max-width: 1000px)").matches) {
+      return;
+    }
+
+    complexCardRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [cardScrollRequest]);
+
+  const handleComplexSelect = (complex: (typeof complexes)[number]) => {
+    setSelectedComplex(complex);
+    setCardScrollRequest((request) => request + 1);
+  };
 
   return (
     <section className="complex-section" id="complejos">
@@ -74,7 +92,7 @@ export default function ComplexSection() {
               className={
                 selectedComplex.number === complex.number ? "active" : ""
               }
-              onClick={() => setSelectedComplex(complex)}
+              onClick={() => handleComplexSelect(complex)}
             >
               <span></span>
 
@@ -93,7 +111,7 @@ export default function ComplexSection() {
           />
         </div>
 
-        <div className="complex-card">
+        <div className="complex-card" ref={complexCardRef}>
           <h3 className="complex-card-logo">
             <img src={selectedComplex.logoURL} alt={selectedComplex.name} />
           </h3>
