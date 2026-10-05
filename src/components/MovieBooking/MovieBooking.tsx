@@ -80,6 +80,8 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const [stepScrollRequest, setStepScrollRequest] = useState(0);
   const siteContinueRef = useRef<HTMLButtonElement>(null);
   const [siteContinueScrollRequest, setSiteContinueScrollRequest] = useState(0);
+  const formatContinueRef = useRef<HTMLButtonElement>(null);
+  const [formatContinueScrollRequest, setFormatContinueScrollRequest] = useState(0);
   const showtimesRef = useRef<HTMLDivElement>(null);
   const [showtimesScrollRequest, setShowtimesScrollRequest] = useState(0);
   const showtimeContinueRef = useRef<HTMLButtonElement>(null);
@@ -101,6 +103,15 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       });
     }
   }, [siteContinueScrollRequest]);
+
+  useEffect(() => {
+    if (formatContinueScrollRequest > 0 && window.matchMedia("(max-width: 1024px)").matches) {
+      formatContinueRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [formatContinueScrollRequest]);
 
   useEffect(() => {
     if (selectedDate && window.matchMedia("(max-width: 1024px)").matches) {
@@ -182,6 +193,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     setSelectedDate(null);
     setSelectedTime(null);
     setSelectedSeats([]);
+    setFormatContinueScrollRequest((request) => request + 1);
   };
 
   const renderSeatRange = (
@@ -400,6 +412,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             {selectedFormat && (
               <button
                 type="button"
+                ref={formatContinueRef}
                 className="button button--primary"
                 onClick={() => handleStepClick(2)}
               >
