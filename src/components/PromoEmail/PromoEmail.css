@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Medium.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Black.otf") format("opentype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.promo-email {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+  font-family: "Satoshi", Arial, sans-serif;
+}
+
+.promo-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1.05;
+  text-align: center;
+}
+
+/* This in-flow image sets the scene height. All other scene elements overlay it. */
+.promo-background {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.promo-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.promo-logo,
+.promo-title,
+.promo-subtitle,
+.promo-invitation,
+.promo-discount,
+.promo-movie,
+.promo-button,
+.promo-footer {
+  position: absolute;
+  z-index: 2;
+}
+
+.promo-logo {
+  top: 2%;
+  left: 50%;
+  width: 26%;
+  max-width: 150px;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.promo-title,
+.promo-subtitle,
+.promo-invitation,
+.promo-discount,
+.promo-movie {
+  left: 6%;
+  width: 88%;
+  margin: 0;
+  color: #fff;
+}
+
+.promo-title {
+  top: 13%;
+  font-size: clamp(40px, 10.67vw, 64px);
+  font-weight: 900;
+}
+
+.promo-subtitle {
+  top: 25%;
+  font-size: clamp(22px, 5.33vw, 32px);
+  font-weight: 400;
+}
+
+.promo-invitation,
+.promo-movie {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.promo-invitation {
+  top: 36%;
+}
+
+.promo-discount {
+  top: 53%;
+  font-size: clamp(40px, 10.67vw, 64px);
+  font-weight: 900;
+}
+
+.promo-movie {
+  top: 67%;
+}
+
+.promo-button {
+  top: 80%;
+  left: 50%;
+  display: inline-block;
+  padding: 12px 24px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff9800, #f44336);
+  color: #fff;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.promo-footer {
+  right: 6%;
+  bottom: 2%;
+  left: 6%;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(10px, 2vw, 12px);
+  font-style: italic;
+  line-height: 1.3;
+  text-align: center;
+}
