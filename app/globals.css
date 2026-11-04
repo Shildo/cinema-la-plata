@@ -513,7 +513,7 @@ p {
 }
 
 .hero h1 span {
-  color: #aab6ff;
+  color: var(--yellow);
 
   font-style: italic;
   font-weight: 400;
@@ -1159,7 +1159,7 @@ p {
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--yellow);
 }
 
 /* Responsive */

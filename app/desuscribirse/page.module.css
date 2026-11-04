@@ -43,7 +43,7 @@
   place-items: center;
   border: 1px solid rgba(255, 221, 18, 0.55);
   border-radius: 50%;
-  background: rgba(255, 221, 18, 0.1);
+  background: transparent;
   color: var(--yellow);
 }
 
@@ -80,7 +80,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.9rem 1.15rem;
-  background: linear-gradient(100deg, #ff1319, #c6009f 57%, #0c14e2);
+  background: var(--red);
   border: 0;
   color: #fff;
   cursor: pointer;
@@ -95,7 +95,7 @@
 }
 
 .homeButton:hover {
-  filter: brightness(1.12);
+  background: #b72215;
   transform: translateY(-1px);
 }
 

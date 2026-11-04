@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import {
-  clearMockSession,
   MOCK_SESSION_EVENT,
   readMockSession,
   saveMockSession,
@@ -15,7 +13,6 @@ import {
 import styles from "../registrarse/page.module.css";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [signedInName, setSignedInName] = useState<string | null>(null);
   const [formError, setFormError] = useState("");
 
@@ -50,12 +47,6 @@ export default function LoginPage() {
     setSignedInName(firstName);
   }
 
-  function handleLogout() {
-    clearMockSession();
-    setSignedInName(null);
-    router.push("/");
-  }
-
   return (
     <>
       <Navbar />
@@ -63,10 +54,10 @@ export default function LoginPage() {
         <div className={styles.ambient} aria-hidden="true" />
         <section className={styles.layout}>
           <div className={styles.intro}>
-            <p className={styles.eyebrow}><span>02</span> / TU CUENTA</p>
-            <h1>Qué bueno verte <em>de nuevo.</em></h1>
+            <p className={styles.eyebrow}>TU CUENTA</p>
+            <h1>Qué bueno verte <em>de nuevo</em></h1>
             <p className={styles.lead}>
-              Ingresá a tu cuenta y seguí disfrutando de todo lo que Cinema La Plata tiene para vos.
+              Ingresá a tu cuenta y seguí disfrutando de todo lo que Cinema La Plata tiene para vos
             </p>
           </div>
 
@@ -78,16 +69,16 @@ export default function LoginPage() {
                 <p className={styles.resultMessage}>
                   Iniciaste sesión correctamente. ¡Seguí disfrutando de Cinema La Plata!
                 </p>
-                <button className={styles.secondaryButton} type="button" onClick={handleLogout}>
-                  Cerrar sesión
-                </button>
+                <Link className={styles.secondaryButton} href="/#cartelera">
+                  Ir a la cartelera
+                </Link>
               </div>
             ) : (
               <>
                 <div className={styles.cardHeader}>
                   <p className={styles.cardEyebrow}>BIENVENIDO DE NUEVO</p>
-                  <h2 id="login-title">Iniciá sesión.</h2>
-                  <p>Ingresá tus datos para acceder a tu cuenta.</p>
+                  <h2 id="login-title">Iniciá sesión</h2>
+                  <p>Ingresá tus datos para acceder a tu cuenta</p>
                 </div>
 
                 <form className={styles.form} onSubmit={handleSubmit}>

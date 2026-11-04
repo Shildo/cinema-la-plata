@@ -24,11 +24,11 @@ export default function Contact() {
         </p>
 
         <div className="contact-links">
-          <a href="mailto:boleteriacity@cinemalaplata.com">
+          <a href="mailto:la.plata.cines@gmail.com">
             <span>
               <MyMail />
             </span>
-            boleteriacity@cinemalaplata.com
+            la.plata.cines@gmail.com
           </a>
 
           <a href="tel:+542214235456">
@@ -38,18 +38,18 @@ export default function Contact() {
             221 423-5456
           </a>
 
-          <a href="https://www.instagram.com/cinemalaplata" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/tesis_marzocchini_migliaro" target="_blank" rel="noopener noreferrer">
             <span>
               <Instagram />
             </span>
-            cinemalaplata
+            tesis_marzocchini_migliaro
           </a>
 
-          <a href="https://www.tiktok.com/@cinemalaplata" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.tiktok.com/@tesis_cinema" target="_blank" rel="noopener noreferrer">
             <span>
               <TikTok />
             </span>
-            cinemalaplata
+            tesis_cinema
           </a>
           
           <a href="https://www.youtube.com/@CinemaLaPlataOficial" target="_blank" rel="noopener noreferrer">

@@ -1,0 +1,36 @@
+.button {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 20;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid transparent;
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 10px 30px rgba(223, 43, 26, 0.26);
+  transition: transform 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+
+.button:hover {
+  background: #b72215;
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .button {
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+}

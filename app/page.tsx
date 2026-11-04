@@ -7,6 +7,7 @@ import News from "@/components/News/News";
 import About from "@/components/About/About";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <News />
         <Contact /> 
         <Footer />
+        <ScrollToTop />
       </main>
     </>
   );

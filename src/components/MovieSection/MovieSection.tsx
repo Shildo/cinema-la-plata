@@ -116,7 +116,7 @@ export default function MovieSection() {
   return (
     <section
       className="movie-section visual-cut-section"
-      id="peliculas"
+      id="cartelera"
     >
       <div className="section-row">
         <div className="section-heading">

@@ -8,7 +8,7 @@ import { clearMockSession, MOCK_SESSION_EVENT, readMockSession } from "@/lib/moc
 import type { MockSession } from "@/lib/mock-session";
 
 const navItems = [
-  { label: "Cartelera", href: "/#peliculas" },
+  { label: "Cartelera", href: "/#cartelera" },
   { label: "Complejos", href: "/#complejos" },
   { label: "Experiencia", href: "/#experiencia" },
   { label: "Nosotros", href: "/#nosotros" },

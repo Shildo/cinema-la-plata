@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import {
-  clearMockSession,
   MOCK_SESSION_EVENT,
   readMockSession,
   saveMockSession,
@@ -16,7 +15,6 @@ import styles from "./page.module.css";
 type ResultState = "success" | "warning" | null;
 
 export default function RegisterPage() {
-  const router = useRouter();
   const [registeredName, setRegisteredName] = useState<string | null>(null);
   const [promoOptIn, setPromoOptIn] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -58,7 +56,7 @@ export default function RegisterPage() {
 
       if (!promoOptIn) {
         setResultState("success");
-        setResultMessage("Tu cuenta se creó correctamente.");
+        setResultMessage("Tu cuenta se creó correctamente");
         return;
       }
 
@@ -80,7 +78,7 @@ export default function RegisterPage() {
       }
 
       setResultState("success");
-      setResultMessage(`Tu cuenta se creó correctamente y enviamos el mail a ${email}.`);
+      setResultMessage(`Tu cuenta se creó correctamente y enviamos el mail a ${email}`);
     } catch {
       const activeSession = readMockSession();
       setRegisteredName(activeSession?.firstName ?? null);
@@ -95,13 +93,6 @@ export default function RegisterPage() {
     }
   }
 
-  function handleLogout() {
-    clearMockSession();
-    setResultState(null);
-    setResultMessage("");
-    router.push("/");
-  }
-
   const localDate = new Date();
   const today = `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, "0")}-${String(localDate.getDate()).padStart(2, "0")}`;
 
@@ -112,10 +103,10 @@ export default function RegisterPage() {
         <div className={styles.ambient} aria-hidden="true" />
         <section className={styles.layout}>
           <div className={styles.intro}>
-            <p className={styles.eyebrow}><span>01</span> / TU CUENTA</p>
-            <h1>Tu próxima función empieza <em>acá.</em></h1>
+            <p className={styles.eyebrow}>TU CUENTA</p>
+            <h1>Tu próxima función empieza <em>acá</em></h1>
             <p className={styles.lead}>
-              Creá tu cuenta de Cinema La Plata y preparate para disfrutar cada estreno.
+              Creá tu cuenta de Cinema La Plata y preparate para disfrutar cada estreno
             </p>
           </div>
 
@@ -125,17 +116,17 @@ export default function RegisterPage() {
                 <p className={styles.cardEyebrow}>CINEMA LA PLATA</p>
                 <h2 id="register-title">¡Hola, {registeredName}!</h2>
                 <p className={styles.resultMessage}>{resultMessage || "Tu sesión está activa. ¡Seguí disfrutando de Cinema La Plata!"}</p>
-                {resultState === "warning" && <p className={styles.warning}>Podés cerrar la sesión y volver a intentar el registro.</p>}
-                <button className={styles.secondaryButton} type="button" onClick={handleLogout}>
-                  Cerrar sesión
-                </button>
+                {resultState === "warning" && <p className={styles.warning}>Podés cerrar la sesión y volver a intentar el registro</p>}
+                <Link className={styles.secondaryButton} href="/#cartelera">
+                  Ir a la cartelera
+                </Link>
               </div>
             ) : (
               <>
                 <div className={styles.cardHeader}>
                   <p className={styles.cardEyebrow}>REGISTRO DE CLIENTE</p>
-                  <h2 id="register-title">Creá tu cuenta.</h2>
-                  <p>Completá tus datos para continuar.</p>
+                  <h2 id="register-title">Creá tu cuenta</h2>
+                  <p>Completá tus datos para continuar</p>
                 </div>
 
                 <form className={styles.form} onSubmit={handleSubmit}>
@@ -214,6 +205,13 @@ export default function RegisterPage() {
                         type="date"
                         autoComplete="bday"
                         max={today}
+                        onClick={(event) => {
+                          try {
+                            event.currentTarget.showPicker();
+                          } catch {
+                            event.currentTarget.focus();
+                          }
+                        }}
                         required
                       />
                     </div>

@@ -5,6 +5,29 @@ import styles from "./page.module.css";
 
 import MovieBooking from "@/components/MovieBooking/MovieBooking";
 
+function getYouTubeEmbedUrl(trailerUrl: string) {
+  try {
+    const url = new URL(trailerUrl);
+    const host = url.hostname.toLowerCase();
+    let videoId: string | null = null;
+
+    if (host === "youtu.be") {
+      videoId = url.pathname.split("/").filter(Boolean)[0] ?? null;
+    } else if (host === "youtube.com" || host === "www.youtube.com") {
+      videoId = url.searchParams.get("v");
+      if (!videoId) {
+        videoId = url.pathname.match(/^\/(?:embed|shorts)\/([^/?]+)/)?.[1] ?? null;
+      }
+    }
+
+    return videoId
+      ? `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 type MoviePageProps = {
   params: Promise<{
     slug: string;
@@ -25,6 +48,8 @@ export default async function MoviePage({ params }: MoviePageProps) {
   if (!movie) {
     notFound();
   }
+
+  const trailerEmbedUrl = getYouTubeEmbedUrl(movie.trailer);
 
   return (
     <main className={styles["movie-page"]}>
@@ -64,9 +89,40 @@ export default async function MoviePage({ params }: MoviePageProps) {
             {movie.synopsis}
           </p>
 
-          <a href={movie.trailer} target="_blank" rel="noopener noreferrer" className="button button--secondary">
-            Ver tráiler
-          </a>
+          <div className={styles["movie-trailer"]}>
+            <h2>Tráiler</h2>
+            {trailerEmbedUrl ? (
+              <div className={styles["movie-trailer__frame"]}>
+                <iframe
+                  src={trailerEmbedUrl}
+                  title={`Tráiler de ${movie.title}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <a
+                className={styles["movie-trailer__fallback"]}
+                href={movie.trailer}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver tráiler en YouTube
+              </a>
+            )}
+            {trailerEmbedUrl && (
+              <a
+                className={styles["movie-trailer__fallback"]}
+                href={movie.trailer}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ¿No carga el reproductor? Abrilo en YouTube.
+              </a>
+            )}
+          </div>
         </div>
       </section>
 
