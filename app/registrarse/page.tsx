@@ -8,6 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import {
   MOCK_SESSION_EVENT,
   readMockSession,
+  saveMockProfile,
   saveMockSession,
 } from "@/lib/mock-session";
 import styles from "./page.module.css";
@@ -42,6 +43,7 @@ export default function RegisterPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const firstName = String(formData.get("firstName") ?? "").trim();
+    const lastName = String(formData.get("lastName") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
 
     if (!firstName) {
@@ -51,7 +53,9 @@ export default function RegisterPage() {
     }
 
     try {
-      saveMockSession(firstName);
+      const profile = { firstName, lastName, email };
+      saveMockProfile(profile);
+      saveMockSession(profile);
       setRegisteredName(firstName);
 
       if (!promoOptIn) {
@@ -100,7 +104,6 @@ export default function RegisterPage() {
     <>
       <Navbar />
       <main className={styles.page}>
-        <div className={styles.ambient} aria-hidden="true" />
         <section className={styles.layout}>
           <div className={styles.intro}>
             <p className={styles.eyebrow}>TU CUENTA</p>

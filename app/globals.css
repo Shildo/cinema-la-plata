@@ -248,7 +248,6 @@ p {
   object-fit: contain;
 }
 
-
 /* Links */
 
 .navbar__links {
@@ -475,7 +474,7 @@ p {
   align-items: center;
   gap: 0.6rem;
 
-  color: var(--blue);
+  color: var(--yellow);
 
   font-size: 0.875rem;
   font-weight: 800;
@@ -513,7 +512,7 @@ p {
 }
 
 .hero h1 span {
-  color: var(--yellow);
+  color: var(--blue);
 
   font-style: italic;
   font-weight: 400;
@@ -1429,14 +1428,14 @@ p {
 .complex-facts span {
   grid-row: span 2;
 
-  color: var(--blue);
+  color: var(--yellow);
 
   font-size: 10px;
   font-weight: 800;
 }
 
 .complex-facts small {
-  color: var(--blue);
+  color: var(--yellow);
 
   font-size: 12px;
   font-weight: 700;

@@ -967,6 +967,73 @@
   background: transparent;
 }
 
+.login-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.login-prompt {
+  width: min(100%, 460px);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  border: 1px solid rgba(239, 229, 206, 0.16);
+  border-top: 3px solid var(--red);
+  background: #080e27;
+  color: var(--white);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.login-prompt__eyebrow {
+  margin: 0 0 0.9rem;
+  color: var(--yellow);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.login-prompt h2 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.login-prompt > p:not(.login-prompt__eyebrow) {
+  margin: 1rem 0 1.5rem;
+  color: #b9c0d3;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.login-prompt__action {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.login-prompt__cancel {
+  display: block;
+  width: 100%;
+  margin-top: 0.7rem;
+  padding: 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--yellow);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-prompt__cancel:hover {
+  color: var(--white);
+}
+
 /* =========================
    RESPONSIVE
 ========================= */

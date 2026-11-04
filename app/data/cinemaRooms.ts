@@ -14,6 +14,8 @@ export type CinemaRoom = {
   cinema: "rocha" | "ocho";
   name: string;
   layoutId: string;
+  siteNumbers?: string[];
+  specialFormats?: string[];
 };
 
 export const roomLayouts: RoomLayout[] = [
@@ -114,9 +116,28 @@ export const roomLayouts: RoomLayout[] = [
 ];
 
 export const cinemaRooms: CinemaRoom[] = [
-  { id: "rocha-1", cinema: "rocha", name: "Sala 1", layoutId: "rocha-sala-1" },
+  {
+    id: "rocha-1",
+    cinema: "rocha",
+    name: "Sala 1",
+    layoutId: "rocha-sala-1",
+    siteNumbers: ["04"],
+    specialFormats: ["ATMOS"],
+  },
   { id: "rocha-2", cinema: "rocha", name: "Sala 2", layoutId: "rocha-sala-2" },
   { id: "rocha-3", cinema: "rocha", name: "Sala 3", layoutId: "rocha-sala-3" },
-  { id: "ocho-1", cinema: "ocho", name: "Sala 1", layoutId: "ocho-sala-1" },
-  { id: "ocho-2", cinema: "ocho", name: "Sala 2", layoutId: "ocho-sala-2" },
+  {
+    id: "ocho-1",
+    cinema: "ocho",
+    name: "Sala 1",
+    layoutId: "ocho-sala-1",
+    siteNumbers: ["01"],
+    specialFormats: ["4D"],
+  },
+  {
+    id: "ocho-2",
+    cinema: "ocho",
+    name: "Sala 2",
+    layoutId: "ocho-sala-2",
+  },
 ];

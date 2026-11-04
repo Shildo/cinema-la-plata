@@ -3,16 +3,19 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import {
   MOCK_SESSION_EVENT,
+  readMockProfile,
   readMockSession,
   saveMockSession,
 } from "@/lib/mock-session";
 import styles from "../registrarse/page.module.css";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [signedInName, setSignedInName] = useState<string | null>(null);
   const [formError, setFormError] = useState("");
 
@@ -43,15 +46,20 @@ export default function LoginPage() {
       return;
     }
 
-    saveMockSession(firstName);
-    setSignedInName(firstName);
+    const profile = readMockProfile(email);
+    const session = saveMockSession(profile ?? { firstName, email });
+    setSignedInName(session.firstName);
+
+    const nextPath = new URLSearchParams(window.location.search).get("next");
+    if (nextPath === "/comprar-entrada") {
+      router.push(nextPath);
+    }
   }
 
   return (
     <>
       <Navbar />
       <main className={styles.page}>
-        <div className={styles.ambient} aria-hidden="true" />
         <section className={styles.layout}>
           <div className={styles.intro}>
             <p className={styles.eyebrow}>TU CUENTA</p>

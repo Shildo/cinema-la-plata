@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { readMockSession } from "@/lib/mock-session";
+import type { MockSession } from "@/lib/mock-session";
 import styles from "./page.module.css";
 
 type BookingData = {
@@ -30,8 +32,11 @@ type BookingData = {
 
 export default function PurchasePage() {
   const [booking, setBooking] = useState<BookingData | null>(null);
+  const [customer, setCustomer] = useState<MockSession | null>(null);
 
   useEffect(() => {
+    setCustomer(readMockSession());
+
     const storedBooking = sessionStorage.getItem("movieBooking");
 
     if (storedBooking) {
@@ -160,79 +165,26 @@ export default function PurchasePage() {
 
         <div className={styles["purchase-form-wrapper"]}>
           <div className={styles["form-header"]}>
-            <p>02 / DATOS</p>
+            <p>02 / PAGO</p>
 
-            <h2>Completá tus datos.</h2>
+            <h2>Un último paso.</h2>
 
             <span>
-              Los necesitamos para finalizar la reserva.
+              Tu nombre y email ya están cargados desde tu cuenta. Elegí cómo querés pagar.
             </span>
           </div>
 
+          {customer && (
+            <div className={styles["buyer-summary"]}>
+              <span>COMPRANDO COMO</span>
+              <strong>
+                {[customer.firstName, customer.lastName].filter(Boolean).join(" ")}
+              </strong>
+              {customer.email && <small>{customer.email}</small>}
+            </div>
+          )}
+
           <form className={styles["purchase-form"]}>
-            <div className={styles["form-group"]}>
-              <label htmlFor="name">
-                Nombre completo
-              </label>
-
-              <input
-                id="name"
-                type="text"
-                placeholder="Tu nombre"
-              />
-            </div>
-
-            <div className={styles["form-group"]}>
-              <label htmlFor="email">
-                Email
-              </label>
-
-              <input
-                id="email"
-                type="email"
-                placeholder="tu@email.com"
-              />
-            </div>
-
-            <div className={styles["form-group"]}>
-              <label htmlFor="phone">
-                Teléfono
-              </label>
-
-              <input
-                id="phone"
-                type="tel"
-                placeholder="11 1234 5678"
-              />
-            </div>
-
-            <div className={styles["form-row"]}>
-              <div className={styles["form-group"]}>
-                <label htmlFor="dni">
-                  DNI
-                </label>
-
-                <input
-                  id="dni"
-                  type="text"
-                  placeholder="Tu DNI"
-                />
-              </div>
-
-              <div className={styles["form-group"]}>
-                <label htmlFor="quantity">
-                  Entradas
-                </label>
-
-                <input
-                  id="quantity"
-                  type="number"
-                  value={booking.seats.length}
-                  readOnly
-                />
-              </div>
-            </div>
-
             <div className={styles["form-group"]}>
               <label htmlFor="payment">
                 Medio de pago

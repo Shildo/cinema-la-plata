@@ -444,6 +444,33 @@ mask-composite:
   letter-spacing: 0.06em;
 }
 
+.buyer-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border-left: 2px solid var(--yellow);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.buyer-summary > span {
+  color: var(--yellow);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.buyer-summary strong {
+  color: var(--white);
+  font-size: 15px;
+}
+
+.buyer-summary small {
+  color: #aeb6cf;
+  font-size: 12px;
+}
+
 .form-group input,
 .form-group select {
   width: 100%;

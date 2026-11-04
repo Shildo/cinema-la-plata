@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { readMockSession } from "@/lib/mock-session";
 
 import { cinemaRooms, roomLayouts } from "../../../app/data/cinemaRooms";
 import AsientoButaca from "../../../public/svg/AsientoButaca";
@@ -75,6 +76,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+  const [loginPromptOpen, setLoginPromptOpen] = useState(false);
 
   const bookingContentRef = useRef<HTMLDivElement>(null);
   const [stepScrollRequest, setStepScrollRequest] = useState(0);
@@ -147,16 +149,34 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     (room) => room.cinema === selectedSiteData?.cinemaID
   );
 
+  const availableFormats = movie.formats.filter((format) => {
+    if (format !== "ATMOS" && format !== "4D") return true;
+
+    return availableRooms.some(
+      (room) =>
+        room.specialFormats?.includes(format) &&
+        room.siteNumbers?.includes(selectedSiteData?.number ?? "")
+    );
+  });
+
   const selectedDay = showtimes.find((day) => day.date === selectedDate);
 
   const selectedTimeIndex =
     selectedDay?.times.indexOf(selectedTime ?? "") ?? -1;
 
-  // Asignación provisoria: reparte los horarios entre las salas del cine.
+  // ATMOS y 4D quedan fijados a su sala; los demás formatos rotan entre salas.
+  const selectedSpecialRoom = availableRooms.find(
+    (room) =>
+      room.specialFormats?.includes(selectedFormat ?? "") &&
+      room.siteNumbers?.includes(selectedSiteData?.number ?? "")
+  );
+
   const selectedRoom =
-    availableRooms.length > 0 && selectedTimeIndex >= 0
-      ? availableRooms[selectedTimeIndex % availableRooms.length]
-      : undefined;
+    selectedFormat === "ATMOS" || selectedFormat === "4D"
+      ? selectedSpecialRoom
+      : availableRooms.length > 0 && selectedTimeIndex >= 0
+        ? availableRooms[selectedTimeIndex % availableRooms.length]
+        : undefined;
 
   const selectedLayout = roomLayouts.find(
     (layout) => layout.id === selectedRoom?.layoutId
@@ -263,6 +283,11 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     };
 
     sessionStorage.setItem("movieBooking", JSON.stringify(bookingData));
+    if (!readMockSession()) {
+      setLoginPromptOpen(true);
+      return;
+    }
+
     router.push("/comprar-entrada");
   };
 
@@ -375,7 +400,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           </div>
 
           <div className={styles["format-grid"]}>
-            {movie.formats.map((format) => {
+            {availableFormats.map((format) => {
               return (
                 <button
                   type="button"
@@ -622,6 +647,43 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
               </button>
             )}
           </div>
+        </div>
+      )}
+
+      {loginPromptOpen && (
+        <div
+          className={styles["login-prompt-overlay"]}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setLoginPromptOpen(false);
+          }}
+        >
+          <section
+            className={styles["login-prompt"]}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="login-prompt-title"
+            aria-describedby="login-prompt-description"
+          >
+            <p className={styles["login-prompt__eyebrow"]}>UN PASO MÁS</p>
+            <h2 id="login-prompt-title">Iniciá sesión para continuar.</h2>
+            <p id="login-prompt-description">
+              La función y las butacas que elegiste quedan guardadas mientras ingresás a tu cuenta.
+            </p>
+            <button
+              type="button"
+              className={`${styles["login-prompt__action"]} button button--primary`}
+              onClick={() => router.push("/ingresar?next=%2Fcomprar-entrada")}
+            >
+              Iniciar sesión <span aria-hidden="true">→</span>
+            </button>
+            <button
+              type="button"
+              className={styles["login-prompt__cancel"]}
+              onClick={() => setLoginPromptOpen(false)}
+            >
+              Seguir eligiendo
+            </button>
+          </section>
         </div>
       )}
     </section>
