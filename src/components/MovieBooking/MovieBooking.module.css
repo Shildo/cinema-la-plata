@@ -983,7 +983,7 @@
   padding: clamp(1.5rem, 5vw, 2.5rem);
   border: 1px solid rgba(239, 229, 206, 0.16);
   border-top: 3px solid var(--red);
-  background: #080e27;
+  background: var(--black);
   color: var(--white);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
 }
