@@ -14,6 +14,16 @@ export default function PromoEmail() {
   return (
     <main className="promo-email">
       <section className="promo-scene" aria-label="Vista previa del correo promocional">
+        <video
+          className="promo-background-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/backgrounds/emailBackground.MP4" type="video/mp4" />
+        </video>
         <table className="promo-content" role="presentation" cellPadding={0} cellSpacing={0}>
           <tbody>
             <Spacer className="promo-space-logo-top" />

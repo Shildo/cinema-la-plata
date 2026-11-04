@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 function buildPromoEmail(siteUrl: string) {
   // Temporary background. Replace this asset with the combined background + confetti GIF.
-  const sceneBackground = `${siteUrl}/backgrounds/emailBackground.MP4`;
+  const sceneBackground = `${siteUrl}/backgrounds/emailBackground.GIF`;
   const logo = `${siteUrl}/logo.png`;
   const cartelera = `${siteUrl}/#peliculas`;
 
