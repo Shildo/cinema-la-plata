@@ -1,3 +1,7 @@
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
+
 function buildPromoEmail(siteUrl: string) {
   // Temporary background. Replace this asset with the combined background + confetti GIF.
   const sceneBackground = `${siteUrl}/backgrounds/confetti.gif`;
@@ -117,58 +121,43 @@ export async function POST(request: Request) {
     return Response.json({ error: "Confirmá que querés recibir esta promoción por correo." }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (!apiKey || !from || !siteUrl) {
+  if (!gmailUser || !gmailAppPassword || !siteUrl) {
     return Response.json(
-      { error: "El envío todavía no está configurado. Contactá al administrador del sitio." },
+      { error: "El envío por Gmail todavía no está configurado." },
       { status: 503 },
     );
   }
 
   try {
-    const emailResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
       },
-      body: JSON.stringify({
-        from,
-        to: [email],
-        subject: "¡Que los cumplas feliz! Tenés 30% OFF en el Candy Bar",
-        html: buildPromoEmail(siteUrl),
-      }),
-      cache: "no-store",
     });
 
-    if (!emailResponse.ok) {
-      const resendError = (await emailResponse.json().catch(() => null)) as
-        | { message?: unknown; name?: unknown }
-        | null;
-      const detail =
-        typeof resendError?.message === "string"
-          ? resendError.message
-          : "Resend rechazó el envío sin proporcionar detalles.";
-
-      // Log the provider's reason for diagnosis; never log the API key or full request.
-      console.error("Resend email request failed", {
-        status: emailResponse.status,
-        name: typeof resendError?.name === "string" ? resendError.name : undefined,
-        message: detail,
-      });
-
-      return Response.json(
-        { error: `Resend rechazó el correo: ${detail}` },
-        { status: 502 },
-      );
-    }
+    await transporter.sendMail({
+      from: { name: "Cinema La Plata", address: gmailUser },
+      to: email,
+      subject: "¡Que los cumplas feliz! Tenés 30% OFF en el Candy Bar",
+      html: buildPromoEmail(siteUrl),
+    });
 
     return Response.json({ ok: true });
-  } catch {
+  } catch (error) {
+    const mailError = error as { code?: unknown; name?: unknown };
+    console.error("Gmail SMTP send failed", {
+      name: typeof mailError.name === "string" ? mailError.name : undefined,
+      code: typeof mailError.code === "string" ? mailError.code : undefined,
+    });
     return Response.json(
-      { error: "No pudimos enviar el correo. Intentá nuevamente." },
+      { error: "Gmail no pudo enviar el correo. Revisá las credenciales de envío e intentá nuevamente." },
       { status: 502 },
     );
   }
