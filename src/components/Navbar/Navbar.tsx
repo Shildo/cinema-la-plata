@@ -3,7 +3,7 @@
 import { CircleUserRound, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import type { MouseEvent } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { clearMockSession, MOCK_SESSION_EVENT, readMockSession } from "@/lib/mock-session";
 import type { MockSession } from "@/lib/mock-session";
 
@@ -55,7 +55,7 @@ export default function Navbar() {
 
   const handleNavClick = () => setMenuOpen(false);
 
-  const handleLogout = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleLogout = (event: ReactMouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     clearMockSession();
     setAccountOpen(false);
