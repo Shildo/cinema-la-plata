@@ -20,6 +20,8 @@ export default function PromoEmail() {
           muted
           loop
           playsInline
+          preload="auto"
+          poster="/backgrounds/emailBackground-poster.jpg"
           aria-hidden="true"
         >
           <source src="/backgrounds/emailBackground.MP4" type="video/mp4" />

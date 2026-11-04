@@ -137,6 +137,17 @@
   color: #fff;
 }
 
+.promo-title,
+.promo-subtitle,
+.promo-invitation,
+.promo-discount,
+.promo-movie,
+.promo-footer,
+.promo-button,
+.promo-footer a {
+  -webkit-text-fill-color: #fff;
+}
+
 .promo-title {
   font-size: 48px;
   font-style: normal;
@@ -193,4 +204,60 @@
 
 .promo-footer a {
   color: #fff;
+}
+
+@media (max-width: 480px) {
+  .promo-scene {
+    aspect-ratio: 100 / 209.17;
+  }
+
+  .promo-space-logo-top { height: 4.17vw; }
+  .promo-row-logo { height: 8.17vw; }
+  .promo-space-logo-title { height: 8.5vw; }
+  .promo-row-title { height: 16.83vw; }
+  .promo-space-title-subtitle { height: 4.17vw; }
+  .promo-row-subtitle { height: 6vw; }
+  .promo-space-subtitle-invitation { height: 60.83vw; }
+  .promo-row-invitation { height: 23vw; }
+  .promo-space-invitation-discount { height: 3vw; }
+  .promo-row-discount { height: 11vw; }
+  .promo-space-discount-movie { height: 9.83vw; }
+  .promo-row-movie { height: 12vw; }
+  .promo-space-movie-button { height: 7vw; }
+  .promo-row-button { height: 13vw; }
+  .promo-space-button-footer { height: 6.5vw; }
+  .promo-row-footer { height: 12.5vw; }
+  .promo-space-footer-bottom { height: 2.67vw; }
+
+  .promo-title { font-size: 8vw; }
+  .promo-subtitle { font-size: 17px; }
+  .promo-invitation { font-size: 15px; }
+  .promo-discount { font-size: 10vw; }
+  .promo-movie { font-size: 15px; }
+  .promo-button { padding: 8px 16px; font-size: 17px; }
+  .promo-footer { font-size: 10px; line-height: 1.2; }
+
+  .promo-row-title td,
+  .promo-row-subtitle td,
+  .promo-row-invitation td,
+  .promo-row-discount td,
+  .promo-row-movie td,
+  .promo-row-footer td {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .promo-title,
+  .promo-subtitle,
+  .promo-invitation,
+  .promo-discount,
+  .promo-movie,
+  .promo-footer,
+  .promo-button,
+  .promo-footer a {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff;
+  }
 }
