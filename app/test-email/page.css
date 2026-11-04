@@ -45,135 +45,145 @@
   overflow: hidden;
   background: #111;
   color: #fff;
+  font-family: "Satoshi", Arial, sans-serif;
 }
 
 .promo-scene {
-  position: relative;
-  isolation: isolate;
   width: 100%;
+  aspect-ratio: 1200 / 2510;
   overflow: hidden;
-  line-height: 1.05;
-  text-align: center;
+  background-color: #111;
+  /* Placeholder for the combined background + confetti GIF. Replace this URL when ready. */
+  background-image: url("/backgrounds/confetti.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
-/* This in-flow image sets the scene height. All other scene elements overlay it. */
-.promo-background {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.promo-confetti {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.promo-content {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  pointer-events: none;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  line-height: 1.05;
 }
 
-.promo-logo,
+.promo-content td {
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.promo-spacer td {
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Row heights are percentages of the 1200 × 2510 design canvas. */
+.promo-space-logo-top { height: 2%; }
+.promo-row-logo { height: 3.91%; }
+.promo-space-logo-title { height: 4.09%; }
+.promo-row-title { height: 8.03%; }
+.promo-space-title-subtitle { height: 1.97%; }
+.promo-row-subtitle { height: 1.84%; }
+.promo-space-subtitle-invitation { height: 42.16%; }
+.promo-row-invitation { height: 6.60%; }
+.promo-space-invitation-discount { height: 1.45%; }
+.promo-row-discount { height: 4.18%; }
+.promo-space-discount-movie { height: 4.74%; }
+.promo-row-movie { height: 3.67%; }
+.promo-space-movie-button { height: 3.35%; }
+.promo-row-button { height: 3.92%; }
+.promo-space-button-footer { height: 3.09%; }
+.promo-row-footer { height: 3.73%; }
+.promo-space-footer-bottom { height: 1.29%; }
+
+.promo-row-title td,
+.promo-row-subtitle td,
+.promo-row-invitation td,
+.promo-row-discount td,
+.promo-row-movie td,
+.promo-row-footer td {
+  padding-right: 6%;
+  padding-left: 6%;
+}
+
+.promo-logo {
+  display: block;
+  width: 26%;
+  max-width: 150px;
+  height: auto;
+  margin: 0 auto;
+}
+
 .promo-title,
 .promo-subtitle,
 .promo-invitation,
 .promo-discount,
 .promo-movie,
-.promo-button,
 .promo-footer {
-  position: absolute;
-  z-index: 2;
-}
-
-.promo-logo {
-  top: 2%;
-  left: 50%;
-  width: 26%;
-  max-width: 150px;
-  height: auto;
-  transform: translateX(-50%);
-}
-
-.promo-title,
-.promo-subtitle,
-.promo-invitation,
-.promo-discount,
-.promo-movie {
-  left: 6%;
-  width: 88%;
+  width: 100%;
   margin: 0;
   color: #fff;
 }
 
 .promo-title {
-  top: 10%;
   font-size: 48px;
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
+  line-height: 1.05;
 }
 
 .promo-subtitle {
-  top: 20%;
   font-size: 22px;
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
+  line-height: 1.05;
 }
 
 .promo-invitation,
 .promo-movie {
   font-size: clamp(18px, 4vw, 24px);
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
 }
 
-.promo-invitation {
-  top: 64%;
-}
-
 .promo-discount {
-  top: 72%;
   font-size: 50px;
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
+  line-height: 1.05;
 }
 
 .promo-movie {
-  top: 81%;
   font-size: 20px;
 }
 
 .promo-button {
-  top: 88%;
-  left: 50%;
   display: inline-block;
   padding: 12px 24px;
-  transform: translateX(-50%);
   border-radius: 8px;
   background: linear-gradient(90deg, #ff9800, #f44336);
   color: #fff;
   font-size: clamp(18px, 4vw, 24px);
-  text-decoration: none;
-  white-space: nowrap;
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: normal;
   font-weight: 700;
+  line-height: 1.05;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .promo-footer {
-  right: 6%;
-  top: 95%;
-  left: 6%;
-  margin: 0;
-  color: #fff;
   font-size: clamp(10px, 2vw, 12px);
-  line-height: 1.3;
-  text-align: center;
-  font-family: "Satoshi", Arial, sans-serif;
   font-style: italic;
   font-weight: 400;
+  line-height: 1.3;
+}
+
+.promo-footer a {
+  color: #fff;
 }
