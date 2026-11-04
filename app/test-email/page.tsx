@@ -38,7 +38,7 @@ export default function PromoEmail() {
             <Spacer className="promo-space-logo-title" />
             <tr className="promo-row-title">
               <td>
-                <h1 className="promo-title">QUE LOS<br />CUMPLAS FELIZ</h1>
+                <h1 className="promo-title">¡QUE LOS<br />CUMPLAS FELIZ!</h1>
               </td>
             </tr>
 

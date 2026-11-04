@@ -35,17 +35,17 @@ function buildPromoEmail(siteUrl: string) {
       tr.promo-r-logo, tr.promo-r-logo td { height:8.17vw !important; }
       tr.promo-r-logo-title, tr.promo-r-logo-title td { height:8.5vw !important; }
       tr.promo-r-title, tr.promo-r-title td { height:16.83vw !important; }
-      tr.promo-r-title-subtitle, tr.promo-r-title-subtitle td { height:4.17vw !important; }
+      tr.promo-r-title-subtitle, tr.promo-r-title-subtitle td { height:2.17vw !important; }
       tr.promo-r-subtitle, tr.promo-r-subtitle td { height:6vw !important; }
-      tr.promo-r-subtitle-invitation, tr.promo-r-subtitle-invitation td { height:60.83vw !important; }
+      tr.promo-r-subtitle-invitation, tr.promo-r-subtitle-invitation td { height:77.83vw !important; }
       tr.promo-r-invitation, tr.promo-r-invitation td { height:23vw !important; }
-      tr.promo-r-invitation-discount, tr.promo-r-invitation-discount td { height:3vw !important; }
+      tr.promo-r-invitation-discount, tr.promo-r-invitation-discount td { height:0 !important; }
       tr.promo-r-discount, tr.promo-r-discount td { height:11vw !important; }
-      tr.promo-r-discount-movie, tr.promo-r-discount-movie td { height:9.83vw !important; }
+      tr.promo-r-discount-movie, tr.promo-r-discount-movie td { height:7vw !important; }
       tr.promo-r-movie, tr.promo-r-movie td { height:12vw !important; }
-      tr.promo-r-movie-button, tr.promo-r-movie-button td { height:7vw !important; }
+      tr.promo-r-movie-button, tr.promo-r-movie-button td { height:2vw !important; }
       tr.promo-r-button, tr.promo-r-button td { height:13vw !important; }
-      tr.promo-r-button-footer, tr.promo-r-button-footer td { height:6.5vw !important; }
+      tr.promo-r-button-footer, tr.promo-r-button-footer td { height:4vw !important; }
       tr.promo-r-footer, tr.promo-r-footer td { height:12.5vw !important; }
       tr.promo-r-bottom, tr.promo-r-bottom td { height:2.67vw !important; }
       .promo-title { font-size:8vw !important; }
@@ -82,7 +82,7 @@ function buildPromoEmail(siteUrl: string) {
                 <tr class="promo-r-logo-title"><td height="51" style="height:51px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>
                 <tr class="promo-r-title">
                   <td class="promo-text-cell" height="101" align="center" valign="middle" style="height:101px;padding:0 6%;">
-                    <h1 class="promo-copy promo-title" style="margin:0;color:#fff;font-family:Satoshi,Arial,sans-serif;font-size:48px;font-style:normal;font-weight:900;line-height:1.05;">QUE LOS<br>CUMPLAS FELIZ</h1>
+                    <h1 class="promo-copy promo-title" style="margin:0;color:#fff;font-family:Satoshi,Arial,sans-serif;font-size:48px;font-style:normal;font-weight:900;line-height:1.05;">¡QUE LOS<br>CUMPLAS FELIZ!</h1>
                   </td>
                 </tr>
                 <tr class="promo-r-title-subtitle"><td height="25" style="height:25px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>

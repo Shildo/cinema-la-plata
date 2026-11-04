@@ -215,17 +215,17 @@
   .promo-row-logo { height: 8.17vw; }
   .promo-space-logo-title { height: 8.5vw; }
   .promo-row-title { height: 16.83vw; }
-  .promo-space-title-subtitle { height: 4.17vw; }
+  .promo-space-title-subtitle { height: 2.17vw; }
   .promo-row-subtitle { height: 6vw; }
-  .promo-space-subtitle-invitation { height: 60.83vw; }
+  .promo-space-subtitle-invitation { height: 77.83vw; }
   .promo-row-invitation { height: 23vw; }
-  .promo-space-invitation-discount { height: 3vw; }
+  .promo-space-invitation-discount { height: 0; }
   .promo-row-discount { height: 11vw; }
-  .promo-space-discount-movie { height: 9.83vw; }
+  .promo-space-discount-movie { height: 7vw; }
   .promo-row-movie { height: 12vw; }
-  .promo-space-movie-button { height: 7vw; }
+  .promo-space-movie-button { height: 2vw; }
   .promo-row-button { height: 13vw; }
-  .promo-space-button-footer { height: 6.5vw; }
+  .promo-space-button-footer { height: 4vw; }
   .promo-row-footer { height: 12.5vw; }
   .promo-space-footer-bottom { height: 2.67vw; }
 
