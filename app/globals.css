@@ -265,7 +265,7 @@ p {
   letter-spacing: 0.06em;
 }
 
-.navbar__links a {
+.navbar__links > a {
   color: var(--white);
 
   transition:
@@ -273,7 +273,7 @@ p {
     transform 180ms var(--ease-out);
 }
 
-.navbar__links a:hover {
+.navbar__links > a:hover {
   color: #fff;
   transform: translateY(-2px);
 }
@@ -356,7 +356,11 @@ p {
 }
 
 .navbar__account-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
   padding: 10px 12px;
+  border-radius: 4px;
 
   color: var(--white);
   text-decoration: none;
@@ -365,13 +369,26 @@ p {
   font-weight: 700;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
-.navbar__account-menu a:hover {
+.navbar__account-menu a:hover,
+.navbar__account-menu a:focus-visible {
   background: var(--blue);
   color: var(--white);
+}
+
+.navbar__account-menu a:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: -1px;
+}
+
+.navbar__mobile-greeting {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 /* =========================
@@ -2122,39 +2139,52 @@ p {
   box-shadow: 17px 18px 0 rgba(0, 0, 0, 0.23);
 }
 
-.contact-form label {
-  display: grid;
-  gap: 0.75rem;
-
+.contact-form-title {
+  margin: 0 0 0.75rem;
   color: var(--black);
-
   font-family: "Satoshi Medium", sans-serif;
   font-size: 1.75rem;
   line-height: 1.05;
+  font-weight: 400;
 }
 
-.contact-form input {
+.contact-field-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact-form input,
+.contact-form textarea {
   width: 100%;
-
   padding: 0.85rem 0;
-
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-
   outline: 0;
-
   color: var(--black);
   background: transparent;
-
   font-family: "Satoshi Medium", sans-serif;
   font-size: 0.875rem;
 }
 
-.contact-form input::placeholder {
+.contact-form textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
   color: #73798b;
 }
 
-.contact-form input:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
   border-color: var(--blue);
 }
 
@@ -2223,7 +2253,7 @@ p {
     box-shadow: 10px 11px 0 rgba(0, 0, 0, 0.23);
   }
 
-  .contact-form label {
+  .contact-form-title {
     font-size: 1.5rem;
   }
 }

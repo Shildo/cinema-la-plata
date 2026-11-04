@@ -1,0 +1,135 @@
+.page {
+  position: relative;
+  display: grid;
+  min-height: min(76vh, 760px);
+  place-items: center;
+  overflow: hidden;
+  padding: 132px 1.25rem 76px;
+  background:
+    radial-gradient(ellipse at 12% 20%, rgba(12, 20, 226, 0.25), transparent 36%),
+    radial-gradient(ellipse at 87% 82%, rgba(255, 19, 25, 0.16), transparent 30%),
+    #05060b;
+  color: #fff;
+}
+
+.ambient {
+  position: absolute;
+  top: 12%;
+  right: -10rem;
+  width: 28rem;
+  height: 28rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.018), 0 0 0 68px rgba(255, 255, 255, 0.012);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  width: min(560px, 100%);
+  padding: clamp(1.75rem, 6vw, 3.5rem);
+  border: 1px solid rgba(239, 229, 206, 0.13);
+  background: rgba(8, 14, 39, 0.84);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+  text-align: center;
+  backdrop-filter: blur(14px);
+}
+
+.checkIcon {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 1.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 221, 18, 0.55);
+  border-radius: 50%;
+  background: rgba(255, 221, 18, 0.1);
+  color: var(--yellow);
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--yellow);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.card h1 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(2rem, 6vw, 3.35rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.description {
+  max-width: 360px;
+  margin: 1.2rem auto 1.8rem;
+  color: #b9c0d3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.homeButton {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.15rem;
+  background: linear-gradient(100deg, #ff1319, #c6009f 57%, #0c14e2);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.homeButton:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.homeButton:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+.homeButton span {
+  font-size: 1.25rem;
+}
+
+.actions {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cancelButton {
+  display: inline-block;
+  padding: 0.5rem;
+  color: #b9c0d3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cancelButton:hover {
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .page {
+    min-height: 70vh;
+    padding: 112px 1rem 54px;
+  }
+}

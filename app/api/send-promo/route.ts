@@ -118,7 +118,7 @@ function buildPromoEmail(siteUrl: string) {
                 <tr class="promo-r-button-footer"><td height="39" style="height:39px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>
                 <tr class="promo-r-footer">
                   <td class="promo-text-cell" height="47" align="center" valign="middle" style="height:47px;padding:0 6%;">
-                    <p class="promo-copy promo-footer" style="margin:0;color:#fff;font-family:Satoshi,Arial,sans-serif;font-size:12px;font-style:italic;font-weight:400;line-height:1.3;">Estás recibiendo este mensaje porque te suscribiste a<br>nuestra lista en <u><a href="${siteUrl}" style="color:#fff;">Cinema La Plata</a></u>. Cuando no quieras seguir<br>recibiéndola, podés <u><a href="${siteUrl}/unsubscribe" style="color:#fff;">desuscribirte utilizando este vínculo.</a></u></p>
+                    <p class="promo-copy promo-footer" style="margin:0;color:#fff;font-family:Satoshi,Arial,sans-serif;font-size:12px;font-style:italic;font-weight:400;line-height:1.3;">Estás recibiendo este mensaje porque te suscribiste a<br>nuestra lista en <u><a href="${siteUrl}" style="color:#fff;">Cinema La Plata</a></u>. Cuando no quieras seguir<br>recibiéndola, podés <u><a href="${siteUrl}/desuscribirse" style="color:#fff;">desuscribirte utilizando este vínculo.</a></u></p>
                   </td>
                 </tr>
                 <tr class="promo-r-bottom"><td height="16" style="height:16px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>

@@ -2,7 +2,10 @@
 
 import { CircleUserRound, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import PromoEmailModal from "./PromoEmailModal";
+import { useRouter } from "next/navigation";
+import type { MouseEvent } from "react";
+import { clearMockSession, MOCK_SESSION_EVENT, readMockSession } from "@/lib/mock-session";
+import type { MockSession } from "@/lib/mock-session";
 
 const navItems = [
   { label: "Cartelera", href: "/#peliculas" },
@@ -14,10 +17,23 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const [accountOpen, setAccountOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [promoModalOpen, setPromoModalOpen] = useState(false);
+  const [mockSession, setMockSession] = useState<MockSession | null>(null);
   const accountRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const syncMockSession = () => setMockSession(readMockSession());
+    syncMockSession();
+    window.addEventListener("storage", syncMockSession);
+    window.addEventListener(MOCK_SESSION_EVENT, syncMockSession);
+
+    return () => {
+      window.removeEventListener("storage", syncMockSession);
+      window.removeEventListener(MOCK_SESSION_EVENT, syncMockSession);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -37,13 +53,15 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const openPromoModal = () => {
+  const handleNavClick = () => setMenuOpen(false);
+
+  const handleLogout = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    clearMockSession();
     setAccountOpen(false);
     setMenuOpen(false);
-    setPromoModalOpen(true);
+    router.push("/");
   };
-
-  const handleNavClick = () => setMenuOpen(false);
 
   return (
     <>
@@ -66,23 +84,22 @@ export default function Navbar() {
               onClick={() => setAccountOpen(!accountOpen)}
               aria-expanded={accountOpen}
             >
-              Mi cuenta
+              {mockSession ? `Hola, ${mockSession.firstName}` : "Mi cuenta"}
               <CircleUserRound />
             </button>
 
             {accountOpen && (
               <div className="navbar__account-menu">
-                <a href="/ingresar">Ingresar</a>
-                <a href="/registrarse">Registrarse</a>
-                <a
-                  href="#recibir-promocion"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    openPromoModal();
-                  }}
-                >
-                  Recibir promoción
-                </a>
+                {mockSession ? (
+                  <>
+                    <a href="#cerrar-sesion" onClick={handleLogout}>Cerrar sesión</a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/ingresar">Ingresar</a>
+                    <a href="/registrarse">Registrarse</a>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -109,29 +126,22 @@ export default function Navbar() {
             </div>
 
             <div className="navbar__mobile-account">
-              <a href="/ingresar" onClick={handleNavClick}>
-                Ingresar
-              </a>
-              <a href="/registrarse" onClick={handleNavClick}>
-                Registrarse
-              </a>
-              <a
-                href="#recibir-promocion"
-                onClick={(event) => {
-                  event.preventDefault();
-                  openPromoModal();
-                }}
-              >
-                Recibir promoción
-              </a>
+              {mockSession ? (
+                <>
+                  <span className="navbar__mobile-greeting">Hola, {mockSession.firstName}</span>
+                  <a href="#cerrar-sesion" onClick={handleLogout}>Cerrar sesión</a>
+                </>
+              ) : (
+                <>
+                  <a href="/ingresar" onClick={handleNavClick}>Ingresar</a>
+                  <a href="/registrarse" onClick={handleNavClick}>Registrarse</a>
+                </>
+              )}
             </div>
           </nav>
         )}
       </header>
 
-      {promoModalOpen && (
-        <PromoEmailModal onClose={() => setPromoModalOpen(false)} />
-      )}
     </>
   );
 }

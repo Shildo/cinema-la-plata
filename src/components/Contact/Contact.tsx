@@ -62,39 +62,58 @@ export default function Contact() {
       </div>
 
       <form className="contact-form">
-        <label>
-          Formá parte de la comunidad
+        <h3 className="contact-form-title">Escribinos</h3>
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Tu nombre"
-          />
-          <input
-            type="text"
-            name="surname"
-            placeholder="Tu apellido"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Tu email"
-          />
-          <input
-            type="date"
-            name="birthdate"
-            placeholder="Fecha de nacimiento"
-          />
-
+        <label className="contact-field-label" htmlFor="contact-name">
+          Nombre
         </label>
+        <input
+          id="contact-name"
+          type="text"
+          name="name"
+          placeholder="Tu nombre"
+          autoComplete="name"
+        />
+
+        <label className="contact-field-label" htmlFor="contact-phone">
+          Teléfono
+        </label>
+        <input
+          id="contact-phone"
+          type="tel"
+          name="phone"
+          placeholder="Tu teléfono"
+          autoComplete="tel"
+        />
+
+        <label className="contact-field-label" htmlFor="contact-email">
+          Mail
+        </label>
+        <input
+          id="contact-email"
+          type="email"
+          name="email"
+          placeholder="Tu mail"
+          autoComplete="email"
+        />
+
+        <label className="contact-field-label" htmlFor="contact-message">
+          Mensaje
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          placeholder="¿En qué podemos ayudarte?"
+          rows={4}
+        />
 
         <button type="submit" className="button button--primary">
-          Suscribirme
+          Enviar mensaje
         </button>
 
         <p>
           <span>✦</span>
-          Recibiras semanalmente un mail promocional para mantenerte informado sobre los estrenos, eventos especiales, combos, beneficios, descuentos y promociones.
+          Completá tus datos y dejanos tu consulta. Nos pondremos en contacto con vos.
         </p>
       </form>
     </section>

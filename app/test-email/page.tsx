@@ -92,7 +92,7 @@ export default function PromoEmail() {
                 <p className="promo-footer">
                   Estás recibiendo este mensaje porque te suscribiste a<br />
                   nuestra lista en <u><a href={siteUrl}>Cinema La Plata</a></u>. Cuando no quieras seguir<br />
-                  recibiéndola, podés <u><a href={`${siteUrl}/unsubscribe`}>desuscribirte utilizando este vínculo.</a></u>
+                  recibiéndola, podés <u><a href={`${siteUrl}/desuscribirse`}>desuscribirte utilizando este vínculo.</a></u>
                 </p>
               </td>
             </tr>
