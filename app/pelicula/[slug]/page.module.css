@@ -127,6 +127,30 @@
   color: var(--yellow);
 }
 
+.movie-detail__languages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.movie-detail__languages > span:first-child {
+  margin-right: 0.15rem;
+  color: var(--yellow);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.movie-detail__language {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
 .movie-detail__synopsis {
   max-width: 620px;
 

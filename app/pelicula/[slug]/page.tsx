@@ -85,6 +85,15 @@ export default async function MoviePage({ params }: MoviePageProps) {
             <span>{movie.duration}</span>
           </div>
 
+          <div className={styles["movie-detail__languages"]} aria-label="Idiomas disponibles">
+            <span>IDIOMAS</span>
+            {movie.languages.map((language) => (
+              <span className={styles["movie-detail__language"]} key={language}>
+                {language === "castellano" ? "Castellano" : "Inglés subtitulado"}
+              </span>
+            ))}
+          </div>
+
           <p className={styles["movie-detail__synopsis"]}>
             {movie.synopsis}
           </p>
@@ -132,7 +141,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
             FUNCIONES
           </p>
 
-          <h2>Elegí cuándo querés verla.</h2>
+          <h2>Elegí cómo querés verla.</h2>
 
           <p className={styles["section-copy"]}>
             Seleccioná tu sede, formato y función para continuar con la

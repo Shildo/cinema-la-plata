@@ -31,6 +31,7 @@ type Movie = {
   duration: string;
   genre: string;
   formats: string[];
+  languages: ("castellano" | "subtitulada")[];
   siteNumbers?: string[];
 };
 
@@ -67,12 +68,28 @@ const showtimes = [
   },
 ];
 
+function scrollIntoViewOnMobile(
+  element: HTMLElement | null,
+  block: ScrollLogicalPosition = "start"
+) {
+  if (!element || !window.matchMedia("(max-width: 1024px)").matches) return;
+
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+
+  window.requestAnimationFrame(() => {
+    if (element.isConnected) element.scrollIntoView({ behavior, block });
+  });
+}
+
 export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState<number | null>(null);
   const [selectedSite, setSelectedSite] = useState<string | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -84,53 +101,38 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const [siteContinueScrollRequest, setSiteContinueScrollRequest] = useState(0);
   const formatContinueRef = useRef<HTMLButtonElement>(null);
   const [formatContinueScrollRequest, setFormatContinueScrollRequest] = useState(0);
+  const languageContinueRef = useRef<HTMLButtonElement>(null);
+  const [languageContinueScrollRequest, setLanguageContinueScrollRequest] = useState(0);
   const showtimesRef = useRef<HTMLDivElement>(null);
   const [showtimesScrollRequest, setShowtimesScrollRequest] = useState(0);
   const showtimeContinueRef = useRef<HTMLButtonElement>(null);
   const [showtimeContinueScrollRequest, setShowtimeContinueScrollRequest] = useState(0);
 
   useEffect(() => {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-      bookingContentRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    scrollIntoViewOnMobile(bookingContentRef.current, "start");
   }, [stepScrollRequest]);
   useEffect(() => {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-      siteContinueRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
+    scrollIntoViewOnMobile(siteContinueRef.current, "nearest");
   }, [siteContinueScrollRequest]);
 
   useEffect(() => {
-    if (formatContinueScrollRequest > 0 && window.matchMedia("(max-width: 1024px)").matches) {
-      formatContinueRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+    if (formatContinueScrollRequest > 0) {
+      scrollIntoViewOnMobile(formatContinueRef.current, "nearest");
     }
   }, [formatContinueScrollRequest]);
 
   useEffect(() => {
-    if (selectedDate && window.matchMedia("(max-width: 1024px)").matches) {
-      showtimesRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    if (languageContinueScrollRequest > 0) {
+      scrollIntoViewOnMobile(languageContinueRef.current, "nearest");
     }
+  }, [languageContinueScrollRequest]);
+
+  useEffect(() => {
+    if (selectedDate) scrollIntoViewOnMobile(showtimesRef.current, "start");
   }, [showtimesScrollRequest, selectedDate]);
 
   useEffect(() => {
-    if (selectedTime && window.matchMedia("(max-width: 1024px)").matches) {
-      showtimeContinueRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
+    if (selectedTime) scrollIntoViewOnMobile(showtimeContinueRef.current, "nearest");
   }, [showtimeContinueScrollRequest, selectedTime]);
   const handleStepClick = (step: number) => {
     setCurrentStep(step);
@@ -141,6 +143,32 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     ? sites.filter((site) => movie.siteNumbers?.includes(site.number))
     : sites;
 
+  const availableFormats = movie.formats.filter((format) => {
+    if (format !== "ATMOS" && format !== "4D") return true;
+
+    return availableSites.some((site) =>
+      cinemaRooms.some(
+        (room) =>
+          room.cinema === site.cinemaID &&
+          room.specialFormats?.includes(format) &&
+          room.siteNumbers?.includes(site.number)
+      )
+    );
+  });
+
+  const availableSitesForFormat = selectedFormat
+    ? availableSites.filter((site) => {
+        if (selectedFormat !== "ATMOS" && selectedFormat !== "4D") return true;
+
+        return cinemaRooms.some(
+          (room) =>
+            room.cinema === site.cinemaID &&
+            room.specialFormats?.includes(selectedFormat) &&
+            room.siteNumbers?.includes(site.number)
+        );
+      })
+    : [];
+
   const selectedSiteData = sites.find(
     (site) => site.number === selectedSite
   );
@@ -148,16 +176,6 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
   const availableRooms = cinemaRooms.filter(
     (room) => room.cinema === selectedSiteData?.cinemaID
   );
-
-  const availableFormats = movie.formats.filter((format) => {
-    if (format !== "ATMOS" && format !== "4D") return true;
-
-    return availableRooms.some(
-      (room) =>
-        room.specialFormats?.includes(format) &&
-        room.siteNumbers?.includes(selectedSiteData?.number ?? "")
-    );
-  });
 
   const selectedDay = showtimes.find((day) => day.date === selectedDate);
 
@@ -182,14 +200,16 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
     (layout) => layout.id === selectedRoom?.layoutId
   );
 
-  const canSelectFormat = selectedSite !== null;
-  const canSelectShowtime =
-    selectedSite !== null && selectedFormat !== null;
+  const canSelectLanguage = selectedFormat !== null;
+  const canSelectShowtime = selectedFormat !== null && selectedLanguage !== null;
+  const canSelectSite = canSelectShowtime && selectedDate !== null && selectedTime !== null;
   const canSelectSeats =
     selectedSite !== null &&
     selectedFormat !== null &&
+    selectedLanguage !== null &&
     selectedDate !== null &&
-    selectedTime !== null;
+    selectedTime !== null &&
+    selectedRoom !== undefined;
 
   const toggleSeat = (seatId: string) => {
     setSelectedSeats((current) =>
@@ -201,19 +221,27 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
 
   const handleSiteSelect = (siteNumber: string) => {
     setSelectedSite(siteNumber);
-    setSelectedFormat(null);
-    setSelectedDate(null);
-    setSelectedTime(null);
     setSelectedSeats([]);
     setSiteContinueScrollRequest((request) => request + 1);
   };
 
   const handleFormatSelect = (format: string) => {
     setSelectedFormat(format);
+    setSelectedLanguage(null);
     setSelectedDate(null);
     setSelectedTime(null);
+    setSelectedSite(null);
     setSelectedSeats([]);
     setFormatContinueScrollRequest((request) => request + 1);
+  };
+
+  const handleLanguageSelect = (language: string) => {
+    setSelectedLanguage(language);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setSelectedSite(null);
+    setSelectedSeats([]);
+    setLanguageContinueScrollRequest((request) => request + 1);
   };
 
   const renderSeatRange = (
@@ -262,6 +290,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
         : null,
 
       format: selectedFormat,
+      language: selectedLanguage,
 
       date: selectedDay
         ? {
@@ -302,19 +331,19 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           onClick={() => handleStepClick(0)}
         >
           <span>01</span>
-          <strong>Seleccioná tu sede</strong>
+          <strong>Elegí el formato</strong>
         </button>
 
         <button
           type="button"
-          disabled={!canSelectFormat}
+          disabled={!canSelectLanguage}
           className={`${styles["booking-step"]} ${
             currentStep === 1 ? styles.active : ""
-          } ${!canSelectFormat ? styles.disabled : ""}`}
+          } ${!canSelectLanguage ? styles.disabled : ""}`}
           onClick={() => handleStepClick(1)}
         >
           <span>02</span>
-          <strong>Elegí el formato</strong>
+          <strong>Elegí el idioma</strong>
         </button>
 
         <button
@@ -326,18 +355,30 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
           onClick={() => handleStepClick(2)}
         >
           <span>03</span>
-          <strong>Elegí tu función</strong>
+          <strong>Elegí día y hora</strong>
+        </button>
+
+        <button
+          type="button"
+          disabled={!canSelectSite}
+          className={`${styles["booking-step"]} ${
+            currentStep === 3 ? styles.active : ""
+          } ${!canSelectSite ? styles.disabled : ""}`}
+          onClick={() => handleStepClick(3)}
+        >
+          <span>04</span>
+          <strong>Elegí dónde</strong>
         </button>
 
         <button
           type="button"
           disabled={!canSelectSeats}
           className={`${styles["booking-step"]} ${
-            currentStep === 3 ? styles.active : ""
+            currentStep === 4 ? styles.active : ""
           } ${!canSelectSeats ? styles.disabled : ""}`}
-          onClick={() => handleStepClick(3)}
+          onClick={() => handleStepClick(4)}
         >
-          <span>04</span>
+          <span>05</span>
           <strong>Seleccioná tus butacas</strong>
         </button>
       </div>
@@ -345,84 +386,81 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       {currentStep === 0 && (
         <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
-            <p>01 / SEDE</p>
-            <h3>¿Dónde querés ver la película?</h3>
-            <span>Seleccioná uno de nuestros complejos para continuar.</span>
+            <p>01 / FORMATO</p>
+            <h3>¿Cómo querés verla?</h3>
+            <span>Elegí el formato que preferís para disfrutar la película.</span>
           </div>
 
-          <div className={styles["site-grid"]}>
-            {availableSites.map((site) => (
+          <div className={styles["format-grid"]}>
+            {availableFormats.map((format) => (
               <button
                 type="button"
-                key={site.number}
-                className={`${styles["site-card"]} ${
-                  selectedSite === site.number ? styles.selected : ""
+                key={format}
+                className={`${styles["format-card"]} ${
+                  selectedFormat === format ? styles.selected : ""
                 }`}
-                onClick={() => handleSiteSelect(site.number)}
+                onClick={() => handleFormatSelect(format)}
               >
-                <div className={styles["site-image"]}>
-                  <img src={site.imgURL} alt={site.name} />
-                </div>
-
-                <div className={styles["site-info"]}>
-                  <div>
-                    <h4>{site.name}</h4>
-                    <p>{site.location}</p>
-                  </div>
-                </div>
+                <strong>{format}</strong>
+                <small>
+                  {format === "HD" && "Alta definición"}
+                  {format === "3D" && "Experiencia 3D"}
+                  {format === "4D" && "Experiencia inmersiva · Cinema City, Sala 1"}
+                  {format === "ATMOS" && "Sonido envolvente · Cinema Rocha, Sala 1"}
+                </small>
               </button>
             ))}
           </div>
 
-          {selectedSite && (
-            <div className={styles["booking-next"]}>
-              <button
-                type="button"
-                ref={siteContinueRef}
-                className="button button--primary"
-                onClick={() => handleStepClick(1)}
-              >
-                Continuar →
-              </button>
-            </div>
-          )}
+          <div className={styles["booking-navigation"]}>
+            <button
+              type="button"
+              className="button button--primary"
+              disabled
+            >
+              ← Volver
+            </button>
+            <button
+              type="button"
+              ref={formatContinueRef}
+              className="button button--primary"
+              disabled={!selectedFormat}
+              onClick={() => handleStepClick(1)}
+            >
+              Continuar →
+            </button>
+          </div>
         </div>
       )}
 
       {currentStep === 1 && (
         <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
-            <p>02 / FORMATO</p>
-            <h3>¿Cómo querés verla?</h3>
-            <span>
-              Elegí el formato que preferís para disfrutar la película.
-            </span>
+            <p>02 / IDIOMA</p>
+            <h3>¿En qué idioma querés verla?</h3>
+            <span>Elegí una de las opciones disponibles para esta película.</span>
           </div>
 
           <div className={styles["format-grid"]}>
-            {availableFormats.map((format) => {
-              return (
-                <button
-                  type="button"
-                  key={format}
-                  className={`${styles["format-card"]} ${
-                    selectedFormat === format ? styles.selected : ""
-                  }`}
-                  onClick={() => {
-                    handleFormatSelect(format);
-                  }}
-                >
-                  <strong>{format}</strong>
-
-                  <small>
-                    {format === "HD" && "Alta definición"}
-                    {format === "3D" && "Experiencia 3D"}
-                    {format === "4D" && "Experiencia inmersiva"}
-                    {format === "ATMOS" && "Sonido envolvente"}
-                  </small>
-                </button>
-              );
-            })}
+            {movie.languages.map((language) => (
+              <button
+                type="button"
+                key={language}
+                className={`${styles["format-card"]} ${
+                  selectedLanguage === language ? styles.selected : ""
+                }`}
+                onClick={() => handleLanguageSelect(language)}
+              >
+                <strong>
+                  {language === "castellano" ? "Castellano" : "Inglés subtitulado"}
+                </strong>
+                <small>
+                  {language === "castellano"
+                    ? "Audio en español"
+                    : "Audio en inglés con subtítulos en español"}
+                </small>
+              </button>
+            ))}
           </div>
 
           <div className={styles["booking-navigation"]}>
@@ -434,10 +472,10 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
               ← Volver
             </button>
 
-            {selectedFormat && (
+            {selectedLanguage && (
               <button
                 type="button"
-                ref={formatContinueRef}
+                ref={languageContinueRef}
                 className="button button--primary"
                 onClick={() => handleStepClick(2)}
               >
@@ -451,7 +489,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       {currentStep === 2 && (
         <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
-            <p>03 / FUNCIÓN</p>
+            <p>03 / DÍA Y HORA</p>
             <h3>¿Cuándo querés verla?</h3>
             <span>Elegí el día y horario que mejor te quede.</span>
           </div>
@@ -467,6 +505,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                 onClick={() => {
                   setSelectedDate(day.date);
                   setSelectedTime(null);
+                  setSelectedSite(null);
                   setSelectedSeats([]);
                   setShowtimesScrollRequest((request) => request + 1);
                 }}
@@ -495,6 +534,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                     }`}
                     onClick={() => {
                       setSelectedTime(time);
+                      setSelectedSite(null);
                       setSelectedSeats([]);
                       setShowtimeContinueScrollRequest((request) => request + 1);
                     }}
@@ -532,7 +572,62 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
       {currentStep === 3 && (
         <div className={styles["booking-content"]} ref={bookingContentRef}>
           <div className={styles["booking-heading"]}>
-            <p>04 / BUTACAS</p>
+            <p>04 / SEDE</p>
+            <h3>¿Dónde querés ver la película?</h3>
+            <span>Elegí una sede disponible para el formato seleccionado.</span>
+          </div>
+
+          <div className={styles["site-grid"]}>
+            {availableSitesForFormat.map((site) => (
+              <button
+                type="button"
+                key={site.number}
+                className={`${styles["site-card"]} ${
+                  selectedSite === site.number ? styles.selected : ""
+                }`}
+                onClick={() => handleSiteSelect(site.number)}
+              >
+                <div className={styles["site-image"]}>
+                  <img src={site.imgURL} alt={site.name} />
+                </div>
+
+                <div className={styles["site-info"]}>
+                  <div>
+                    <h4>{site.name}</h4>
+                    <p>{site.location}</p>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className={styles["booking-navigation"]}>
+            <button
+              type="button"
+              className="button button--primary"
+              onClick={() => handleStepClick(2)}
+            >
+              ← Volver
+            </button>
+
+            {selectedSite && (
+              <button
+                type="button"
+                ref={siteContinueRef}
+                className="button button--primary"
+                onClick={() => handleStepClick(4)}
+              >
+                Continuar →
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {currentStep === 4 && (
+        <div className={styles["booking-content"]} ref={bookingContentRef}>
+          <div className={styles["booking-heading"]}>
+            <p>05 / BUTACAS</p>
             <h3>¿Dónde querés sentarte?</h3>
             <span>
               Seleccioná las butacas que quieras ocupar para continuar.
@@ -632,7 +727,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <button
               type="button"
               className="button button--primary"
-              onClick={() => handleStepClick(2)}
+              onClick={() => handleStepClick(3)}
             >
               ← Volver
             </button>
@@ -667,7 +762,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
             <p className={styles["login-prompt__eyebrow"]}>UN PASO MÁS</p>
             <h2 id="login-prompt-title">Iniciá sesión para continuar.</h2>
             <p id="login-prompt-description">
-              La función y las butacas que elegiste quedan guardadas mientras ingresás a tu cuenta.
+              El formato, idioma, función y butacas que elegiste quedan guardados mientras ingresás a tu cuenta.
             </p>
             <button
               type="button"

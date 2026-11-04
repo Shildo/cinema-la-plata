@@ -19,6 +19,7 @@ type BookingData = {
   } | null;
 
   format: string | null;
+  language: string | null;
 
   date: {
     label: string;
@@ -108,7 +109,10 @@ export default function PurchasePage() {
 
                 <h2>{booking.movie?.title}</h2>
 
-                <span>{booking.format}</span>
+                <span>
+                  {booking.format}
+                  {booking.language && ` · ${booking.language === "castellano" ? "Castellano" : "Inglés subtitulado"}`}
+                </span>
               </div>
             </div>
 

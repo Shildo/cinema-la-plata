@@ -8,7 +8,7 @@
 
 .booking-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 
   border-top: 1px solid rgba(16, 25, 54, 0.2);
   border-bottom: 1px solid rgba(16, 25, 54, 0.2);
@@ -317,6 +317,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 15px;
+}
+
+.booking-navigation button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.booking-navigation button:disabled:hover {
+  transform: none;
 }
 
 .date-grid {
@@ -1043,7 +1053,8 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .booking-step:nth-child(2) {
+  .booking-step:nth-child(2),
+  .booking-step:nth-child(4) {
     border-right: 0;
   }
 

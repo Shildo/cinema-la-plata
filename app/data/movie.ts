@@ -1,3 +1,5 @@
+export type MovieLanguage = "castellano" | "subtitulada";
+
 export type Movie = {
   slug: string;
   title: string;
@@ -8,6 +10,7 @@ export type Movie = {
   duration: string;
   genre: string;
   formats: string[];
+  languages: MovieLanguage[];
   restriction: string;
   badge?: string;
   siteNumbers?: string[];
@@ -25,6 +28,7 @@ export const movies: Movie[] = [
     duration: "2h 25min",
     genre: "Acción",
     formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/supervision-parental.PNG",
     siteNumbers: ["01", "03", "04"],
   },
@@ -40,6 +44,7 @@ export const movies: Movie[] = [
     duration: "1h 30min",
     genre: "Animación",
     formats: ["HD", "4D"],
+    languages: ["castellano"],
     restriction: "/restrictions/general.PNG",
     siteNumbers: ["01", "02", "03", "05"],
   },
@@ -55,6 +60,7 @@ export const movies: Movie[] = [
     duration: "1h 42min",
     genre: "Aventura",
     formats: ["HD", "3D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["02", "04"],
   },
@@ -70,6 +76,7 @@ export const movies: Movie[] = [
     duration: "1h 35min",
     genre: "Comedia",
     formats: ["HD", "3D", "4D"],
+    languages: ["castellano"],
     restriction: "/restrictions/general.PNG",
     siteNumbers: ["01", "03", "05"],
   },
@@ -85,6 +92,7 @@ export const movies: Movie[] = [
     duration: "2h 53min",
     genre: "Thriller",
     formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/supervision-parental.PNG",
     siteNumbers: ["01", "02", "04", "05"],
   },
@@ -99,6 +107,7 @@ export const movies: Movie[] = [
     duration: "1h 42min",
     genre: "Animación",
     formats: ["HD", "3D"],
+    languages: ["castellano"],
     restriction: "/restrictions/general.PNG",
     siteNumbers: ["02", "03", "05"],
   },
@@ -113,6 +122,7 @@ export const movies: Movie[] = [
     duration: "2h 0min",
     genre: "Comedia",
     formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["01", "04", "05"],
   },
@@ -127,6 +137,7 @@ export const movies: Movie[] = [
     duration: "2h 7min",
     genre: "Documental Biográfico",
     formats: ["HD", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["02", "03", "04"],
   },
@@ -141,6 +152,7 @@ export const movies: Movie[] = [
     duration: "1h 36min",
     genre: "Comedia Terror",
     formats: ["HD", "3D", "4D"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-17.PNG",
     siteNumbers: ["01", "02", "05"],
   },
@@ -155,6 +167,7 @@ export const movies: Movie[] = [
     duration: "1h 40min",
     genre: "Comedia Thriller",
     formats: ["HD", "3D", "ATMOS"],
+    languages: ["castellano"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["02", "03", "04"],
   },
@@ -169,6 +182,7 @@ export const movies: Movie[] = [
     duration: "1h 54min",
     genre: "Terror Thriller",
     formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["01", "03", "04", "05"],
   },
@@ -183,6 +197,7 @@ export const movies: Movie[] = [
     duration: "2h 41min",
     genre: "Thriller Político",
     formats: ["HD", "ATMOS"],
+    languages: ["subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: ["02", "04", "05"],
     badge: "/resources/cineBrasileñoCartel.png",
