@@ -231,7 +231,7 @@
 }
 
 .format-card {
-  min-height: 220px;
+  min-height: 100px;
 
   padding: 22px;
 
@@ -240,7 +240,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
 
   border: 1px solid rgba(16, 25, 54, 0.18);
 
@@ -278,19 +278,8 @@
 
 .format-card strong {
   font-family: "Satoshi Medium", sans-serif;
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(12px, 2vw, 32px);
   line-height: 1;
-}
-
-.format-card small {
-  color: #687292;
-
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.format-card.selected small {
-  color: #aaa18f;
 }
 
 .format-card b {

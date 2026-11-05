@@ -44,26 +44,31 @@ const showtimes = [
   {
     date: "LUN 31",
     fullDate: "31 de agosto",
+    month: "Agosto",
     times: ["16:30", "19:00", "21:30"],
   },
   {
     date: "MAR 01",
     fullDate: "1 de septiembre",
+    month: "Septiembre",
     times: ["15:00", "18:00", "20:30", "23:00"],
   },
   {
     date: "MIÉ 02",
     fullDate: "2 de septiembre",
+    month: "Septiembre",
     times: ["16:00", "18:30", "21:00"],
   },
   {
     date: "JUE 03",
     fullDate: "3 de septiembre",
+    month: "Septiembre",
     times: ["15:30", "18:00", "20:30", "22:45"],
   },
   {
     date: "VIE 04",
     fullDate: "4 de septiembre",
+    month: "Septiembre",
     times: ["14:30", "17:00", "19:30", "22:00"],
   },
 ];
@@ -402,12 +407,6 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                 onClick={() => handleFormatSelect(format)}
               >
                 <strong>{format}</strong>
-                <small>
-                  {format === "HD" && "Alta definición"}
-                  {format === "3D" && "Experiencia 3D"}
-                  {format === "4D" && "Experiencia inmersiva · Cinema City, Sala 1"}
-                  {format === "ATMOS" && "Sonido envolvente · Cinema Rocha, Sala 1"}
-                </small>
               </button>
             ))}
           </div>
@@ -452,13 +451,8 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
                 onClick={() => handleLanguageSelect(language)}
               >
                 <strong>
-                  {language === "castellano" ? "Castellano" : "Inglés subtitulado"}
+                  {language === "castellano" ? "Castellano" : "Subtitulado"}
                 </strong>
-                <small>
-                  {language === "castellano"
-                    ? "Audio en español"
-                    : "Audio en inglés con subtítulos en español"}
-                </small>
               </button>
             ))}
           </div>
@@ -512,7 +506,7 @@ export default function MovieBooking({ sites, movie }: MovieBookingProps) {
               >
                 <span>{day.date.split(" ")[0]}</span>
                 <strong>{day.date.split(" ")[1]}</strong>
-                <small>{day.fullDate}</small>
+                <small>{day.month}</small>
               </button>
             ))}
           </div>
