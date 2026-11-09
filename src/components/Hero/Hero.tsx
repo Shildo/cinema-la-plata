@@ -42,6 +42,19 @@ export default function Hero() {
     };
   }, []);
 
+  const handleSoundToggle = () => {
+    const nextMutedState = !isMuted;
+    setIsMuted(nextMutedState);
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = nextMutedState;
+    void video.play().catch(() => {
+      // Si el navegador bloquea la reproducción, el control permite volver a intentarlo.
+    });
+  };
+
   return (
     <section className="hero">
       <div className="hero__background-placeholder">
@@ -87,7 +100,7 @@ export default function Hero() {
         <button
           type="button"
           className="hero__sound-toggle"
-          onClick={() => setIsMuted((muted) => !muted)}
+          onClick={handleSoundToggle}
           aria-label={isMuted ? "Activar sonido del video" : "Silenciar video"}
           aria-pressed={!isMuted}
         >
