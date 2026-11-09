@@ -1,0 +1,344 @@
+.page {
+  position: relative;
+  min-height: 76vh;
+  overflow: hidden;
+  padding: clamp(7rem, 12vw, 10rem) clamp(1.25rem, 7vw, 7rem) 5rem;
+  background:
+    radial-gradient(ellipse at 12% 20%, rgba(12, 20, 226, 0.22), transparent 36%),
+    radial-gradient(ellipse at 87% 82%, rgba(255, 19, 25, 0.14), transparent 30%),
+    #05060b;
+  color: var(--white);
+}
+
+.ambient {
+  position: absolute;
+  top: 13%;
+  right: -12rem;
+  width: clamp(20rem, 40vw, 34rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.018), 0 0 0 68px rgba(255, 255, 255, 0.012);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.backLink,
+.homeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--yellow);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.backLink {
+  margin-bottom: 2.5rem;
+}
+
+.header {
+  max-width: 760px;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--yellow);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.header h1 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.description {
+  max-width: 600px;
+  margin: 1.3rem 0 0;
+  color: #b9c0d3;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.65;
+}
+
+.choiceGrid,
+.discountGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.choiceCard {
+  display: flex;
+  min-height: 190px;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(239, 229, 206, 0.14);
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.choiceCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  background: rgba(16, 25, 54, 0.92);
+}
+
+.choiceIcon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 221, 18, 0.4);
+  color: var(--yellow);
+}
+
+.choiceCopy {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.choiceCopy strong {
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 500;
+}
+
+.choiceCopy small {
+  color: #b9c0d3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.choiceArrow {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--yellow);
+}
+
+.discountGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.promotionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.discountCard {
+  position: relative;
+  min-height: 250px;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  border: 1px solid rgba(239, 229, 206, 0.16);
+  border-top: 3px solid var(--red);
+  background: var(--black);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.discountCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 221, 18, 0.42);
+  border-top-color: var(--yellow);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+}
+
+.discountNumber {
+  color: var(--yellow);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.discountSchedule {
+  margin: 1.5rem 0 0.65rem;
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.discountCard h2 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.discountDescription,
+.discountFormats {
+  color: #b9c0d3;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.discountFormats {
+  margin-top: 1.1rem;
+  color: #8f98b4;
+  font-size: 0.78rem;
+}
+
+.promotionCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 250px;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  border: 1px solid rgba(239, 229, 206, 0.16);
+  border-top: 3px solid var(--red);
+  background: var(--black);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.promotionCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 221, 18, 0.42);
+  border-top-color: var(--yellow);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+}
+
+.promotionCardTop {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.promotionBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(255, 221, 18, 0.35);
+  background: rgba(255, 221, 18, 0.08);
+  color: var(--yellow);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.promotionCard h2 {
+  margin: 1.5rem 0 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.promotionCardWithSchedule h2 {
+  margin-top: 0;
+}
+
+.promotionDescription {
+  margin: 0.8rem 0 0;
+  color: #b9c0d3;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.promotionTerms {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: #8f98b4;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.promotionTerms li {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.promotionTerms li::before {
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: "";
+}
+
+.promotionEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+  color: var(--yellow);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.promotionEmail:hover {
+  text-decoration: underline;
+}
+
+.homeLink {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 800px) {
+  .discountGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding-top: 7rem;
+  }
+
+  .choiceGrid,
+  .discountGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .promotionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .discountCard:hover,
+  .promotionCard:hover {
+    transform: none;
+  }
+
+  .choiceCard {
+    min-height: 150px;
+  }
+}

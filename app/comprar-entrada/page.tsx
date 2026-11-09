@@ -1,6 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  getAvailableDiscounts,
+  getDefaultDiscountId,
+  getOnlineTicketPrice,
+  getOrderTotal,
+} from "../data/pricing";
 import { readMockSession } from "@/lib/mock-session";
 import type { MockSession } from "@/lib/mock-session";
 import styles from "./page.module.css";
@@ -34,6 +40,7 @@ type BookingData = {
 export default function PurchasePage() {
   const [booking, setBooking] = useState<BookingData | null>(null);
   const [customer, setCustomer] = useState<MockSession | null>(null);
+  const [selectedDiscountId, setSelectedDiscountId] = useState<string | null | undefined>(undefined);
 
   useEffect(() => {
     setCustomer(readMockSession());
@@ -66,6 +73,16 @@ export default function PurchasePage() {
       </main>
     );
   }
+
+  const availableDiscounts = getAvailableDiscounts(booking);
+  const { ticketPrice, serviceFee } = getOnlineTicketPrice(booking);
+  const defaultDiscountId = getDefaultDiscountId(availableDiscounts);
+  const activeDiscountId = selectedDiscountId === undefined
+    ? defaultDiscountId
+    : selectedDiscountId;
+  const activeDiscount = availableDiscounts.find(({ id }) => id === activeDiscountId) ?? null;
+  const regularTotal = booking.seats.length * (ticketPrice + serviceFee);
+  const totalPrice = getOrderTotal(booking, availableDiscounts, activeDiscountId);
 
   return (
     <main className={styles["purchase-page"]}>
@@ -148,7 +165,11 @@ export default function PurchasePage() {
                     : "ENTRADAS"}
                 </span>
 
-                <small>$8.500 c/u</small>
+                <small>
+                  {activeDiscount
+                    ? `${activeDiscount.title} aplicado`
+                    : `$${ticketPrice.toLocaleString("es-AR")} + $${serviceFee.toLocaleString("es-AR")} de servicio c/u`}
+                </small>
               </div>
 
               <div className={styles["ticket-total"]}>
@@ -156,8 +177,20 @@ export default function PurchasePage() {
 
                 <strong>
                   $
-                  {(booking.seats.length * 8500).toLocaleString("es-AR")}
+                  {totalPrice.toLocaleString("es-AR")}
                 </strong>
+                {activeDiscount ? (
+                  <>
+                    <small className={styles["ticket-original-total"]}>
+                      Antes: ${regularTotal.toLocaleString("es-AR")}
+                    </small>
+                    <small className={styles["ticket-discount-status"]}>
+                      DESCUENTO EN USO · {activeDiscount.title}
+                    </small>
+                  </>
+                ) : (
+                  <small>Incluye cargo de servicio</small>
+                )}
               </div>
             </div>
           </div>
@@ -176,6 +209,47 @@ export default function PurchasePage() {
             <span>
               Tu nombre y email ya están cargados desde tu cuenta. Elegí cómo querés pagar.
             </span>
+          </div>
+
+          <div className={styles["purchase-discounts"]}>
+            <strong>DESCUENTOS DISPONIBLES</strong>
+            {availableDiscounts.length > 0 ? (
+              <>
+                <p className={styles["purchase-discounts-hint"]}>
+                  {activeDiscount
+                    ? "El descuento más conveniente está seleccionado. Podés cambiarlo o quitarlo."
+                    : "Elegí un descuento para aplicarlo al precio final."}
+                </p>
+                <div className={styles["purchase-discount-options"]}>
+                  {availableDiscounts.map((discount) => {
+                    const isSelected = activeDiscountId === discount.id;
+
+                    return (
+                      <label
+                        className={`${styles["purchase-discount"]} ${isSelected ? styles["purchase-discount-active"] : ""}`}
+                        key={discount.id}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={(event) =>
+                            setSelectedDiscountId(event.currentTarget.checked ? discount.id : null)
+                          }
+                          aria-label={`Usar ${discount.title}`}
+                        />
+                        <span className={styles["purchase-discount-copy"]}>
+                          <b>{discount.title}</b>
+                          <span>{discount.description}</span>
+                          {isSelected && <small>En uso</small>}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <p>No entrás en ningún descuento para esta función.</p>
+            )}
           </div>
 
           {customer && (

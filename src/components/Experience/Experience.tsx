@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Clapperboard } from "lucide-react";
 import { Popcorn } from "lucide-react";
 import { Tickets } from "lucide-react";
@@ -47,7 +49,11 @@ export default function Experience() {
           </p>
         </article>
 
-        <article className="experience-card experience-card--benefits">
+        <Link
+          className="experience-card-link experience-card--benefits"
+          href="/beneficios"
+          aria-label="Explorar descuentos y promociones"
+        >
           <div className="experience-icon">
             <Tickets />
           </div>
@@ -55,9 +61,12 @@ export default function Experience() {
           <h3>Beneficios</h3>
 
           <p>
-            2x1, descuentos y alianzas.
+            2x1, descuentos y promociones.
           </p>
-        </article>
+          <span className="experience-card-cta">
+            Ver beneficios <ArrowRight size={16} aria-hidden="true" />
+          </span>
+        </Link>
       </div>
     </section>
   );
