@@ -1,21 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 export default function Hero() {
   const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    void video.play().catch(() => {
+      // El navegador puede bloquear autoplay por sus ajustes de ahorro de datos o batería.
+    });
+  }, []);
 
   return (
     <section className="hero">
       <div className="hero__background-placeholder">
         <video
+          ref={videoRef}
           className="hero__video"
           autoPlay
           muted={isMuted}
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          controls={false}
           poster="/hero.png"
           aria-hidden="true"
           tabIndex={-1}

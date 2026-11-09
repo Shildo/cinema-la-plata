@@ -57,6 +57,17 @@ export default function ComplexSection() {
   const [selectedComplex, setSelectedComplex] = useState(complexes[0]);
   const [cardScrollRequest, setCardScrollRequest] = useState(0);
   const complexCardRef = useRef<HTMLDivElement>(null);
+  const complexVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = complexVideoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    void video.play().catch(() => {
+      // Algunos móviles bloquean autoplay según los ajustes del dispositivo.
+    });
+  }, [selectedComplex.imgURL]);
 
   useEffect(() => {
     if (cardScrollRequest === 0 || !window.matchMedia("(max-width: 1000px)").matches) {
@@ -106,11 +117,15 @@ export default function ComplexSection() {
       <div className="complex-detail">
         <div className="complex-image">
           <video
+            key={selectedComplex.number}
+            ref={complexVideoRef}
             src={selectedComplex.imgURL}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
+            controls={false}
             aria-label={`Video de ${selectedComplex.name}`}
           />
         </div>
