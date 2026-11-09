@@ -12,9 +12,34 @@ export default function Hero() {
     if (!video) return;
 
     video.muted = true;
-    void video.play().catch(() => {
-      // El navegador puede bloquear autoplay por sus ajustes de ahorro de datos o batería.
-    });
+
+    const playWhenVisible = () => {
+      if (document.visibilityState !== "visible") return;
+
+      const bounds = video.getBoundingClientRect();
+      const isVisible = bounds.bottom > 0 && bounds.top < window.innerHeight;
+      if (isVisible) {
+        void video.play().catch(() => {
+          // El navegador puede bloquear autoplay por sus políticas o ajustes de ahorro.
+        });
+      }
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        playWhenVisible();
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.15 });
+
+    observer.observe(video);
+    video.addEventListener("canplay", playWhenVisible);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("canplay", playWhenVisible);
+    };
   }, []);
 
   return (
