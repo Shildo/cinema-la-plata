@@ -25,7 +25,11 @@ export default function Experience() {
       </div>
 
       <div className="experience-grid">
-        <article className="experience-card experience-card--technologies">
+        <Link
+          className="experience-card-link experience-card--technologies"
+          href="/tecnologias"
+          aria-label="Explorar las tecnologías de las salas"
+        >
           <div className="experience-icon">
             <Clapperboard />
           </div>
@@ -35,9 +39,16 @@ export default function Experience() {
           <p>
             HD, 3D, ATMOS y 4D.
           </p>
-        </article>
+          <span className="experience-card-cta">
+            Explorar tecnologías <ArrowRight size={16} aria-hidden="true" />
+          </span>
+        </Link>
 
-        <article className="experience-card experience-card--candybar">
+        <Link
+          className="experience-card-link experience-card--candybar"
+          href="/candybar"
+          aria-label="Conocer el Candy Bar de Cinema La Plata"
+        >
           <div className="experience-icon">
             <Popcorn />
           </div>
@@ -47,7 +58,10 @@ export default function Experience() {
           <p>
             Productos, combos y promociones.
           </p>
-        </article>
+          <span className="experience-card-cta">
+            Conocer Candy Bar <ArrowRight size={16} aria-hidden="true" />
+          </span>
+        </Link>
 
         <Link
           className="experience-card-link experience-card--benefits"

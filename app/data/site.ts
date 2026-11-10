@@ -6,6 +6,11 @@ export type Site = {
   rooms: string;
   locationURL: string;
   cinemaID: "rocha" | "ocho";
+  interiorPhotoURL: string;
+  formats: string[];
+  technologyDescription: string;
+  highlights: string[];
+  logoURL: string;
 };
 
 export const sites: Site[] = [
@@ -17,6 +22,11 @@ export const sites: Site[] = [
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/JCh4EGS9Bo3hhXwg6",
     cinemaID: "ocho",
+    interiorPhotoURL: "/sedes/cityInterior.jpg",
+    formats: ["HD", "3D", "4D"],
+    technologyDescription: "Tres salas en distintos niveles, con opciones para elegir una función tradicional o una experiencia 4D.",
+    highlights: ["Sala 4D", "Ascensor entre niveles", "Bar y patio exterior"],
+    logoURL: "/sedes/citylogo.png",
   },
   {
     number: "02",
@@ -26,6 +36,11 @@ export const sites: Site[] = [
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/9pcaCXtL7LStEbJu9",
     cinemaID: "rocha",
+    interiorPhotoURL: "/sedes/paradisoInterior.jpg",
+    formats: ["HD", "3D"],
+    technologyDescription: "Cuatro salas digitales en una sola planta, con espacios accesibles y un lobby para esperar antes de la función.",
+    highlights: ["Circulación accesible", "Cafetería", "Proyección 3D"],
+    logoURL: "/sedes/paradisologo.png",
   },
   {
     number: "03",
@@ -35,6 +50,11 @@ export const sites: Site[] = [
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/YN8YFMhX47n3wSyD6",
     cinemaID: "ocho",
+    interiorPhotoURL: "/sedes/ochoInterior.jpg",
+    formats: ["HD", "3D"],
+    technologyDescription: "Tres salas amplias con proyección digital, butacas ergonómicas y un espacio accesible en la sala 1.",
+    highlights: ["Salas 1 y 2 en 3D", "Acceso para silla de ruedas", "Butacas ergonómicas"],
+    logoURL: "/sedes/ochologo.png",
   },
   {
     number: "04",
@@ -44,6 +64,11 @@ export const sites: Site[] = [
     rooms: "Sala 1, 2 y 3.",
     locationURL: "https://maps.app.goo.gl/AMKFx3ypYin7Cx517",
     cinemaID: "rocha",
+    interiorPhotoURL: "/sedes/rochaInterior.jpg",
+    formats: ["HD", "3D", "ATMOS"],
+    technologyDescription: "Un cine histórico renovado, con tres salas y doble proyección digital en la sala principal.",
+    highlights: ["Doble proyección", "Sistema 3D", "Candy Bar Popus"],
+    logoURL: "/sedes/rochalogo.png",
   },
   {
     number: "05",
@@ -53,5 +78,10 @@ export const sites: Site[] = [
     rooms: "Sala 1, 2, 3 y 4.",
     locationURL: "https://maps.app.goo.gl/LrjGXcBWd9sDJcMn8",
     cinemaID: "ocho",
+    interiorPhotoURL: "/sedes/sanMartinInterior.jpg",
+    formats: ["HD", "3D"],
+    technologyDescription: "Cuatro salas con disposición tipo stadium, dentro de la galería comercial de avenida 7.",
+    highlights: ["Dos salas 3D", "Disposición stadium", "Acceso desde la galería"],
+    logoURL: "/sedes/san-martinlogo.png",
   },
 ];

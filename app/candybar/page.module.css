@@ -1,0 +1,302 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(7rem, 11vw, 10rem) clamp(1.25rem, 7vw, 7rem) 5rem;
+  background:
+    radial-gradient(ellipse at 8% 8%, color-mix(in srgb, var(--purple) 18%, transparent), transparent 34%),
+    radial-gradient(ellipse at 92% 42%, color-mix(in srgb, var(--blue) 15%, transparent), transparent 38%),
+    linear-gradient(128deg, #08050b 0%, color-mix(in srgb, var(--purple) 10%, var(--black)) 48%, color-mix(in srgb, var(--red) 8%, var(--black)) 100%);
+  color: var(--white);
+}
+
+.hero,
+.moments,
+.promoBanner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  min-height: 540px;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.heroCopy h1 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(3.3rem, 7vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.91;
+}
+
+.heroCopy h1 span {
+  color: var(--purple);
+}
+
+.heroDescription {
+  max-width: 500px;
+  margin: 1.5rem 0 2rem;
+  color: #c2c8da;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.65;
+}
+
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.9rem 1.2rem;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.primaryLink:hover,
+.secondaryLink:hover {
+  transform: translateY(-2px);
+  background: #b72215;
+}
+
+.heroVisual {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 2.5rem 2rem;
+}
+
+.heroVisual::before {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  bottom: 1rem;
+  left: 3rem;
+  border: 1px solid color-mix(in srgb, var(--purple) 58%, transparent);
+  content: "";
+}
+
+.candyBarPhoto {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.18;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.4);
+}
+
+.photoCaption {
+  position: absolute;
+  z-index: 2;
+  right: 1.5rem;
+  bottom: 1rem;
+  display: grid;
+  gap: 0.4rem;
+  max-width: 260px;
+  padding: 1rem 1.2rem;
+  background: var(--black);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.photoCaption span {
+  color: var(--yellow);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.photoCaption strong {
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.popcornDecoration {
+  position: absolute;
+  z-index: 3;
+  bottom: -1.5rem;
+  left: -2rem;
+  width: clamp(120px, 18vw, 230px);
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.48));
+  pointer-events: none;
+}
+
+.moments {
+  margin-top: clamp(5rem, 10vw, 9rem);
+}
+
+.sectionHeading {
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.momentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.momentCard {
+  position: relative;
+  min-height: 340px;
+  padding: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(239, 229, 206, 0.14);
+  background: var(--black);
+}
+
+.momentVisual {
+  display: grid;
+  width: 105px;
+  height: 105px;
+  margin: 0 0 2rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--purple) 68%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--purple) 22%, transparent), transparent 72%);
+  color: color-mix(in srgb, var(--purple) 72%, var(--white));
+}
+
+.momentCard h3 {
+  margin: 0 0 0.7rem;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.momentCard p {
+  max-width: 350px;
+  margin: 0;
+  color: #aeb6ce;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.promoBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid color-mix(in srgb, var(--purple) 38%, transparent);
+  background: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--purple) 16%, var(--black)),
+    color-mix(in srgb, var(--blue) 13%, var(--black)) 58%,
+    color-mix(in srgb, var(--red) 10%, var(--black))
+  );
+}
+
+.promoBanner .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.promoBanner h2 {
+  max-width: 600px;
+  margin: 0;
+  font-family: "Satoshi Medium", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.secondaryLink {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .momentGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .momentCard:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding-top: 7rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    min-height: auto;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(3.1rem, 15vw, 5rem);
+  }
+
+  .heroVisual {
+    margin: 0 0.5rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .heroVisual::before {
+    left: 2rem;
+  }
+
+  .popcornDecoration {
+    left: -1rem;
+    width: 34vw;
+  }
+
+  .momentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .momentCard:last-child {
+    grid-column: auto;
+  }
+
+  .momentCard {
+    min-height: 300px;
+  }
+
+  .promoBanner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
