@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(to bottom right, var(--blue), var(--black));
+  background: var(--black) url("/backgrounds/background.png") center / cover no-repeat;
 }
 
 .totem__background {

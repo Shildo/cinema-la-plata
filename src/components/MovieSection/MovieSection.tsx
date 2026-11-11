@@ -109,8 +109,74 @@ const movies = [
     url: "/pelicula/el-agente-secreto",
     restriction: "/restrictions/r-13.PNG",
     badge: "/resources/cineBrasileñoCartel.png",
+  },
+  {
+    key: 12,
+    title: "Zootopia 2",
+    status: "En cartelera",
+    meta: "ANIMACIÓN / AVENTURA",
+    img: "/peliculas/aficheZootopia2.jpg",
+    url: "/pelicula/zootopia-2",
+    restriction: "/restrictions/general.PNG",
+  },
+  {
+    key: 13,
+    title: "Proyecto fin del mundo",
+    status: "En cartelera",
+    meta: "CIENCIA FICCIÓN / AVENTURA",
+    img: "/peliculas/aficheProyectoFinDelMundo.jpg",
+    url: "/pelicula/proyecto-fin-del-mundo",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 14,
+    title: "Billie Eilish - Hit Me Hard And Soft: El Tour",
+    status: "En cartelera",
+    meta: "DOCUMENTAL / MUSICAL",
+    img: "/peliculas/aficheBillieEilish.jpg",
+    url: "/pelicula/billie-eilish-hit-me-hard-and-soft",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 15,
+    title: "Queen: Budapest",
+    status: "En cartelera",
+    meta: "DOCUMENTAL / MUSICAL",
+    img: "/peliculas/aficheQueenBudapest.jpg",
+    url: "/pelicula/queen-budapest",
+    restriction: "/restrictions/r-13.PNG",
   }
 ];
+
+const presaleMovies = [
+  {
+    key: 1000,
+    title: "¿Queres ser mi hijo?",
+    status: "Preventa",
+    meta: "COMEDIA / DRAMA",
+    img: "/peliculas/aficheQueresSerMiHijo.jpg",
+    url: "/pelicula/queres-ser-mi-hijo",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 1001,
+    title: "Dune 3",
+    status: "Preventa",
+    meta: "ACCIÓN / AVENTURA",
+    img: "/peliculas/aficheDune3.jpg",
+    url: "/pelicula/dune-3",
+    restriction: "/restrictions/r-13.PNG",
+  },
+  {
+    key: 1002,
+    title: "Avengers: Doomsday",
+    status: "Preventa",
+    meta: "ACCIÓN / AVENTURA",
+    img: "/peliculas/aficheAvengersDoomsday.jpg",
+    url: "/pelicula/avengers-doomsday",
+    restriction: "/restrictions/r-13.PNG",
+  },
+]
 
 export default function MovieSection() {
   return (
@@ -187,6 +253,54 @@ export default function MovieSection() {
           </a>
         ))}
       </div>
+
+      <div className="presale-heading">
+        <p className="eyebrow">
+          <span />
+          PRÓXIMAMENTE
+        </p>
+        <h3>Las próximas historias que llegan a la pantalla</h3>
+      </div>
+
+      <div className="movies-grid movies-grid--presale">
+  {presaleMovies.map((movie) => (
+    <article
+      className="movie-card-link movie-card-link--presale"
+      key={movie.key}
+    >
+      <div className="movie-card">
+        <div className="movie-card__image">
+          <div className="movie-card__frame">
+            <img
+              className="movie-card__poster"
+              src={movie.img}
+              alt={`Afiche de ${movie.title}`}
+              loading="lazy"
+            />
+
+            <img
+              className="movie-card__restriction"
+              src={movie.restriction}
+              alt={`Clasificación de edad para ${movie.title}`}
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div className="movie-card__info">
+          <span className="movie-card__meta">
+            {movie.meta} -{" "}
+            <span className="movie-card__status">
+              {movie.status}
+            </span>
+          </span>
+
+          <h3>{movie.title}</h3>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
     </section>
   );
 }

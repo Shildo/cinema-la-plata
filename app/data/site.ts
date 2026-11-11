@@ -1,5 +1,15 @@
+export const SITE_NUMBERS = {
+  city: "01",
+  paradiso: "02",
+  ocho: "03",
+  rocha: "04",
+  sanMartin: "05",
+} as const;
+
+export type SiteNumber = (typeof SITE_NUMBERS)[keyof typeof SITE_NUMBERS];
+
 export type Site = {
-  number: string;
+  number: SiteNumber;
   name: string;
   location: string;
   imgURL: string;
@@ -15,7 +25,7 @@ export type Site = {
 
 export const sites: Site[] = [
   {
-    number: "01",
+    number: SITE_NUMBERS.city,
     name: "Cinema City",
     location: "Calle 50 entre 9 y 10.",
     imgURL: "/sedes/city.JPEG",
@@ -29,7 +39,7 @@ export const sites: Site[] = [
     logoURL: "/sedes/citylogo.png",
   },
   {
-    number: "02",
+    number: SITE_NUMBERS.paradiso,
     name: "Cinema Paradiso",
     location: "Calle 46 entre 10 y 11.",
     imgURL: "/sedes/paradiso.JPEG",
@@ -43,7 +53,7 @@ export const sites: Site[] = [
     logoURL: "/sedes/paradisologo.png",
   },
   {
-    number: "03",
+    number: SITE_NUMBERS.ocho,
     name: "Cinema Ocho",
     location: "Calle 8 entre 51 y 53.",
     imgURL: "/sedes/ocho.jpeg",
@@ -57,7 +67,7 @@ export const sites: Site[] = [
     logoURL: "/sedes/ochologo.png",
   },
   {
-    number: "04",
+    number: SITE_NUMBERS.rocha,
     name: "Cinema Rocha",
     location: "Calle 49 entre 7 y 8.",
     imgURL: "/sedes/rocha.JPEG",
@@ -71,7 +81,7 @@ export const sites: Site[] = [
     logoURL: "/sedes/rochalogo.png",
   },
   {
-    number: "05",
+    number: SITE_NUMBERS.sanMartin,
     name: "Cinema San Martín",
     location: "Avenida 7 entre 50 y 51.",
     imgURL: "/sedes/san-martin.JPEG",
