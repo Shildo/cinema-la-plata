@@ -5,6 +5,7 @@ import type { TouchEvent } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { sites } from "../../../app/data/site";
 import styles from "./TechnologyCarousel.module.css";
+import Characteristics from "@/components/Characteristics/Characteristics";
 
 export default function TechnologyCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -88,17 +89,18 @@ export default function TechnologyCarousel() {
           <p className={styles.technologyDescription}>{site.technologyDescription}</p>
 
           <div className={styles.highlightsBlock}>
-            <span className={styles.highlightsLabel}>LO QUE LO DISTINGUE</span>
-            <ul className={styles.highlights}>
-              {site.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
+            <span className={styles.highlightsLabel}>TECNOLOGÍAS</span>
           </div>
 
           <div className={styles.formats} aria-label="Formatos disponibles">
             {site.formats.map((format) => <span key={format}>{format}</span>)}
           </div>
+          
+          <div className={styles.highlightsBlock}>
+            <span className={styles.highlightsLabel}>CARACTERÍSTICAS</span>
+          </div>
+
+          <Characteristics text={site.characteristics} />
 
         </div>
       </div>

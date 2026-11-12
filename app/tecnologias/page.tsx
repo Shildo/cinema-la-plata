@@ -12,7 +12,7 @@ export default function TechnologiesPage() {
         <div className={styles.layout}>
           <header className={styles.header}>
             <p className={styles.eyebrow}>EXPERIENCIA CINEMA</p>
-            <h1>La tecnología también es parte de la historia.</h1>
+            <h1>La tecnología también es parte de la historia</h1>
             <p className={styles.description}>
               Conocé los formatos y espacios de cada complejo. Pasá de una sede a otra para encontrar la experiencia que buscás.
             </p>

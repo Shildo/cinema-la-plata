@@ -1,6 +1,18 @@
 "use client";
 
-const movies = [
+type Movie = {
+  key: number;
+  title: string;
+  status: string;
+  meta: string;
+  img: string;
+  url: string;
+  restriction: string;
+  badge?: string;
+  soonToLeave?: boolean;
+}
+
+const movies: Movie[] = [
   {
     key: 0,
     title: "Spider-Man",
@@ -18,6 +30,7 @@ const movies = [
     img: "/peliculas/aficheMinions.jpeg",
     url: "/pelicula/minions",
     restriction: "/restrictions/general.PNG",
+    soonToLeave: true,
   },
   {
     key: 2,
@@ -45,6 +58,7 @@ const movies = [
     img: "/peliculas/aficheOdisea.jpeg",
     url: "/pelicula/odisea",
     restriction: "/restrictions/supervision-parental.PNG",
+    soonToLeave: true,
   },
   {
     key: 5,
@@ -72,6 +86,7 @@ const movies = [
     img: "/peliculas/aficheMichael.jpg",
     url: "/pelicula/michael",
     restriction: "/restrictions/r-13.PNG",
+    soonToLeave: true,
   },
   {
     key: 8,
@@ -127,6 +142,7 @@ const movies = [
     img: "/peliculas/aficheProyectoFinDelMundo.jpg",
     url: "/pelicula/proyecto-fin-del-mundo",
     restriction: "/restrictions/r-13.PNG",
+    soonToLeave: true,
   },
   {
     key: 14,
@@ -224,6 +240,10 @@ export default function MovieSection() {
                     alt={`Clasificación de edad para ${movie.title}`}
                     loading="lazy"
                   />
+                  
+                  {movie.soonToLeave && (
+                    <span className="movie-card__tag">ÚLTIMOS DÍAS</span>
+                  )}
                 </div>
 
                 {movie.badge && (
@@ -240,7 +260,7 @@ export default function MovieSection() {
                 <span className="movie-card__meta">
                   {movie.meta} -{" "}
                   <span className="movie-card__status">
-                     {movie.status}
+                    {movie.status}
                   </span>
                 </span>
 
@@ -292,7 +312,7 @@ export default function MovieSection() {
                 <span className="movie-card__meta">
                   {movie.meta} -{" "}
                   <span className="movie-card__status">
-                     {movie.status}
+                    {movie.status}
                   </span>
                 </span>
 

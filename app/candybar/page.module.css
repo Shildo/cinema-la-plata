@@ -3,9 +3,9 @@
   overflow: hidden;
   padding: clamp(7rem, 11vw, 10rem) clamp(1.25rem, 7vw, 7rem) 5rem;
   background:
-    radial-gradient(ellipse at 8% 8%, color-mix(in srgb, var(--purple) 18%, transparent), transparent 34%),
+    radial-gradient(ellipse at 8% 8%, color-mix(in srgb, var(--blue) 18%, transparent), transparent 34%),
     radial-gradient(ellipse at 92% 42%, color-mix(in srgb, var(--blue) 15%, transparent), transparent 38%),
-    linear-gradient(128deg, #08050b 0%, color-mix(in srgb, var(--purple) 10%, var(--black)) 48%, color-mix(in srgb, var(--red) 8%, var(--black)) 100%);
+    linear-gradient(128deg, #08050b 0%, color-mix(in srgb, var(--red) 10%, var(--black)) 48%, color-mix(in srgb, var(--red) 8%, var(--black)) 100%);
   color: var(--white);
 }
 
@@ -47,7 +47,7 @@
 }
 
 .heroCopy h1 span {
-  color: var(--purple);
+  color: var(--orange);
 }
 
 .heroDescription {
@@ -86,6 +86,7 @@
   position: relative;
   min-width: 0;
   padding: 0 0 2.5rem 2rem;
+  container-type: inline-size;
 }
 
 .heroVisual::before {
@@ -94,7 +95,7 @@
   right: -1rem;
   bottom: 1rem;
   left: 3rem;
-  border: 1px solid color-mix(in srgb, var(--purple) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red) 58%, transparent);
   content: "";
 }
 
@@ -112,38 +113,29 @@
 .photoCaption {
   position: absolute;
   z-index: 2;
-  right: 1.5rem;
-  bottom: 1rem;
+  right: clamp(0.5rem, 4.3cqw, 1.5rem);
+  bottom: clamp(0.5rem, 2.9cqw, 1rem);
   display: grid;
-  gap: 0.4rem;
-  max-width: 260px;
-  padding: 1rem 1.2rem;
+  gap: clamp(0.2rem, 1.1cqw, 0.4rem);
+  width: max-content;
+  padding: clamp(0.6rem, 2.9cqw, 1rem) clamp(0.75rem, 3.4cqw, 1.2rem);
   background: var(--black);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .photoCaption span {
   color: var(--yellow);
-  font-size: 0.58rem;
+  font-size: clamp(0.5rem, 1.66cqw, 0.58rem);
   font-weight: 800;
   letter-spacing: 0.12em;
+  white-space: nowrap;
 }
 
 .photoCaption strong {
   font-family: "Satoshi Medium", sans-serif;
-  font-size: 1.15rem;
+  font-size: clamp(0.85rem, 3.3cqw, 1.15rem);
   font-weight: 500;
-}
-
-.popcornDecoration {
-  position: absolute;
-  z-index: 3;
-  bottom: -1.5rem;
-  left: -2rem;
-  width: clamp(120px, 18vw, 230px);
-  transform: rotate(-9deg);
-  filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.48));
-  pointer-events: none;
+  white-space: nowrap;
 }
 
 .moments {
@@ -185,9 +177,9 @@
   height: 105px;
   margin: 0 0 2rem;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--purple) 68%, transparent);
-  background: radial-gradient(circle, color-mix(in srgb, var(--purple) 22%, transparent), transparent 72%);
-  color: color-mix(in srgb, var(--purple) 72%, var(--white));
+  border: 1px solid color-mix(in srgb, var(--orange) 68%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--orange) 22%, transparent), transparent 72%);
+  color: color-mix(in srgb, var(--orange) 72%, var(--white));
 }
 
 .momentCard h3 {
@@ -213,12 +205,11 @@
   gap: 2rem;
   margin-top: clamp(4rem, 8vw, 7rem);
   padding: clamp(1.5rem, 4vw, 3rem);
-  border: 1px solid color-mix(in srgb, var(--purple) 38%, transparent);
+  border: 1px solid color-mix(in srgb, var(--orange) 38%, transparent);
   background: linear-gradient(
     110deg,
-    color-mix(in srgb, var(--purple) 16%, var(--black)),
-    color-mix(in srgb, var(--blue) 13%, var(--black)) 58%,
-    color-mix(in srgb, var(--red) 10%, var(--black))
+    color-mix(in srgb, var(--blue) 16%, var(--black)),
+    color-mix(in srgb, var(--red) 16%, var(--black))
   );
 }
 
@@ -276,11 +267,6 @@
 
   .heroVisual::before {
     left: 2rem;
-  }
-
-  .popcornDecoration {
-    left: -1rem;
-    width: 34vw;
   }
 
   .momentGrid {

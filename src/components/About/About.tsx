@@ -1,21 +1,126 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const photos = [
+  {
+    src: "/backgrounds/family-ocho.PNG",
+    alt: "multiplex ocho 123",
+  },
+  {
+    src: "/backgrounds/3Dglasses.png",
+    alt: "Familia disfrutando una experiencia en Cinema La Plata",
+  },
+  // { src: "/backgrounds/foto-2.jpg", alt: "Descripción de la foto 2" },
+  // { src: "/backgrounds/foto-3.jpg", alt: "Descripción de la foto 3" },
+];
+
 export default function About() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const goTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const target = (index + photos.length) % photos.length;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    track.scrollTo({
+      left: target * track.clientWidth,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  };
+
+  const handleScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    setActiveIndex(Math.round(track.scrollLeft / track.clientWidth));
+  };
+
   return (
     <section id="nosotros" className="about-section">
       <div className="about-image">
-        <img
-          src="/backgrounds/family-ocho.PNG"
-          alt="Familia disfrutando una experiencia en Cinema La Plata"
-          style={{scale: 1.2}}
-        />
+        <div
+          className="about-carousel"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Fotos de Cinema La Plata"
+        >
+          <div
+            className="about-carousel__track"
+            ref={trackRef}
+            onScroll={handleScroll}
+          >
+            {photos.map((photo, index) => (
+              <div
+                className="about-carousel__slide"
+                key={photo.src}
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label={`Foto ${index + 1} de ${photos.length}`}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+
+          {photos.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="about-carousel__arrow about-carousel__arrow--prev"
+                onClick={() => goTo(activeIndex - 1)}
+                aria-label="Foto anterior"
+              >
+                <ChevronLeft size={22} />
+              </button>
+
+              <button
+                type="button"
+                className="about-carousel__arrow about-carousel__arrow--next"
+                onClick={() => goTo(activeIndex + 1)}
+                aria-label="Foto siguiente"
+              >
+                <ChevronRight size={22} />
+              </button>
+
+              <div
+                className="about-carousel__dots"
+                role="group"
+                aria-label="Seleccionar foto"
+              >
+                {photos.map((photo, index) => (
+                  <button
+                    key={photo.src}
+                    type="button"
+                    className={`about-carousel__dot ${
+                      index === activeIndex ? "about-carousel__dot--active" : ""
+                    }`}
+                    onClick={() => goTo(index)}
+                    aria-label={`Ver foto ${index + 1}`}
+                    aria-current={index === activeIndex ? "true" : undefined}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="about-copy">
-        <p className="about-eyebrow">
-          NOSOTROS
-        </p>
+        <p className="about-eyebrow">NOSOTROS</p>
 
         <h2>
-          El cine que siempre 
+          El cine que siempre
           <br />
           te acompaña
         </h2>

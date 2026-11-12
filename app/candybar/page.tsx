@@ -39,7 +39,7 @@ export default function CandyBarPage() {
             <h1>
               La función
               <br />
-              <span>empieza antes.</span>
+              <span>empieza antes</span>
             </h1>
             <p className={styles.heroDescription}>
               Pochoclos, bebidas y algo rico para acompañar tu película favorita.
@@ -60,14 +60,13 @@ export default function CandyBarPage() {
               <span>UN CLÁSICO DE CADA VISITA</span>
               <strong>Nos vemos en el Candy</strong>
             </div>
-            <img className={styles.popcornDecoration} src="/popcorn-candybar.svg" alt="" aria-hidden="true" />
           </div>
         </section>
 
         <section className={styles.moments} aria-labelledby="moments-title">
           <div className={styles.sectionHeading}>
             <p className={styles.eyebrow}>EL PLAN COMPLETO</p>
-            <h2 id="moments-title">Elegí con qué acompañar la historia.</h2>
+            <h2 id="moments-title">Elegí con qué acompañar la historia</h2>
           </div>
 
           <div className={styles.momentGrid}>

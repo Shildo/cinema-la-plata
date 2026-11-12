@@ -11,17 +11,17 @@ type BenefitsView = "hub" | "discounts" | "promotions";
 const viewContent = {
   hub: {
     eyebrow: "BENEFICIOS CINEMA",
-    title: "Elegí cómo disfrutar más.",
+    title: "Elegí cómo disfrutar más",
     description: "Conocé los descuentos vigentes y las promociones de Cinema La Plata.",
   },
   discounts: {
     eyebrow: "BENEFICIOS · DESCUENTOS",
-    title: "Más cine, mejores precios.",
+    title: "Más cine, mejores precios",
     description: "Revisá los descuentos disponibles según el día, el horario y el formato de la función.",
   },
   promotions: {
     eyebrow: "BENEFICIOS · PROMOCIONES",
-    title: "Promociones para disfrutar más.",
+    title: "Promociones para disfrutar más",
     description: "Conocé los beneficios de nuestros bancos, comercios aliados y comunidades.",
   },
 } satisfies Record<BenefitsView, { eyebrow: string; title: string; description: string }>;
@@ -33,7 +33,6 @@ export default function BenefitsPages({ view }: { view: BenefitsView }) {
     <>
       <Navbar />
       <main className={styles.page}>
-        <div className={styles.ambient} aria-hidden="true" />
         <div className={styles.content}>
           {view !== "hub" && (
             <Link className={styles.backLink} href="/beneficios">
