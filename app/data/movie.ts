@@ -18,52 +18,6 @@ export type Movie = {
   siteNumbers?: SiteNumber[];
 };
 
-export const presaleMovies: Movie[] = [
-  {
-    slug: "queres-ser-mi-hijo",
-    title: "¿Queres ser mi hijo?",
-    meta: "COMEDIA / DRAMA",
-    synopsis: "Lucía tiene 40 años y su vida cambia tras descubrir una infidelidad. Para conseguir un empleo donde le piden que sea madre, le propone a su joven vecino Javier que finja ser su hijo a cambio de dejarlo hacer fiestas.",
-    image: "/peliculas/aficheQueresSerMiHijo.jpg",
-    trailer: "https://www.youtube.com/watch?v=AQdSYSSypFQ",
-    duration: "1h 38min",
-    genre: "Comedia Drama",
-    formats: ["HD"],
-    languages: ["castellano"],
-    restriction: "/restrictions/r-13.PNG",
-    siteNumbers: [SITE_NUMBERS.paradiso, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
-  },
-  {
-    slug: "dune-3",
-    title: "Dune 3",
-    meta: "ACCIÓN / AVENTURA",
-    synopsis: "El emperador Pablo Atreides se enfrenta a las consecuencias de su ascenso al poder, ya que las tramas políticas y una guerra santa en toda la galaxia ponen en peligro el futuro que solo él puede ver.",
-    image: "/peliculas/aficheDune3.jpg",
-    trailer: "https://www.youtube.com/watch?v=9iuVf3Ppb7U",
-    duration: "2h 30min",
-    genre: "Acción Aventura",
-    formats: ["HD", "3D", "4D", "ATMOS"],
-    languages: ["castellano", "subtitulada"],
-    restriction: "/restrictions/r-13.PNG",
-    siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
-  },
-  {
-    slug: "avengers-doomsday",
-    title: "Avengers: Doomsday",
-    meta: "ACCIÓN / AVENTURA",
-    synopsis: "Los héroes de tres mundos diferentes deben unirse cuando se unen para enfrentar un peligro catastrófico que podría destruir todo lo que saben.",
-    image: "/peliculas/aficheAvengersDoomsday.jpg",
-    trailer: "https://www.youtube.com/watch?v=jyoTi0gPgNY",
-    duration: "2h 45min",
-    genre: "Acción Aventura",
-    formats: ["HD", "3D", "4D", "ATMOS"],
-    languages: ["castellano", "subtitulada"],
-    restriction: "/restrictions/r-13.PNG",
-    siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
-  }
-]
-
-
 export const movies: Movie[] = [
   {
     slug: "spiderman",
@@ -303,6 +257,48 @@ export const movies: Movie[] = [
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.rocha],
   },
+  {
+    slug: "queres-ser-mi-hijo",
+    title: "¿Queres ser mi hijo?",
+    meta: "COMEDIA / DRAMA",
+    synopsis: "Lucía tiene 40 años y su vida cambia tras descubrir una infidelidad. Para conseguir un empleo donde le piden que sea madre, le propone a su joven vecino Javier que finja ser su hijo a cambio de dejarlo hacer fiestas.",
+    image: "/peliculas/aficheQueresSerMiHijo.jpg",
+    trailer: "https://www.youtube.com/watch?v=AQdSYSSypFQ",
+    duration: "1h 38min",
+    genre: "Comedia Drama",
+    formats: ["HD"],
+    languages: ["castellano"],
+    restriction: "/restrictions/r-13.PNG",
+    siteNumbers: [SITE_NUMBERS.paradiso, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
+  },
+  {
+    slug: "dune-3",
+    title: "Dune 3",
+    meta: "ACCIÓN / AVENTURA",
+    synopsis: "El emperador Pablo Atreides se enfrenta a las consecuencias de su ascenso al poder, ya que las tramas políticas y una guerra santa en toda la galaxia ponen en peligro el futuro que solo él puede ver.",
+    image: "/peliculas/aficheDune3.jpg",
+    trailer: "https://www.youtube.com/watch?v=9iuVf3Ppb7U",
+    duration: "2h 30min",
+    genre: "Acción Aventura",
+    formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
+    restriction: "/restrictions/r-13.PNG",
+    siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
+  },
+  {
+    slug: "avengers-doomsday",
+    title: "Avengers: Doomsday",
+    meta: "ACCIÓN / AVENTURA",
+    synopsis: "Los héroes de tres mundos diferentes deben unirse cuando se unen para enfrentar un peligro catastrófico que podría destruir todo lo que saben.",
+    image: "/peliculas/aficheAvengersDoomsday.jpg",
+    trailer: "https://www.youtube.com/watch?v=jyoTi0gPgNY",
+    duration: "2h 45min",
+    genre: "Acción Aventura",
+    formats: ["HD", "3D", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
+    restriction: "/restrictions/r-13.PNG",
+    siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
+  }
 ];
 
 export function getMovie(slug: string) {

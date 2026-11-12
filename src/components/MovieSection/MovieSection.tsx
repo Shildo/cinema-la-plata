@@ -262,45 +262,49 @@ export default function MovieSection() {
         <h3>Las próximas historias que llegan a la pantalla</h3>
       </div>
 
-      <div className="movies-grid movies-grid--presale">
-  {presaleMovies.map((movie) => (
-    <article
-      className="movie-card-link movie-card-link--presale"
-      key={movie.key}
-    >
-      <div className="movie-card">
-        <div className="movie-card__image">
-          <div className="movie-card__frame">
-            <img
-              className="movie-card__poster"
-              src={movie.img}
-              alt={`Afiche de ${movie.title}`}
-              loading="lazy"
-            />
+      <div className="movies-grid">
+        {presaleMovies.map((movie) => (
+          <a
+            href={movie.url}
+            className="movie-card-link"
+            key={movie.key}
+          >
+            <article className="movie-card">
 
-            <img
-              className="movie-card__restriction"
-              src={movie.restriction}
-              alt={`Clasificación de edad para ${movie.title}`}
-              loading="lazy"
-            />
-          </div>
-        </div>
+              <div className="movie-card__image">
+                <div className="movie-card__frame">
+                  <img
+                    className="movie-card__poster"
+                    src={movie.img}
+                    alt={`Afiche de ${movie.title}`}
+                  />
 
-        <div className="movie-card__info">
-          <span className="movie-card__meta">
-            {movie.meta} -{" "}
-            <span className="movie-card__status">
-              {movie.status}
-            </span>
-          </span>
+                  <img
+                    className="movie-card__restriction"
+                    src={movie.restriction}
+                    alt={`Clasificación de edad para ${movie.title}`}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
 
-          <h3>{movie.title}</h3>
-        </div>
+              <div className="movie-card__info">
+                <span className="movie-card__meta">
+                  {movie.meta} -{" "}
+                  <span className="movie-card__status">
+                     {movie.status}
+                  </span>
+                </span>
+
+                <h3>{movie.title}</h3>
+
+                
+              </div>
+
+            </article>
+          </a>
+        ))}
       </div>
-    </article>
-  ))}
-</div>
     </section>
   );
 }
