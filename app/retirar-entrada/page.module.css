@@ -4,8 +4,8 @@
   justify-content: center;
   min-height: 100vh;
   padding: 30px 50px;
-  background: linear-gradient(to bottom right, var(--blue), var(--black));
   color: var(--white);
+  background: var(--black) url("/backgrounds/background.png") center / cover no-repeat;
   font-family: "Satoshi Medium", sans-serif;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .retirarContent {
-  min-height: 400px;
+  min-height: 0;
   height: auto;
   width: 100%;
   max-width: 1500px;
@@ -66,9 +66,11 @@
 
 .retirarSearch {
   padding: 20px;
+  border: 1px solid rgba(239, 229, 206, 0.14);
   border-radius: 24px;
-  background: #fff;
-  color: var(--black);
+  background: var(--black);
+  color: var(--white);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +81,7 @@
 
 .retirarSearch label {
   justify-self: center;
-  color: var(--blue);
+  color: var(--yellow);
   font-size: 2rem;
   font-weight: 700;
 }
@@ -92,21 +94,30 @@
   border: 4px solid var(--blue);
   border-radius: 14px;
   outline: none;
-  background: #fff;
-  color: var(--black);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
   font-family: "Satoshi Medium", sans-serif;
   font-size: 28px;
   font-weight: 600;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .retirarSearch input:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 5px rgba(198, 0, 159, 0.15);
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 5px rgba(255, 221, 18, 0.18);
 }
 
 .retirarSearch input::placeholder {
-  color: var(--black);
+  color: var(--white);
   opacity: 0.35;
+}
+
+.retirarError {
+  margin: 0;
+  color: var(--red);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .retirarSearch > button {
@@ -159,7 +170,23 @@
   border-radius: 14px;
   background: transparent;
   color: var(--white);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+  
+  /* Hendiduras transparentes arriba y abajo */
+  -webkit-mask-image:
+    radial-gradient(circle at 14px 0, transparent 7px, #000 7.5px),
+    radial-gradient(circle at 14px 12px, transparent 7px, #000 7.5px),
+    linear-gradient(#000, #000);
+  mask-image:
+    radial-gradient(circle at 14px 0, transparent 7px, #000 7.5px),
+    radial-gradient(circle at 14px 12px, transparent 7px, #000 7.5px),
+    linear-gradient(#000, #000);
+  -webkit-mask-size: 28px 12px, 28px 12px, 100% calc(100% - 24px);
+  mask-size: 28px 12px, 28px 12px, 100% calc(100% - 24px);
+  -webkit-mask-position: 0 0, 0 100%, 0 12px;
+  mask-position: 0 0, 0 100%, 0 12px;
+  -webkit-mask-repeat: repeat-x, repeat-x, no-repeat;
+  mask-repeat: repeat-x, repeat-x, no-repeat;
+
 }
 
 .ticket::before,
@@ -310,7 +337,7 @@
 ========================= */
 
 .retirarEmpty {
-  min-height: 450px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -498,16 +525,15 @@
   }
 
   .retirarContent {
-    flex: 1;
+    flex: 0 0 auto;
+    height: clamp(480px, 62vh, 580px);
     min-height: 0;
-    height: auto;
+    align-items: stretch;
     gap: clamp(24px, 4vw, 64px);
   }
 
   .retirarSearch {
-    box-sizing: border-box;
-    padding: clamp(16px, 2vw, 24px);
-    gap: clamp(20px, 6vh, 56px);
+    align-self: center;
   }
 
   .retirarSearch label {
@@ -522,23 +548,20 @@
   }
 
   .retirarPreview {
+    align-self: stretch;
     min-height: 0;
-    overflow: hidden;
-    padding: clamp(12px, 1.5vw, 18px);
-    gap: 12px;
-    justify-content: center;
   }
 
   .ticket {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  overflow: hidden;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--white);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
-}
+    flex: 1 1 auto;
+    min-height: 0;
+  } 
+
+  .retirarEmpty {
+    flex: 1;
+    min-height: 0;
+  }
+
 
 .ticket::before,
 .ticket::after {
@@ -590,8 +613,11 @@
   }
 
   .ticketInfo h2 {
-    margin: 12px 0 12px;
-    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
 
   .ticketDetails {

@@ -3,18 +3,23 @@
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const photos = [
+const photos: {
+  src: string;
+  alt: string;
+  zoom?: number;
+  origin?: string;
+}[] = [
   {
     src: "/backgrounds/family-ocho.PNG",
     alt: "multiplex ocho 123",
+    zoom: 1.14,
+    origin: "top left",
   },
   {
     src: "/backgrounds/3Dglasses.png",
     alt: "Familia disfrutando una experiencia en Cinema La Plata",
   },
-  // { src: "/backgrounds/foto-2.jpg", alt: "Descripción de la foto 2" },
-  // { src: "/backgrounds/foto-3.jpg", alt: "Descripción de la foto 3" },
-];
+]
 
 export default function About() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -68,6 +73,10 @@ export default function About() {
                   alt={photo.alt}
                   loading={index === 0 ? "eager" : "lazy"}
                   draggable={false}
+                  style={{
+                    transform: photo.zoom ? `scale(${photo.zoom})` : undefined,
+                    transformOrigin: photo.origin ?? "center",
+                  }}
                 />
               </div>
             ))}

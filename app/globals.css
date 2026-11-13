@@ -1155,7 +1155,6 @@ p {
   height: 1.5rem;
   padding: 0 0.6rem;
 
-  border-radius: 50px;
   background: var(--red);
   color: var(--white);
 
@@ -2091,6 +2090,7 @@ p {
 
 .about-carousel__slide {
   flex: 0 0 100%;
+  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
