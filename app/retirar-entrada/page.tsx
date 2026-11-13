@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getOnlineTicketPrice } from "../data/pricing"; // ajustá la ruta a tu pricing.ts
 import styles from "./page.module.css";
 
 const mockTickets = [
@@ -9,8 +10,9 @@ const mockTickets = [
     dni: "40123456",
     pelicula: "Spider-Man",
     poster: "/peliculas/aficheSpiderman.jpeg",
-    fecha: "22/09/2026",
+    fecha: "21/09/2026",
     horario: "20:30",
+    dia: "LUN",
     sala: "Sala 3",
     cine: "Cinema City",
     asiento: "F12",
@@ -24,6 +26,7 @@ const mockTickets = [
     poster: "/peliculas/aficheMinions.jpeg",
     fecha: "22/09/2026",
     horario: "18:00",
+    dia: "MAR",
     sala: "Sala 1",
     cine: "Cinema Paradiso",
     asiento: "C08",
@@ -37,6 +40,7 @@ const mockTickets = [
     poster: "/peliculas/aficheToystory5.jpeg",
     fecha: "23/09/2026",
     horario: "16:30",
+    dia: "MIÉ",
     sala: "Sala 2",
     cine: "Cinema Ocho",
     asiento: "B14",
@@ -49,8 +53,9 @@ const mockTickets = [
     dni: "37654321",
     pelicula: "Narciso",
     poster: "/peliculas/aficheNarciso.jpeg",
-    fecha: "23/09/2026",
+    fecha: "26/09/2026",
     horario: "21:00",
+    dia: "SÁB",
     sala: "Sala 4",
     cine: "Cinema San Martín",
     asiento: "G07",
@@ -59,24 +64,37 @@ const mockTickets = [
   },
 ];
 
+type Ticket = (typeof mockTickets)[number];
+
+function getTicketPrice(ticket: Ticket) {
+  const { ticketPrice } = getOnlineTicketPrice({
+    format: ticket.formato,
+    date: { label: ticket.dia },
+    time: ticket.horario,
+    seats: [ticket.asiento],
+  });
+
+  return ticketPrice;
+}
+
+const formatPrice = (value: number) => `$${value.toLocaleString("es-AR")}`;
+
 export default function RetirarEntradaPage() {
   const [search, setSearch] = useState("");
-  const [ticket, setTicket] = useState<
-    (typeof mockTickets)[number] | null
-  >(null);
+  const [ticket, setTicket] = useState<Ticket | null>(null);
   const [searched, setSearched] = useState(false);
 
   const handleSearch = () => {
-  if (!search.trim()) {
-    return;
-  }
+    if (!search.trim()) {
+      return;
+    }
 
-  const number = parseInt(search, 10);
-  const ticketIndex = number % mockTickets.length;
+    const number = parseInt(search, 10);
+    const ticketIndex = number % mockTickets.length;
 
-  setTicket(mockTickets[ticketIndex]);
-  setSearched(true);
-};
+    setTicket(mockTickets[ticketIndex]);
+    setSearched(true);
+  };
 
   const handlePrint = () => {
     window.print();
@@ -114,7 +132,7 @@ export default function RetirarEntradaPage() {
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-              handleSearch();
+                handleSearch();
               }
             }}
             placeholder="Ingresá tu DNI"
@@ -196,7 +214,7 @@ export default function RetirarEntradaPage() {
                     <div><span style={{ fontWeight: 700 }}>Asiento</span><strong style={{ fontWeight: 700 }}>{ticket.asiento}</strong></div>
                   </div>
                   <div style={{ textAlign: "center", margin: "1rem" }}>
-                    <strong>$8.000</strong>
+                    <strong>{formatPrice(getTicketPrice(ticket))}</strong>
                   </div>
                   <footer className={styles.receiptFooter}>Talón para espectador</footer>
                 </div>
