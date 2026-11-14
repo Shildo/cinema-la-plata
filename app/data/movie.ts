@@ -298,6 +298,20 @@ export const movies: Movie[] = [
     languages: ["castellano", "subtitulada"],
     restriction: "/restrictions/r-13.PNG",
     siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
+  },
+  {
+    slug: "los-juegos-del-hambre-amanecer-en-la-cosecha",
+    title: "Los Juegos del Hambre: Amanecer en la cosecha",
+    meta: "CIENCIA FICCIÓN / AVENTURA",
+    synopsis: "Ambientada décadas antes de los eventos liderados por Katniss y Peeta, la historia sigue a Haymitch Abernathy, el enigmático ganador del 50° Torneo de Los juegos del hambre, en una versión más brutal y decisiva de la competencia. La película también mostrará la primera aparición televisiva de Caesar Flickerman, cuya cobertura transformará para siempre la forma en que Panem vive los Juegos.",
+    image: "/peliculas/aficheLosJuegosDelHambre.jpg",
+    trailer: "https://www.youtube.com/watch?v=Cvre7nHRnMk",
+    duration: "2h 38min",
+    genre: "Ciencia Ficción Aventura",
+    formats: ["HD", "4D", "ATMOS"],
+    languages: ["castellano", "subtitulada"],
+    restriction: "/restrictions/r-13.PNG",
+    siteNumbers: [SITE_NUMBERS.city, SITE_NUMBERS.paradiso, SITE_NUMBERS.ocho, SITE_NUMBERS.rocha, SITE_NUMBERS.sanMartin],
   }
 ];
 

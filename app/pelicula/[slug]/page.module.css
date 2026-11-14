@@ -101,8 +101,8 @@
   margin: 0;
 
   font-family: "Satoshi Medium", sans-serif;
-  font-size: clamp(4rem, 8vw, 8rem);
-  line-height: 0.85;
+  font-size: clamp(4rem, 5vw, 6rem);
+  line-height: 1;
   letter-spacing: -0.06em;
   font-weight: 400;
 }

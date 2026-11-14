@@ -192,6 +192,15 @@ const presaleMovies = [
     url: "/pelicula/avengers-doomsday",
     restriction: "/restrictions/r-13.PNG",
   },
+  {
+    key: 1003,
+    title: "Los Juegos del Hambre: Amanecer en la cosecha",
+    status: "Próximamente",
+    meta: "CIENCIA FICCIÓN / AVENTURA",
+    img: "/peliculas/aficheLosJuegosDelHambre.jpg",
+    url: "/pelicula/los-juegos-del-hambre-amanecer-en-la-cosecha",
+    restriction: "/restrictions/r-13.PNG",
+  }
 ]
 
 export default function MovieSection() {
