@@ -1015,6 +1015,10 @@ p {
   font-weight: 400;
 }
 
+.section-heading p {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
 .section-copy {
   margin-top: 1rem;
   color: var(--white);
@@ -1690,9 +1694,9 @@ p {
 
 .experience-main > p:not(.experience-eyebrow) {
   max-width: 500px;
-  margin-bottom: 30px;
+  margin: 12px 0;
   color: var(--white);
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .experience-grid {

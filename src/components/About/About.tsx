@@ -10,14 +10,22 @@ const photos: {
   origin?: string;
 }[] = [
   {
-    src: "/backgrounds/family-ocho.PNG",
-    alt: "multiplex ocho 123",
+    src: "/CarouselAbout/CarouselAboutImg4.PNG",
+    alt: "Img4",
     zoom: 1.14,
     origin: "top left",
   },
   {
-    src: "/backgrounds/3Dglasses.png",
-    alt: "Familia disfrutando una experiencia en Cinema La Plata",
+    src: "/CarouselAbout/CarouselAboutImg1.PNG",
+    alt: "Img1",
+  },
+  {
+    src: "/CarouselAbout/CarouselAboutImg2.jpeg",
+    alt: "Img2",
+  },
+  {
+    src: "/CarouselAbout/CarouselAboutImg3.PNG",
+    alt: "Img3",
   },
 ]
 

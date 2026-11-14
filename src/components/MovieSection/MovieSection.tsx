@@ -278,7 +278,7 @@ export default function MovieSection() {
         <p className="eyebrow">
           PREVENTA
         </p>
-        <h3>Las próximas historias que llegan a la pantalla</h3>
+        <h3>Llegan pronto a la pantalla grande</h3>
       </div>
 
       <div className="movies-grid">
