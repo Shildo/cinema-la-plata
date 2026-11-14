@@ -2085,10 +2085,20 @@ p {
 }
 
 .about-carousel__slide {
+  position: relative;
   flex: 0 0 100%;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.about-carousel__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  opacity: 0.25;
+  pointer-events: none;
 }
 
 .about-carousel__arrow {
