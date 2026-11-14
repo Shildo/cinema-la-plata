@@ -35,7 +35,7 @@ const movies: Movie[] = [
   {
     key: 2,
     title: "Sólo por una noche",
-    status: "Próximamente",
+    status: "En cartelera",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheSoloPorUnaNoche.jpeg",
     url: "/pelicula/solo-por-una-noche",
@@ -44,7 +44,7 @@ const movies: Movie[] = [
   {
     key: 3,
     title: "Yo, Narciso",
-    status: "Próximamente",
+    status: "Estreno",
     meta: "COMEDIA / ROMANCE",
     img: "/peliculas/aficheNarciso.jpeg",
     url: "/pelicula/narciso",
@@ -168,7 +168,7 @@ const presaleMovies = [
   {
     key: 1000,
     title: "¿Queres ser mi hijo?",
-    status: "Preventa",
+    status: "Próximamente",
     meta: "COMEDIA / DRAMA",
     img: "/peliculas/aficheQueresSerMiHijo.jpg",
     url: "/pelicula/queres-ser-mi-hijo",
@@ -177,7 +177,7 @@ const presaleMovies = [
   {
     key: 1001,
     title: "Dune 3",
-    status: "Preventa",
+    status: "Próximamente",
     meta: "ACCIÓN / AVENTURA",
     img: "/peliculas/aficheDune3.jpg",
     url: "/pelicula/dune-3",
@@ -186,7 +186,7 @@ const presaleMovies = [
   {
     key: 1002,
     title: "Avengers: Doomsday",
-    status: "Preventa",
+    status: "Próximamente",
     meta: "ACCIÓN / AVENTURA",
     img: "/peliculas/aficheAvengersDoomsday.jpg",
     url: "/pelicula/avengers-doomsday",
@@ -274,10 +274,9 @@ export default function MovieSection() {
         ))}
       </div>
 
-      <div className="presale-heading">
+      <div className="presale-heading" id="preventa">
         <p className="eyebrow">
-          <span />
-          PRÓXIMAMENTE
+          PREVENTA
         </p>
         <h3>Las próximas historias que llegan a la pantalla</h3>
       </div>

@@ -9,6 +9,7 @@ import type { MockSession } from "@/lib/mock-session";
 
 const navItems = [
   { label: "Cartelera", href: "/#cartelera" },
+  { label: "Preventa", href: "/#preventa" },
   { label: "Complejos", href: "/#complejos" },
   { label: "Experiencia", href: "/#experiencia" },
   { label: "Nosotros", href: "/#nosotros" },
