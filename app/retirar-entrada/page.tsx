@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getOnlineTicketPrice } from "../data/pricing"; // ajustá la ruta a tu pricing.ts
+import { getOnlineTicketPrice } from "../data/pricing";
 import styles from "./page.module.css";
 
 const mockTickets = [
@@ -10,11 +10,11 @@ const mockTickets = [
     dni: "40123456",
     pelicula: "Spider-Man",
     poster: "/peliculas/aficheSpiderman.jpeg",
-    fecha: "21/09/2026",
+    fecha: "22/09/26",
     horario: "20:30",
-    dia: "LUN",
-    sala: "Sala 3",
-    cine: "Cinema City",
+    dia: "MAR",
+    sala: "1",
+    cine: "Cinema Rocha",
     asiento: "F12",
     formato: "ATMOS",
     logo: "/sedes/citylogoblack.png"
@@ -24,43 +24,56 @@ const mockTickets = [
     dni: "38987654",
     pelicula: "Minions",
     poster: "/peliculas/aficheMinions.jpeg",
-    fecha: "22/09/2026",
-    horario: "18:00",
-    dia: "MAR",
-    sala: "Sala 1",
-    cine: "Cinema Paradiso",
-    asiento: "C08",
-    formato: "3D",
+    fecha: "04/09/26",
+    horario: "17:00",
+    dia: "VIE",
+    sala: "2",
+    cine: "Cinema City",
+    asiento: "M10",
+    formato: "4D",
     logo: "/sedes/paradisologoblack.png"
   },
   {
     codigo: "CINE-2026-003",
-    dni: "42156789",
-    pelicula: "Toy Story 5",
-    poster: "/peliculas/aficheToystory5.jpeg",
-    fecha: "23/09/2026",
-    horario: "16:30",
-    dia: "MIÉ",
-    sala: "Sala 2",
-    cine: "Cinema Ocho",
-    asiento: "B14",
-    cantidad: 3,
+    dni: "37654321",
+    pelicula: "Yo, Narciso",
+    poster: "/peliculas/aficheNarciso.jpeg",
+    fecha: "03/09/26",
+    horario: "18:00",
+    dia: "JUE",
+    sala: "3",
+    cine: "Cinema San Martín",
+    asiento: "L6",
     formato: "HD",
-    logo: "/sedes/ochologoblack.png"
+    logo: "/sedes/san-martinlogoblack.png"
   },
   {
     codigo: "CINE-2026-004",
-    dni: "37654321",
-    pelicula: "Narciso",
-    poster: "/peliculas/aficheNarciso.jpeg",
-    fecha: "26/09/2026",
-    horario: "21:00",
-    dia: "SÁB",
-    sala: "Sala 4",
-    cine: "Cinema San Martín",
-    asiento: "G07",
+    dni: "42156789",
+    pelicula: "Agente Secreto",
+    poster: "/peliculas/aficheElAgenteSecreto.jpeg",
+    fecha: "31/08/26",
+    horario: "19:00",
+    dia: "LUN",
+    sala: "1",
+    cine: "Cinema Paradiso",
+    asiento: "G8",
     formato: "HD",
-    logo: "/sedes/san-martinlogoblack.png"
+    logo: "/sedes/paradisologoblack.png"
+  },
+  {
+    codigo: "CINE-2026-005",
+    dni: "42156789",
+    pelicula: "Toy Story",
+    poster: "/peliculas/aficheToystory5.jpeg",
+    fecha: "04/09/26",
+    horario: "17:00",
+    dia: "VIE",
+    sala: "1",
+    cine: "Cinema Ocho",
+    asiento: "H11",
+    formato: "3D",
+    logo: "/sedes/ochologoblack.png"
   },
 ];
 
@@ -208,37 +221,43 @@ export default function RetirarEntradaPage() {
                   <h2>{ticket.pelicula}</h2>
                   <div className={styles.receiptDetails}>
                     <div><span>Fecha</span>{ticket.fecha}</div>
-                    <div><span>Hora</span>{ticket.horario}</div>
+                    <div><span>Horario</span>{ticket.horario}</div>
                     <div><span>Sala</span>{ticket.sala}</div>
                     <div><span>Formato</span>{ticket.formato}</div>
                     <div><span style={{ fontWeight: 700 }}>Asiento</span><strong style={{ fontWeight: 700 }}>{ticket.asiento}</strong></div>
                   </div>
-                  <div style={{ textAlign: "center", margin: "1rem" }}>
+                  <div className={styles.receiptPrice}>
                     <strong>{formatPrice(getTicketPrice(ticket))}</strong>
                   </div>
-                  <footer className={styles.receiptFooter}>Talón para espectador</footer>
-                </div>
+                  <footer className={styles.receiptFooter}>
+                    <p>Talón para espectador</p>
+                    <span>INCAA - Lima 319</span>
+                  </footer>
+                </div> 
                 
 
                 <aside className={styles.receiptStub}>
-                  <strong className={styles.receiptStubTitle}>CONTROL</strong>
-                  <strong className={styles.receiptStubMovie}>{ticket.pelicula}</strong>
-                  <span>{ticket.cine}</span>
-                  <div>
-                    <span>FUNCIÓN</span>
-                    <strong>{ticket.fecha}</strong>
-                    <strong>{ticket.horario}</strong>
+                  <header className={styles.receiptHeader}>
+                    <img className={styles.ticketLogo} src={ticket.logo} alt={ticket.logo} />
+                  </header>
+                  <h2>{ticket.pelicula}</h2>
+                  <div className={styles.receiptDetails}>
+                    <div><span>Fecha</span>{ticket.fecha}</div>
+                    <div><span>Horario</span>{ticket.horario}</div>
+                    <div><span>Sala</span>{ticket.sala}</div>
+                    <div><span>Formato</span>{ticket.formato}</div>
+                    <div><span>Asiento</span>{ticket.asiento}</div>
                   </div>
-                  <div>
-                    <span>SALA / ASIENTO</span>
-                    <strong className={styles.receiptStubSeat}>{ticket.sala} · {ticket.asiento}</strong>
+                  <div className={styles.stubReceiptPrice}>
+                    <strong>{formatPrice(getTicketPrice(ticket))}</strong>
+                    <div><span>Exhib</span>600159</div>
+                    <div><span>CUIT</span>30-54223624-4</div>
+                    <div><span>Cod Sala</span>010471</div>
                   </div>
-                  <strong className={styles.receiptStubFormat}>{ticket.formato}</strong>
-                  <svg className={styles.receiptBarcode} viewBox="0 0 120 40" role="img" aria-label={`Código de control ${ticket.codigo}`} preserveAspectRatio="none">
-                    {Array.from(ticket.codigo).flatMap((character, characterIndex) => character.charCodeAt(0).toString(2).padStart(7, "0").split("").map((bit, bitIndex) => bit === "1" ? <rect key={`${characterIndex}-${bitIndex}`} x={characterIndex * 8 + bitIndex} y="0" width="1" height="40" fill="black" /> : null))}
-                  </svg>
-                  <small className={styles.receiptBarcodeCode}>{ticket.codigo}</small>
-                  <footer className={styles.receiptFooter}>Talón para empleado</footer>
+                  <footer className={styles.receiptFooter}>
+                    <p>Talón para Empleado</p>
+                    <span>INCAA - Lima 319</span>
+                  </footer>
                 </aside>
               </div>
 

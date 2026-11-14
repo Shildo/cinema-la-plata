@@ -647,31 +647,25 @@
 @media print {
   @page { size: 80mm auto; margin: 0; }
   :global(html), :global(body) { width: 80mm; min-width: 0; margin: 0; padding: 0; background: #fff; color: #000; }
-  .retirar { display: block; width: 80mm; min-height: 0; box-sizing: border-box; padding: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
+  .retirar { display: block; width: 80mm; min-height: 0; box-sizing: border-box; padding: 0; background: #fff; color: #000; font-family: "Satoshi Medium", sans-serif; }
   .retirarHeader, .retirarSearch, .retirarPrint, .ticket { display: none !important; }
   .retirarContent { display: block; width: 80mm; height: auto; margin: 0; }
   .retirarPreview { display: block; width: 80mm; min-height: 0; overflow: visible; box-sizing: border-box; padding: 0; border-radius: 0; background: #fff; color: #000; }
-  .ticketReceipt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); width: 80mm; box-sizing: border-box; margin: 0; padding: 0; border: 1px solid #000; background: #fff; color: #000; font-family: "Courier New", Courier, monospace; font-size: 10pt; line-height: 1.35; page-break-inside: avoid; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .receiptMain { min-width: 0; padding: 4mm 3mm; display: flex; flex-direction: column; }
-  .receiptStub { min-width: 0; box-sizing: border-box; padding: 4mm 2.5mm; border-left: 1px dashed #000; display: flex; flex-direction: column; align-items: center; gap: 2mm; font-size: 6.5pt; line-height: 1.25; text-align: center; overflow-wrap: anywhere; }
-  .receiptStubTitle { width: 100%; padding-bottom: 2mm; border-bottom: 1px dashed #000; font-size: 8pt; letter-spacing: 0.08em; }
-  .receiptStubMovie { font-size: 7pt; }
-  .receiptStub div { width: 100%; padding-top: 1.5mm; border-top: 1px dotted #000; display: flex; flex-direction: column; gap: 1mm; }
-  .receiptStub div span, .receiptStubFormat { font-size: 6pt; font-weight: 700; letter-spacing: 0.05em; }
-  .receiptStubSeat { font-size: 9pt; }
-  .receiptStubFormat { margin-top: 0; }
-  .receiptFooter { margin-top: auto; padding-top: 3mm; border-top: 1px dashed #000; font-size: 7pt; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.03em; }
-  .receiptBarcode { width: 100%; height: 13mm; display: block; }
-  .receiptBarcodeCode { font-size: 6pt; letter-spacing: 0.04em; overflow-wrap: anywhere; }
-  .receiptHeader { display: flex; flex-direction: column; align-items: center; gap: 2mm; padding-bottom: 3mm; border-bottom: 1px dashed #000; text-align: center; }
-  .receiptHeader strong { font-family: Arial, Helvetica, sans-serif; font-size: 15pt; letter-spacing: 0.04em; }
-  .receiptHeader span, .receiptDetails span, .receiptCode span { font-size: 8pt; font-weight: 400; letter-spacing: 0.08em; }
-  .ticketReceipt h2 { margin: 3mm 0; padding-bottom: 3mm; border-bottom: 1px dashed #000; font-family: Arial, Helvetica, sans-serif; font-size: 16pt; line-height: 1.15; text-align: center; overflow-wrap: anywhere; }
-  .receiptDetails { display: flex; flex-direction: column; gap: 2mm; padding: 1mm 0 3mm; border-bottom: 1px dashed #000; }
-  .receiptDetails div { display: flex; justify-content: space-between; gap: 3mm; }
+  .ticketReceipt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(5, auto); width: 80mm; box-sizing: border-box; margin: 0; padding: 0; border: 1px solid #000; background: #fff; color: #000; font-family: "Satoshi Medium", sans-serif; font-size: 10pt; line-height: 1.35; page-break-inside: avoid; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .receiptMain, .receiptStub { min-width: 0; padding: 3mm 4mm; display: flex; flex-direction: column; }  .receiptStub { border-left: 1px dashed #000; }
+  .receiptFooter { padding-top: 2mm; border-top: 1px solid #000; text-align: center;  letter-spacing: 0.03em; }
+  .receiptFooter p { font-size: 6.3pt; text-transform: uppercase; }
+  .receiptFooter span { font-size: 6pt; }
+  .receiptHeader { display: flex; flex-direction: column; align-items: center; gap: 2mm; padding-bottom: 1.5mm; border-bottom: 1px solid #000; text-align: center; }
+  .receiptHeader strong { font-family: "Satoshi Medium", sans-serif; font-size: 15pt; letter-spacing: 0.04em; }
+  .receiptDetails div { display: flex; justify-content: space-between; gap: 2mm; font-size: 9pt; font-weight: 400; letter-spacing: 0.04em; }
+  .ticketReceipt h2 { margin: 1.5mm 0; padding-bottom: 1.5mm; border-bottom: 1px solid #000; font-family: "Satoshi Medium", sans-serif; font-size: 16pt; line-height: 1.15; text-align: center; overflow-wrap: anywhere; }
+  .receiptDetails { display: flex; flex-direction: column; gap: 1mm; padding: 1mm 0 3mm; border-bottom: 1px solid #000; letter-spacing: -0.05em; }
   .receiptDetails span { text-transform: uppercase; }
-  .receiptDetails strong { text-align: right; font-weight: 400 }
-  .receiptCode { display: flex; flex-direction: column; align-items: center; gap: 2mm; padding-top: 3mm; text-align: center; }
-  .receiptCode strong { font-size: 12pt; font-weight: 700; overflow-wrap: anywhere; }
-  .receiptCode small { margin-top: 2mm; font-size: 7pt; }
+  .receiptDetails strong { text-align: right; }
+  .receiptPrice, .stubReceiptPrice { box-sizing: border-box; height: 17mm; margin: 0; }
+  .receiptPrice { display: flex; align-items: center; justify-content: center; }
+  .stubReceiptPrice { display: flex; flex-direction: column; justify-content: space-between; padding: 0.5mm 0; }
+  .stubReceiptPrice strong { align-self: flex-end; }
+  .stubReceiptPrice div { display: flex; justify-content: space-between; font-size: 7pt; font-weight: 400; }   
 }
