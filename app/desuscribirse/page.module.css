@@ -5,23 +5,13 @@
   place-items: center;
   overflow: hidden;
   padding: 132px 1.25rem 76px;
-  background:
-    radial-gradient(ellipse at 12% 20%, rgba(12, 20, 226, 0.25), transparent 36%),
-    radial-gradient(ellipse at 87% 82%, rgba(255, 19, 25, 0.16), transparent 30%),
-    #05060b;
+  background-image:
+    linear-gradient(rgba(5, 6, 11, 0.28), rgba(5, 6, 11, 0.38)),
+    url("/backgrounds/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
-}
-
-.ambient {
-  position: absolute;
-  top: 12%;
-  right: -10rem;
-  width: 28rem;
-  height: 28rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 50%;
-  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.018), 0 0 0 68px rgba(255, 255, 255, 0.012);
-  pointer-events: none;
 }
 
 .card {

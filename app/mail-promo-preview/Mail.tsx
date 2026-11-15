@@ -12,9 +12,15 @@ const colors = {
 };
 
 const content = {
-  title: "Descubrí tu próxima historia",
-  subtitle: "Cartelera del 12/11/26 al 19/11/26",
-  presaleTitle: "Preventa",
+	title: (
+		<>
+		DESCUBRÍ TU
+		<br />
+		PRÓXIMA HISTORIA
+		</>
+	),
+	subtitle: "Cartelera del 12/11/26 al 19/11/26",
+  	presaleTitle: "PREVENTA",
 };
 
 // Las últimas 4 películas de movie.ts son las de preventa
@@ -36,7 +42,7 @@ const css = (siteUrl: string) => `
   @font-face { font-family: Satoshi; src: url('${siteUrl}/fonts/satoshi/Satoshi-Medium.otf') format('opentype'); font-weight: 500; }
   @font-face { font-family: Satoshi; src: url('${siteUrl}/fonts/satoshi/Satoshi-Bold.otf') format('opentype'); font-weight: 700; }
   @media screen and (max-width:480px) {
-    .title { font-size: 30px !important; }
+    .title { font-size: 26px !important; }
     .subtitle { font-size: 14px !important; }
     .poster { width: 50% !important; }
     .grid { padding-left: 6px !important; padding-right: 6px !important; }
@@ -100,12 +106,15 @@ export default function Mail({ siteUrl }: { siteUrl: string }) {
                           "linear-gradient(90deg,#ff1319 0%,#ff1319 15%,#000000,#0c14e2 85%,#0c14e2 100%)",
                       }}
                     >
+                    <a href="/#cartelera">
                       <img
                         src={`${siteUrl}/logo.png`}
                         alt="Cinema La Plata"
                         width={150}
-                        style={{ display: "block", width: 150, height: "auto", margin: "0 auto", border: 0 }}
+                        style={{ display: "block", width: "26%", maxWidth: "150px",height: "auto", margin: "0 auto" }}
                       />
+                    </a>
+                      
                     </td>
                   </tr>
 
@@ -117,10 +126,9 @@ export default function Mail({ siteUrl }: { siteUrl: string }) {
                         className="subtitle"
                         style={{
                           margin: "12px 0 0",
-                          color: colors.accent,
+                          color: colors.text,
                           fontFamily: FONT,
-                          fontSize: 16,
-                          fontWeight: 500,
+                          fontSize: 18,
                           letterSpacing: "0.08em",
                         }}
                       >
