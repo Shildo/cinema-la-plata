@@ -283,7 +283,6 @@
   margin: 8px 0 14px;
   font-family: "Satoshi Medium", sans-serif;
   font-size: clamp(1.7rem, 2.2vw, 2.3rem);
-  line-height: 0.95;
   font-weight: 400;
   color: var(--black);
 }
@@ -652,14 +651,14 @@
   .retirarContent { display: block; width: 80mm; height: auto; margin: 0; }
   .retirarPreview { display: block; width: 80mm; min-height: 0; overflow: visible; box-sizing: border-box; padding: 0; border-radius: 0; background: #fff; color: #000; }
   .ticketReceipt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(5, auto); width: 80mm; box-sizing: border-box; margin: 0; padding: 0; border: 1px solid #000; background: #fff; color: #000; font-family: "Satoshi Medium", sans-serif; font-size: 10pt; line-height: 1.35; page-break-inside: avoid; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .receiptMain, .receiptStub { min-width: 0; padding: 3mm 4mm; display: flex; flex-direction: column; }  .receiptStub { border-left: 1px dashed #000; }
+  .receiptMain, .receiptStub { min-width: 0; padding: 2mm 3mm; display: flex; flex-direction: column; }  .receiptStub { border-left: 1px dashed #000; }
   .receiptFooter { padding-top: 2mm; border-top: 1px solid #000; text-align: center;  letter-spacing: 0.03em; }
   .receiptFooter p { font-size: 6.3pt; text-transform: uppercase; }
   .receiptFooter span { font-size: 6pt; }
   .receiptHeader { display: flex; flex-direction: column; align-items: center; gap: 2mm; padding-bottom: 1.5mm; border-bottom: 1px solid #000; text-align: center; }
   .receiptHeader strong { font-family: "Satoshi Medium", sans-serif; font-size: 15pt; letter-spacing: 0.04em; }
   .receiptDetails div { display: flex; justify-content: space-between; gap: 2mm; font-size: 9pt; font-weight: 400; letter-spacing: 0.04em; }
-  .ticketReceipt h2 { margin: 1.5mm 0; padding-bottom: 1.5mm; border-bottom: 1px solid #000; font-family: "Satoshi Medium", sans-serif; font-size: 16pt; line-height: 1.15; text-align: center; overflow-wrap: anywhere; }
+  .ticketReceipt h2 { margin: 1.5mm 0; padding-bottom: 1.5mm; border-bottom: 1px solid #000; font-family: "Satoshi Medium", sans-serif; font-size: 13pt; line-height: 1.15; text-align: center; overflow-wrap: anywhere; }
   .receiptDetails { display: flex; flex-direction: column; gap: 1mm; padding: 1mm 0 3mm; border-bottom: 1px solid #000; letter-spacing: -0.05em; }
   .receiptDetails span { text-transform: uppercase; }
   .receiptDetails strong { text-align: right; }
