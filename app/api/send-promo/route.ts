@@ -2,6 +2,8 @@ import nodemailer from "nodemailer";
 
 import { buildPromoEmail } from "../mail-hooks/cumple-mail"
 import { buildCarteleraEmail } from "../mail-hooks/cartelera-mail";
+import { buildFriendsEmail } from "../mail-hooks/amigos-mail";
+
 import { movies } from "../../data/movie";
 
 export const runtime = "nodejs";
@@ -52,18 +54,25 @@ export async function POST(request: Request) {
       },
     });
 
-    await transporter.sendMail({
-      from: { name: "Cinema La Plata", address: gmailUser },
-      to: email,
-      subject: "¡Que los cumplas feliz! Tenés 30% OFF en el Candy Bar",
-      html: buildPromoEmail(siteUrl),
-    });
+    // await transporter.sendMail({
+    //   from: { name: "Cinema La Plata", address: gmailUser },
+    //   to: email,
+    //   subject: "¡Que los cumplas feliz! Tenés 30% OFF en el Candy Bar",
+    //   html: buildPromoEmail(siteUrl),
+    // });
+
+    // await transporter.sendMail({
+    //   from: { name: "Cinema La Plata", address: gmailUser },
+    //   to: email,
+    //   subject: "Cartelera de Cinema La Plata",
+    //   html: buildCarteleraEmail(siteUrl, movies),
+    // });
 
     await transporter.sendMail({
       from: { name: "Cinema La Plata", address: gmailUser },
       to: email,
-      subject: "Cartelera de Cinema La Plata",
-      html: buildCarteleraEmail(siteUrl, movies),
+      subject: "Cinema La Plata",
+      html: buildFriendsEmail(siteUrl),
     });
 
     return Response.json({ ok: true });

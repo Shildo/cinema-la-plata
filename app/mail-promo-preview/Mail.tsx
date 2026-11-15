@@ -1,186 +1,97 @@
-import type { CSSProperties } from "react";
-import { movies, type Movie } from "../data/movie";
-
 const FONT = "Satoshi,Arial,sans-serif";
 
-const colors = {
-  page: "#111111",
-  card: "#000000",
-  text: "#ffffff",
-  accent: "#ffdd12",
-  muted: "#8f98b4",
-};
-
-const content = {
-	title: (
-		<>
-		DESCUBRÍ TU
-		<br />
-		PRÓXIMA HISTORIA
-		</>
-	),
-	subtitle: "Cartelera del 12/11/26 al 19/11/26",
-  	presaleTitle: "PREVENTA",
-};
-
-// Las últimas 4 películas de movie.ts son las de preventa
-const cartelera = movies.slice(0, -4);
-const preventa = movies.slice(-4);
-
-// Mismo estilo para los dos títulos, así miden lo mismo
-const titleStyle: CSSProperties = {
-  margin: 0,
-  color: colors.text,
-  fontFamily: FONT,
-  fontSize: 40,
-  fontWeight: 700,
-  lineHeight: 1.05,
-};
-
 const css = (siteUrl: string) => `
-  @font-face { font-family: Satoshi; src: url('${siteUrl}/fonts/satoshi/Satoshi-Regular.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: Satoshi; src: url('${siteUrl}/fonts/satoshi/Satoshi-Medium.otf') format('opentype'); font-weight: 500; }
-  @font-face { font-family: Satoshi; src: url('${siteUrl}/fonts/satoshi/Satoshi-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family:Satoshi; src:url('${siteUrl}/fonts/satoshi/Satoshi-Regular.otf') format('opentype'); font-style:normal; font-weight:400; }
+  @font-face { font-family:Satoshi; src:url('${siteUrl}/fonts/satoshi/Satoshi-Italic.otf') format('opentype'); font-style:italic; font-weight:400; }
   @media screen and (max-width:480px) {
-    .title { font-size: 26px !important; }
-    .subtitle { font-size: 14px !important; }
-    .poster { width: 50% !important; }
-    .grid { padding-left: 6px !important; padding-right: 6px !important; }
-  }
+    .mail-canvas { width:100% !important; height:209.17vw !important; }
+    .mail-scene { height:209.17vw !important; background-size:100% 100% !important; }
+    .mail-layout { height:209.17vw !important; }
+    .mail-spacer, .mail-spacer td { height:198.67vw !important; }
+    .mail-footer, .mail-footer td { height:7.83vw !important; }
+    .mail-bottom, .mail-bottom td { height:2.67vw !important; }
+    .mail-footer-copy { font-size:10px !important; line-height:1.2 !important; }
+    .mail-footer-cell { padding-right:3% !important; padding-left:3% !important; }
+    .promo-button { padding: 8px 16px !important; font-size: 20px !important; }
+    }
 `;
 
-const mailPoster = (movie: Movie) =>
-  `/mail-posters/${movie.image.split("/").pop()!.replace(/\.[^.]+$/, ".jpg")}`;
-
-function Poster({ movie, siteUrl }: { movie: Movie; siteUrl: string }) {
-  return (
-    <div
-      className="poster"
-      style={{ display: "inline-block", width: "25%", verticalAlign: "top", fontSize: 0, lineHeight: 0 }}
-    >
-      <a href={`${siteUrl}/pelicula/${movie.slug}`} style={{ display: "block", padding: 6 }}>
-        <img
-			src={`${siteUrl}${mailPoster(movie)}`}
-			alt={movie.title}
-			width={131}
-			style={{ display: "block", width: "100%", height: "auto", border: 0, borderRadius: 4 }}
-		/>
-      </a>
-    </div>
-  );
-}
-
 export default function Mail({ siteUrl }: { siteUrl: string }) {
+  const baseUrl = siteUrl.replace(/\/$/, "");
+  const background = `${baseUrl}/backgrounds/friendsBackgroundEmail.jpeg`;
+  const home = `${baseUrl}/`;
+  const cartelera = `${baseUrl}/#cartelera`;
+  const unsubscribe = `${baseUrl}/desuscribirse`;
+
   return (
     <>
-      <style>{css(siteUrl)}</style>
-
+      <style>{css(baseUrl)}</style>
       <table
         role="presentation"
         width="100%"
         cellSpacing={0}
         cellPadding={0}
         border={0}
-        style={{ background: colors.page, fontFamily: FONT }}
+        style={{ width: "100%", margin: 0, background: "#111", fontFamily: FONT }}
       >
         <tbody>
           <tr>
-            <td align="center">
+            <td align="center" style={{ padding: 0 }}>
               <table
+                className="mail-canvas"
                 role="presentation"
                 width={600}
                 cellSpacing={0}
                 cellPadding={0}
                 border={0}
-                style={{ width: "100%", maxWidth: 600, background: colors.card, textAlign: "center" }}
+                style={{ width: "100%", maxWidth: 600, height: 1255, tableLayout: "fixed", borderCollapse: "collapse", borderSpacing: 0, textAlign: "center" }}
               >
                 <tbody>
-                  {/* Header con logo */}
                   <tr>
                     <td
-                      align="center"
-                      style={{
-                        padding: "14px 0",
-                        backgroundColor: "#000000",
-                        backgroundImage:
-                          "linear-gradient(90deg,#ff1319 0%,#ff1319 15%,#000000,#0c14e2 85%,#0c14e2 100%)",
-                      }}
+                      className="mail-scene"
+                      width={600}
+                      height={1255}
+                      valign="top"
+                      style={{ width: "100%", height: 1255, padding: 0, backgroundColor: "#111", backgroundImage: `url('${background}')`, backgroundPosition: "center top", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }}
                     >
-                    <a href="/#cartelera">
-                      <img
-                        src={`${siteUrl}/logo.png`}
-                        alt="Cinema La Plata"
-                        width={150}
-                        style={{ display: "block", width: "26%", maxWidth: "150px",height: "auto", margin: "0 auto" }}
-                      />
-                    </a>
-                      
-                    </td>
-                  </tr>
-
-                  {/* Título y subtítulo */}
-                  <tr>
-                    <td align="center" style={{ padding: "40px 20px 0" }}>
-                      <h1 className="title" style={titleStyle}>{content.title}</h1>
-                      <p
-                        className="subtitle"
-                        style={{
-                          margin: "12px 0 0",
-                          color: colors.text,
-                          fontFamily: FONT,
-                          fontSize: 18,
-                          letterSpacing: "0.08em",
-                        }}
+                      <table
+                        className="mail-layout"
+                        role="presentation"
+                        width="100%"
+                        cellSpacing={0}
+                        cellPadding={0}
+                        border={0}
+                        style={{ width: "100%", height: 1255, tableLayout: "fixed", borderCollapse: "collapse", borderSpacing: 0, textAlign: "center" }}
                       >
-                        {content.subtitle}
-                      </p>
-                    </td>
-                  </tr>
+                        <tbody>
+                          {/* Espacio para diseñar el contenido encima de la imagen de fondo. */}
+                          <tr className="mail-spacer">
+                            <td height={1192} style={{ height: 1192, padding: 0, fontSize: 0, lineHeight: 0 }}>&nbsp;</td>
+                          </tr>
 
-                  {/* Cartelera */}
-                  <tr>
-                    <td className="grid" align="center" style={{ padding: "28px 14px 0", fontSize: 0, lineHeight: 0, textAlign: "center" }}>
-                      {cartelera.map((movie) => (
-                        <Poster key={movie.slug} movie={movie} siteUrl={siteUrl} />
-                      ))}
-                    </td>
-                  </tr>
+                          <tr className="promo-r-button">
+                            <td height="auto" align="center" valign="middle" style={{ height:"auto", padding:"0" }}>
+                              <a className="promo-button" href={cartelera} style={{ display: "inline-block", padding: "12px 24px", borderRadius: "8px", backgroundColor: "#ff9800", backgroundImage: "linear-gradient(90deg,#ff9800,#f44336)", color: "#fff", fontFamily:FONT, fontSize:"38px", fontStyle: "normal", fontWeight: 700, lineHeight: 1.05, textDecoration: "none", whiteSpace: "nowrap" }}>Ver cartelera</a>
+                            </td>
+                          </tr>
 
-                  {/* Preventa */}
-                  <tr>
-                    <td align="center" style={{ padding: "48px 20px 0" }}>
-                      <h2 className="title" style={titleStyle}>{content.presaleTitle}</h2>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="grid" align="center" style={{ padding: "28px 14px 0", fontSize: 0, lineHeight: 0, textAlign: "center" }}>
-                      {preventa.map((movie) => (
-                        <Poster key={movie.slug} movie={movie} siteUrl={siteUrl} />
-                      ))}
-                    </td>
-                  </tr>
+                          <tr className="promo-r-button-footer"><td height="10vw" style={{ height:"10vw", padding: 0, fontSize: 0, lineHeight:0 }}>&nbsp;</td></tr>
 
-                  {/* Footer */}
-                  <tr>
-                    <td align="center" style={{ padding: "48px 20px 32px" }}>
-                      <p
-                        style={{
-                          margin: 0,
-                          color: colors.muted,
-                          fontFamily: FONT,
-                          fontSize: 12,
-                          fontStyle: "italic",
-                          lineHeight: 1.4,
-                        }}
-                      >
-                        Estás recibiendo este mensaje porque te suscribiste a nuestra lista en{" "}
-                        <a href={siteUrl} style={{ color: colors.muted }}>Cinema La Plata</a>. Cuando no quieras seguir
-                        recibiéndola, podés{" "}
-                        <a href={`${siteUrl}/desuscribirse`} style={{ color: colors.muted }}>
-                          desuscribirte utilizando este vínculo
-                        </a>
-                        .
-                      </p>
+                          <tr className="mail-footer">
+                            <td className="mail-footer-cell" height={47} align="center" valign="middle" style={{ height: 47, padding: "0 6%" }}>
+                              <p className="mail-footer-copy" style={{ margin: 0, color: "#fff", fontFamily: FONT, fontSize: 12, fontStyle: "italic", fontWeight: 400, lineHeight: 1.3 }}>
+                                Estás recibiendo este mensaje porque te suscribiste a<br />
+                                nuestra lista en <u><a href={home} style={{ color: "#fff" }}>Cinema La Plata</a></u>. Cuando no quieras seguir<br />
+                                recibiéndola, podés <u><a href={unsubscribe} style={{ color: "#fff" }}>desuscribirte utilizando este vínculo.</a></u>
+                              </p>
+                            </td>
+                          </tr>
+                          <tr className="mail-bottom">
+                            <td height={16} style={{ height: 16, padding: 0, fontSize: 0, lineHeight: 0 }}>&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </td>
                   </tr>
                 </tbody>

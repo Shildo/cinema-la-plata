@@ -1,7 +1,7 @@
 import Phone from "../../../public/svg/Phone";
 import Instagram from "../../../public/svg/Instagram";
 import TikTok from "../../../public/svg/TikTok";
-import YouTube from "../../../public/svg/Youtube";
+import Facebook from "../../../public/svg/Facebook";
 import MyMail from "../../../public/svg/MyMail";
 
 export default function Contact() {
@@ -52,11 +52,11 @@ export default function Contact() {
             tesis_cinema
           </a>
           
-          <a href="https://www.youtube.com/@CinemaLaPlataOficial" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/share/1JH3khKwNK/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
             <span>
-              <YouTube />
+              <Facebook />
             </span>
-            CinemaLaPlataOficial
+            Cinema La Plata
           </a>
         </div>
       </div>
