@@ -1,0 +1,43 @@
+.page {
+  min-height: 100vh;
+  padding: 24px;
+  background: #2a2a2a;
+  color: #fff;
+  font-family: "Satoshi Medium", sans-serif;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.toolbar button {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.toolbar button.active {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: #000;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+}
+
+.frame {
+  max-width: 100%;
+  height: calc(100vh - 110px);
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}

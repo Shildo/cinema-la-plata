@@ -18,6 +18,7 @@
 /out/
 
 # production
+public/mail-posters/
 /build
 
 # misc
