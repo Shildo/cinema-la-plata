@@ -75,6 +75,8 @@ export function buildCarteleraEmail(siteUrl: string, movies: Movie[]): string {
       .poster { width:50% !important; }
       .mail-grid { padding-left:6px !important; padding-right:6px !important; }
       .mail-card { width:100% !important; }
+      .mail-footer { font-size:10px !important; line-height:1.2 !important; }
+      .mail-footer-cell { padding-right:3% !important; padding-left:3% !important; }
     }
   </style>
 </head>
@@ -100,13 +102,12 @@ export function buildCarteleraEmail(siteUrl: string, movies: Movie[]): string {
         <tr><td class="mail-grid" align="center" style="padding:28px 14px 0;font-size:0;line-height:0;text-align:center;">
           ${renderMovieRows(preventa, baseUrl)}
         </td></tr>
-        <tr><td align="center" style="padding:48px 20px 32px;">
-          <p style="margin:0;color:${COLORS.muted};font-family:${FONT};font-size:12px;font-style:italic;line-height:1.4;">
-            Estás recibiendo este mensaje porque te suscribiste a nuestra lista en
-            <a href="${homeUrl}" style="color:${COLORS.muted};">Cinema La Plata</a>. Cuando no quieras seguir recibiéndola, podés
-            <a href="${unsubscribe}" style="color:${COLORS.muted};">desuscribirte utilizando este vínculo</a>.
-          </p>
+        <tr><td height="39" style="height:39px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td class="mail-footer-cell" height="47" align="center" valign="middle" style="height:47px;padding:0 6%;">
+          <p class="mail-footer" style="margin:0;color:#fff;font-family:${FONT};font-size:12px;font-style:italic;font-weight:400;line-height:1.3;">
+            Estás recibiendo este mensaje porque te suscribiste a<br>nuestra lista en <u><a href="${siteUrl}" style="color:#fff;">Cinema La Plata</a></u>. Cuando no quieras seguir<br>recibiéndola, podés <u><a href="${siteUrl}/desuscribirse" style="color:#fff;">desuscribirte utilizando este vínculo.</a></u></p>
         </td></tr>
+        <tr><td height="16" style="height:16px;padding:0;font-size:0;line-height:0;">&nbsp;</td></tr>
       </table>
     </td></tr>
   </table>
